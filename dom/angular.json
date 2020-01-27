@@ -125,20 +125,20 @@
         }
       }
     },
-    "services-auth-service": {
-      "root": "apps/services/auth-service",
-      "sourceRoot": "apps/services/auth-service/src",
+    "services-backend": {
+      "root": "apps/services/backend",
+      "sourceRoot": "apps/services/backend/src",
       "projectType": "application",
-      "prefix": "services-auth-service",
+      "prefix": "services-backend",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@nrwl/node:build",
           "options": {
-            "outputPath": "dist/apps/services/auth-service",
-            "main": "apps/services/auth-service/src/main.ts",
-            "tsConfig": "apps/services/auth-service/tsconfig.app.json",
-            "assets": ["apps/services/auth-service/src/assets"]
+            "outputPath": "dist/apps/services/backend",
+            "main": "apps/services/backend/src/main.ts",
+            "tsConfig": "apps/services/backend/tsconfig.app.json",
+            "assets": ["apps/services/backend/src/assets"]
           },
           "configurations": {
             "production": {
@@ -147,8 +147,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "apps/services/auth-service/src/environments/environment.ts",
-                  "with": "apps/services/auth-service/src/environments/environment.prod.ts"
+                  "replace": "apps/services/backend/src/environments/environment.ts",
+                  "with": "apps/services/backend/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -157,81 +157,105 @@
         "serve": {
           "builder": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "services-auth-service:build"
+            "buildTarget": "services-backend:build"
           }
         },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/services/auth-service/tsconfig.app.json",
-              "apps/services/auth-service/tsconfig.spec.json"
+              "apps/services/backend/tsconfig.app.json",
+              "apps/services/backend/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/services/auth-service/**"]
+            "exclude": ["**/node_modules/**", "!apps/services/backend/**"]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/services/auth-service/jest.config.js",
-            "tsConfig": "apps/services/auth-service/tsconfig.spec.json"
+            "jestConfig": "apps/services/backend/jest.config.js",
+            "tsConfig": "apps/services/backend/tsconfig.spec.json"
           }
         }
       }
     },
-    "services-subscribe-service": {
-      "root": "apps/services/subscribe-service",
-      "sourceRoot": "apps/services/subscribe-service/src",
-      "projectType": "application",
-      "prefix": "services-subscribe-service",
+    "services-common-service": {
+      "root": "libs/services/common-service",
+      "sourceRoot": "libs/services/common-service/src",
+      "projectType": "library",
       "schematics": {},
       "architect": {
-        "build": {
-          "builder": "@nrwl/node:build",
-          "options": {
-            "outputPath": "dist/apps/services/subscribe-service",
-            "main": "apps/services/subscribe-service/src/main.ts",
-            "tsConfig": "apps/services/subscribe-service/tsconfig.app.json",
-            "assets": ["apps/services/subscribe-service/src/assets"]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/services/subscribe-service/src/environments/environment.ts",
-                  "with": "apps/services/subscribe-service/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "services-subscribe-service:build"
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "apps/services/subscribe-service/tsconfig.app.json",
-              "apps/services/subscribe-service/tsconfig.spec.json"
+              "libs/services/common-service/tsconfig.lib.json",
+              "libs/services/common-service/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**",
-              "!apps/services/subscribe-service/**"
+              "!libs/services/common-service/**"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
           "options": {
-            "jestConfig": "apps/services/subscribe-service/jest.config.js",
-            "tsConfig": "apps/services/subscribe-service/tsconfig.spec.json"
+            "jestConfig": "libs/services/common-service/jest.config.js",
+            "tsConfig": "libs/services/common-service/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "services-auth-service": {
+      "root": "libs/services/auth-service",
+      "sourceRoot": "libs/services/auth-service/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/services/auth-service/tsconfig.lib.json",
+              "libs/services/auth-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/services/auth-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/services/auth-service/jest.config.js",
+            "tsConfig": "libs/services/auth-service/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "services-subscriptions-service": {
+      "root": "libs/services/subscriptions-service",
+      "sourceRoot": "libs/services/subscriptions-service/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/services/subscriptions-service/tsconfig.lib.json",
+              "libs/services/subscriptions-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/services/subscriptions-service/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/services/subscriptions-service/jest.config.js",
+            "tsConfig": "libs/services/subscriptions-service/tsconfig.spec.json"
           }
         }
       }

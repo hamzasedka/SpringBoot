@@ -15,7 +15,15 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@dom/services/auth-service": ["libs/services/auth-service/src/index.ts"],
+      "@dom/services/common-service": [
+        "libs/services/common-service/src/index.ts"
+      ],
+      "@dom/services/subscriptions-service": [
+        "libs/services/subscriptions-service/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

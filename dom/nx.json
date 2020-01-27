@@ -18,10 +18,16 @@
       "tags": [],
       "implicitDependencies": ["domiciliation"]
     },
+    "services-backend": {
+      "tags": []
+    },
+    "services-common-service": {
+      "tags": []
+    },
     "services-auth-service": {
       "tags": []
     },
-    "services-subscribe-service": {
+    "services-subscriptions-service": {
       "tags": []
     }
   }
