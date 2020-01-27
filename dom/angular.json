@@ -178,6 +178,63 @@
           }
         }
       }
+    },
+    "services-subscribe-service": {
+      "root": "apps/services/subscribe-service",
+      "sourceRoot": "apps/services/subscribe-service/src",
+      "projectType": "application",
+      "prefix": "services-subscribe-service",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/services/subscribe-service",
+            "main": "apps/services/subscribe-service/src/main.ts",
+            "tsConfig": "apps/services/subscribe-service/tsconfig.app.json",
+            "assets": ["apps/services/subscribe-service/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/services/subscribe-service/src/environments/environment.ts",
+                  "with": "apps/services/subscribe-service/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "services-subscribe-service:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/services/subscribe-service/tsconfig.app.json",
+              "apps/services/subscribe-service/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/services/subscribe-service/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/services/subscribe-service/jest.config.js",
+            "tsConfig": "apps/services/subscribe-service/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
