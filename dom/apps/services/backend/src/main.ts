@@ -4,6 +4,7 @@ import { startUp, NestServerConfig, initializeFirebaseAdmin } from '@dom/service
 import * as functions from 'firebase-functions';
 import { environment } from './environments/environment';
 import { AuthModule } from '@dom/services/auth-service'
+import { SubscriptionsModule } from '@dom/services/subscriptions-service'
 
 // ----- Init Firebase -------------
 console.log('Init Firebase');
@@ -32,7 +33,7 @@ export const authService = functions.https.onRequest(authServer);
 
 // ----- Subscriptions Service -------------
 const subscriptionsServiceConfig: NestServerConfig = {
-  module: AuthModule,
+  module: SubscriptionsModule,
   globalApiPrefix: 'v1',
   title: 'Subscriptions Service',
   description: 'The Subscriptions Service',
