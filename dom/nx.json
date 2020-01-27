@@ -17,6 +17,9 @@
     "domiciliation-e2e": {
       "tags": [],
       "implicitDependencies": ["domiciliation"]
+    },
+    "services-auth-service": {
+      "tags": []
     }
   }
 }

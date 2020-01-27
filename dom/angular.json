@@ -63,7 +63,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "domiciliation:build"
+            "browserTarget": "domiciliation:build",
+            "proxyConfig": "apps/domiciliation/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -120,6 +121,60 @@
           "options": {
             "tsConfig": ["apps/domiciliation-e2e/tsconfig.e2e.json"],
             "exclude": ["**/node_modules/**", "!apps/domiciliation-e2e/**"]
+          }
+        }
+      }
+    },
+    "services-auth-service": {
+      "root": "apps/services/auth-service",
+      "sourceRoot": "apps/services/auth-service/src",
+      "projectType": "application",
+      "prefix": "services-auth-service",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/services/auth-service",
+            "main": "apps/services/auth-service/src/main.ts",
+            "tsConfig": "apps/services/auth-service/tsconfig.app.json",
+            "assets": ["apps/services/auth-service/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/services/auth-service/src/environments/environment.ts",
+                  "with": "apps/services/auth-service/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "services-auth-service:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/services/auth-service/tsconfig.app.json",
+              "apps/services/auth-service/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/services/auth-service/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/services/auth-service/jest.config.js",
+            "tsConfig": "apps/services/auth-service/tsconfig.spec.json"
           }
         }
       }
