@@ -10,6 +10,7 @@
     "deploy:backend:prod": "ng build --configuration=production --project=services-backend && firebase deploy --only functions",
     "build": "ng build",
     "build:prod": "ng build --prod",
+    "build:backend:prod": "ng build --configuration=production --project=services-backend",
     "test": "ng test",
     "lint": "nx workspace-lint && ng lint",
     "e2e": "ng e2e",
