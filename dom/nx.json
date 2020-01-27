@@ -29,6 +29,33 @@
     },
     "services-subscriptions-service": {
       "tags": []
+    },
+    "ui-admin": {
+      "tags": []
+    },
+    "ui-public": {
+      "tags": []
+    },
+    "ui-common": {
+      "tags": []
+    },
+    "common-helpers": {
+      "tags": []
+    },
+    "common-core": {
+      "tags": []
+    },
+    "data-ngrx-store": {
+      "tags": []
+    },
+    "data-ngrx-data": {
+      "tags": []
+    },
+    "infra-auth": {
+      "tags": []
+    },
+    "common-dto": {
+      "tags": []
     }
   }
 }

@@ -22,7 +22,16 @@
       ],
       "@dom/services/subscriptions-service": [
         "libs/services/subscriptions-service/src/index.ts"
-      ]
+      ],
+      "@dom/ui/admin": ["libs/ui/admin/src/index.ts"],
+      "@dom/ui/public": ["libs/ui/public/src/index.ts"],
+      "@dom/ui/common": ["libs/ui/common/src/index.ts"],
+      "@dom/common/helpers": ["libs/common/helpers/src/index.ts"],
+      "@dom/common/core": ["libs/common/core/src/index.ts"],
+      "@dom/data/ngrx-store": ["libs/data/ngrx-store/src/index.ts"],
+      "@dom/data/ngrx-data": ["libs/data/ngrx-data/src/index.ts"],
+      "@dom/infra/auth": ["libs/infra/auth/src/index.ts"],
+      "@dom/common/dto": ["libs/common/dto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
