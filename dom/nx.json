@@ -1,0 +1,22 @@
+{
+  "npmScope": "dom",
+  "implicitDependencies": {
+    "angular.json": "*",
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    "tsconfig.json": "*",
+    "tslint.json": "*",
+    "nx.json": "*"
+  },
+  "projects": {
+    "domiciliation": {
+      "tags": []
+    },
+    "domiciliation-e2e": {
+      "tags": [],
+      "implicitDependencies": ["domiciliation"]
+    }
+  }
+}
