@@ -20,7 +20,7 @@
             "main": "apps/domiciliation/src/main.ts",
             "polyfills": "apps/domiciliation/src/polyfills.ts",
             "tsConfig": "apps/domiciliation/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "apps/domiciliation/src/favicon.ico",
               "apps/domiciliation/src/assets"
@@ -41,7 +41,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
