@@ -1,0 +1,23 @@
+<dom-top-nav class="fixed-topnav" fxHide.gt-xs></dom-top-nav>
+<mat-sidenav-container>
+  <mat-sidenav #appDrawer mode="over" opened="false">
+    <mat-nav-list>
+      <dom-menu-list-item
+        (disconnectButtonClick)="this.logout()"
+        *ngFor="let item of this.navItems$ | async"
+        [item]="item"
+      >
+      </dom-menu-list-item>
+      <a
+        mat-list-item
+        [ngStyle]="{ 'padding-left': 12 + 'px' }"
+        (click)="this.logout()"
+      >
+        <mat-icon class="routeIcon">exit_to_app</mat-icon>
+        Se deconnecter
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <dom-top-nav [userEmail]="this.userName" fxHide.xs></dom-top-nav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>

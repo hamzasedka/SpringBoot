@@ -1,0 +1,21 @@
+@import '~@dom/ui/common/styles/abstracts/variables';
+
+footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.toolbar {
+  z-index: 2;
+}
+
+.mat-toolbar-single-row {
+  height: $footer-height;
+  padding: 0;
+}
+
+.mat-toolbar {
+  font-size: 10px;
+  line-height: 16px;
+  padding: 0 4px;
+}

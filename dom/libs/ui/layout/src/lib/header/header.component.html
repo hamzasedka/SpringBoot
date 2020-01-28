@@ -1,0 +1,46 @@
+<header id="header">
+  <mat-toolbar
+    color="primary"
+    class="toolbar"
+    fxLayout="row"
+    fxLayoutAlign="start center"
+    fxLayoutGap="0px"
+  >
+    <button mat-button fxFlex="none" (click)="this.onMenuButtonClicked($event)">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <button
+      *ngIf="this.canNavigate"
+      mat-button
+      fxFlex="none"
+      (click)="this.onNavigateBackButtonClicked($event)"
+    >
+      <mat-icon>navigate_before</mat-icon>
+    </button>
+    <h1 id="title" fxFlex="none">
+      <a mat-button routerLink="/">{{ this.title }}</a>
+    </h1>
+    <button
+      *ngIf="this.canInstall"
+      mat-button
+      fxFlex="none"
+      (click)="this.onInstallButtonClicked($event)"
+    >
+      <mat-icon>system_update</mat-icon>
+    </button>
+    <h2 id="tool_name" fxFlex="auto">{{ this.toolName$ | async }}</h2>
+    <div id="user" fxFlex="none">
+      <span *ngIf="this.userEmail" id="user_email" fxFlex="none">{{
+        this.userEmail
+      }}</span>
+    </div>
+    <button
+      id="user_disconnect"
+      mat-button
+      fxFlex="none"
+      (click)="this.onDisconnectButtonClicked($event)"
+    >
+      <mat-icon>exit_to_app</mat-icon>
+    </button>
+  </mat-toolbar>
+</header>

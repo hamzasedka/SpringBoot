@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { DataNgrxStoreModule } from './data-ngrx-store.module';
+import { NgrxStoreModule } from './ngrx-store.module';
 
-describe('DataNgrxStoreModule', () => {
+describe('NgrxStoreModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [DataNgrxStoreModule]
+      imports: [NgrxStoreModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(DataNgrxStoreModule).toBeDefined();
+    expect(NgrxStoreModule).toBeDefined();
   });
 });

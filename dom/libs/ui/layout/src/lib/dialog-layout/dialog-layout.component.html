@@ -1,0 +1,11 @@
+<div fxLayout="column" fxFlexFill>
+  <div *ngIf="this.title">
+    {{ this.title}}
+  </div>
+  <div *ngIf="this.canClose" fxLayout="row" fxLayoutAlign="end start">
+    <button mat-mini-fab aria-label="Close" fxFlex="none" color="warn" (click)="this.onCloseClick()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <ng-content fxFlexFill></ng-content>
+</div>

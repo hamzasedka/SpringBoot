@@ -1,1 +1,1 @@
-export * from './lib/data-ngrx-store.module';
+export * from './lib';
