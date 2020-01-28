@@ -28,10 +28,12 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   imports: [
     FlexLayoutModule,
+    MatListModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatButtonModule,
@@ -64,6 +66,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
   ],
   exports: [
     FlexLayoutModule,
+    MatListModule,
     MatAutocompleteModule,
     MatBadgeModule,
     MatButtonModule,
@@ -95,4 +98,4 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatSlideToggleModule
   ]
 })
-export class AppMaterialDesignModule {}
+export class AppMaterialDesignModule { }

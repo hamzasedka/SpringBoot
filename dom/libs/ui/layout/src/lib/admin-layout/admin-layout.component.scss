@@ -1,5 +1,5 @@
-@import '~@dom/ui/common/styles/abstracts/breakpoints';
-@import '~@dom/ui/common/styles/themes/theme';
+@import './libs/ui/common/src/lib/styles/abstracts/breakpoints';
+@import './libs/ui/common/src/lib/styles/themes/theme';
 
 .mat-sidenav {
   width: 360px;
@@ -10,7 +10,6 @@
 }
 .sidenav-toolbar {
   height: 64px;
-  background-color: mat-color($app-primary);
   display: flex;
   flex-direction: row;
 

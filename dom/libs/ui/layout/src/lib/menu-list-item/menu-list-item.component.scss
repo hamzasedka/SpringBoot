@@ -1,19 +1,4 @@
-@import '../../styles/themes/theme';
-
-:host {
-  display: block;
-  outline: none;
-
-  .mat-list-item.active {
-    background-color: mat-color($app-primary, 50);
-  }
-  &:hover,
-  &:focus {
-    > .mat-list-item:not(.expanded) {
-      background-color: mat-color($app-primary, 100) !important;
-    }
-  }
-}
+@import './libs/ui/common/src/lib/styles/themes/theme';
 
 .mat-list-item {
   padding: 8px 0;
