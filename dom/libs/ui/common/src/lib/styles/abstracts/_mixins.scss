@@ -31,3 +31,43 @@
     }
   }
 }
+
+
+@mixin snackbar($theme) {
+  $primary: mat-color(map-get($theme, primary));
+  $primary-text: mat-color(map-get($theme, primary), default-contrast);
+  $warn: mat-color(map-get($theme, warn));
+  $warn-text: mat-color(map-get($theme, warn), default-contrast);
+
+  .default-notification {
+    color: $primary-text;
+    background-color: $primary;
+  }
+  .default-notification .mat-simple-snackbar-action  {
+    color: $primary-text;
+  }
+
+  .success-notification {
+    color: green;
+    background-color: $primary;
+  }
+  .success-notification .mat-simple-snackbar-action  {
+    color: green;
+  }
+
+  .error-notification {
+    color: $warn-text;
+    background-color: $warn;
+  }
+  .error-notification .mat-simple-snackbar-action {
+    color: $warn-text;
+  }
+
+  .warning-notification {
+    color: yellow;
+    background-color: $warn;
+  }
+  .warning-notification .mat-simple-snackbar-action {
+    color: yellow;
+  }
+}

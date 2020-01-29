@@ -8,7 +8,7 @@ import { MenuListItemComponent } from './menu-list-item/menu-list-item.component
 import { TopNavComponent } from './top-nav/top-nav.component';
 import { NavService } from './nav.service';
 import { DialogLayoutComponent } from './dialog-layout/dialog-layout.component';
-import { AppMaterialDesignModule } from '@dom/ui/common';
+import { AppMaterialDesignModule, NotificationModule } from '@dom/ui/common';
 @NgModule({
   declarations: [
     CommonLayoutComponent,
@@ -21,9 +21,10 @@ import { AppMaterialDesignModule } from '@dom/ui/common';
   imports: [
     CommonModule,
     RouterModule,
-    AppMaterialDesignModule
+    AppMaterialDesignModule,
+    NotificationModule
   ],
-  exports: [CommonLayoutComponent, DialogLayoutComponent],
+  exports: [CommonLayoutComponent, DialogLayoutComponent, NotificationModule],
   providers: [NavService]
 })
 export class LayoutModule {}

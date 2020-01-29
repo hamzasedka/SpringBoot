@@ -64,7 +64,7 @@ export class RoutingService {
         continue;
       }
       routeRoot = false;
-      this.toolPath.next(route.pathFromRoot[1].url[0].path);
+      this.toolPath.next(route.pathFromRoot[1]?.url[0]?.path);
       if (route.data) {
         if (route.data.toolName) {
           this.toolName.next(route.data.toolName);

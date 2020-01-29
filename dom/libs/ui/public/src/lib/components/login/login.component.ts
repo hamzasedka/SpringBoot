@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@dom/infra/auth';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NotificationService } from '@dom/ui/common';
 
 @Component({
   selector: 'dom-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private readonly notificationService: NotificationService
   ) { }
 
   ngOnInit() {
@@ -37,7 +39,8 @@ export class LoginComponent implements OnInit {
       .login(this.form.value).toPromise()
       .then(user => {
         if (!!user) {
-          this.router.navigate(['/subscribe']);
+          this.notificationService.success('Welcome back :)');
+          this.router.navigate(['/']);
         }
       })
       .catch(error => {
