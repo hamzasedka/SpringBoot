@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NavItem } from './nav-item';
 import { Routes } from '@angular/router';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Injectable()
 export class NavService {
-  appDrawer: any;
+  appDrawer: MatSidenav;
   navItems$: Observable<NavItem[]>;
   private readonly navItems = new BehaviorSubject<NavItem[]>([]);
   constructor() {
@@ -18,6 +19,10 @@ export class NavService {
 
   public openNav() {
     this.appDrawer.open();
+  }
+
+  public toggleNav() {
+    this.appDrawer.toggle();
   }
 
   constructMenuLinks(routes: Routes): void {

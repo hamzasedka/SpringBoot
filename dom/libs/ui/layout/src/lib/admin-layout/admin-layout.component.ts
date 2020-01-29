@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 import { NavService } from '../nav.service';
 import { NavItem } from '../nav-item';
 import { Observable } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
   selector: 'dom-admin-layout',
@@ -19,7 +20,7 @@ import { Observable } from 'rxjs';
 })
 export class AdminLayoutComponent implements AfterViewInit {
 
-  @ViewChild('appDrawer', { static: true }) appDrawer: ElementRef;
+  @ViewChild('appDrawer', { static: true }) appDrawer: MatSidenav;
 
   navItems$: Observable<NavItem[]>;
 
