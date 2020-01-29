@@ -15,7 +15,7 @@ import { API_URL_TOKEN } from '@dom/common/core';
   imports: [
     StoreModule.forRoot(APPLICATION_REDUCERS),
     StoreDevtoolsModule.instrument({
-      name: `DOMICILIATION-FACILE`,
+      name: `DOMICILIATION`,
       maxAge: false,
       logOnly: true
     }),

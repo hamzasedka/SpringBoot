@@ -5,6 +5,7 @@ import { AuthService } from './email-pwd-auth.service';
 
 @NgModule({
   imports: [CommonModule, AngularFireAuthModule],
-  providers: [AuthService]
+  providers: [AuthService],
+  exports: [AngularFireAuthModule]
 })
 export class AuthenticationModule {}

@@ -1,2 +1,2 @@
-<dom-common-layout></dom-common-layout>
+<dom-common-layout (disconnectButtonClick)="this.logout()" [userName]="this.username$ | async" ></dom-common-layout>
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '@dom/infra/auth';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'dom-public-layout',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PublicLayoutComponent implements OnInit {
 
-  constructor() { }
+  username$ = this.authService.authState$.pipe(map(auth => auth?.email));
+
+  constructor(private readonly authService: AuthService) { }
 
   ngOnInit() {
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }

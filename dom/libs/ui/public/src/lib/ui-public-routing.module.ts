@@ -16,6 +16,11 @@ const PUBLIC_ROUTES: Routes = [
         path: 'contact',
         component: Components.ContactComponent,
         pathMatch: 'full'
+      },
+      {
+        path: 'login',
+        component: Components.LoginComponent,
+        pathMatch: 'full'
       }
     ]
   }

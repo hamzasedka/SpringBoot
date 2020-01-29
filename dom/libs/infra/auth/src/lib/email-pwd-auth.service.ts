@@ -7,7 +7,6 @@ import { API_URL_TOKEN } from '@dom/common/core';
 import { UserAccount } from '@dom/common/dto';
 import { User } from 'firebase';
 
-
 @Injectable()
 export class AuthService {
 
