@@ -1,14 +1,6 @@
 <ng-container *ngIf="this.vm$ | async as vm">
   <dom-dialog-layout (closeClick)="this.onCloseClick()" [canClose]="!!this.dialogRef">
     <form [formGroup]="formRegister" (ngSubmit)="this.onRegister(vm.user)">
-      <p>
-        email Status: {{ email.status }} /
-        lastname Status: {{ lastname.status }} /
-        firstname Status: {{ firstname.status }} /
-        password Status: {{ password.status }} /
-        confirmPassword Status: {{ confirmPassword.status }} /
-        phoneNumber Status: {{ confirmPassword.status }} /
-      </p>
       <div fxLayout="column">
         <div fxLayoutAlign="center center">
           <button mat-raised-button color="accent" type="submit" [disabled]="!formRegister.valid">

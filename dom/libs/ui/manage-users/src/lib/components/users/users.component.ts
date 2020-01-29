@@ -38,9 +38,9 @@ export class UsersComponent implements OnInit {
     this.store.dispatch(Store.setEditUserAccount({ user: userAccount }));
     if (!this.dialogRef || this.dialogRef.getState() !== MatDialogState.OPEN) {
       this.dialogRef = this.dialog.open(EditUserComponent, {
-        width: '100%',
+        minWidth: '100%',
         minHeight: '50%',
-        maxHeight: '80vh',
+        maxHeight: '70vh',
         position: { bottom: '0px', left: '0px' },
         data: {},
         autoFocus: true,
