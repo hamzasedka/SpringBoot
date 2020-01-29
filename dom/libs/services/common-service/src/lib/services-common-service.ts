@@ -71,7 +71,7 @@ export function startUp(config: NestServerConfig, httpsOptions: SecureContextOpt
     https.createServer(httpsOptions, server).listen(config.port,
       () => {
         // tslint:disable-next-line:no-console
-        console.info(`App listening on port ${config.port}! Go to https://localhost:${config.port}/`);
+        console.info(`App ${config.title} listening on port ${config.port}! Go to https://localhost:${config.port}/`);
       });
   }
   return server;
