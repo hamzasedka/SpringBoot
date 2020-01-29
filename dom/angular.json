@@ -568,6 +568,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "ui-manage-users": {
+      "projectType": "library",
+      "root": "libs/ui/manage-users",
+      "sourceRoot": "libs/ui/manage-users/src",
+      "prefix": "dom",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/manage-users/tsconfig.lib.json",
+              "libs/ui/manage-users/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/manage-users/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/manage-users/jest.config.js",
+            "tsConfig": "libs/ui/manage-users/tsconfig.spec.json",
+            "setupFile": "libs/ui/manage-users/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

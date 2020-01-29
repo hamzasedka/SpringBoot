@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as Components from './components';
+import { LoginGuard } from './components';
 
 const PUBLIC_ROUTES: Routes = [
   {
@@ -20,7 +21,8 @@ const PUBLIC_ROUTES: Routes = [
       {
         path: 'login',
         component: Components.LoginComponent,
-        pathMatch: 'full'
+        pathMatch: 'full',
+        canActivate: [ LoginGuard]
       }
     ]
   }

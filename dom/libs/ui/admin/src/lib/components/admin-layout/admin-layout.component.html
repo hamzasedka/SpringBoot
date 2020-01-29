@@ -1,1 +1,1 @@
-<dom-common-layout class="unicorn-dark-theme"></dom-common-layout>
+<dom-common-layout class="unicorn-dark-theme" (disconnectButtonClick)="this.logout()" [userName]="this.username$ | async"></dom-common-layout>

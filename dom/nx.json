@@ -59,6 +59,9 @@
     },
     "ui-layout": {
       "tags": []
+    },
+    "ui-manage-users": {
+      "tags": []
     }
   }
 }

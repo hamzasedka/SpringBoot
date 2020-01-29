@@ -8,6 +8,7 @@ import { PublicLayoutComponent } from './components/public-layout/public-layout.
 import { LoginComponent } from './components/login/login.component';
 import { AppMaterialDesignModule } from '@dom/ui/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginGuard } from './components';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [HomeComponent, ContactComponent, PublicLayoutComponent, LoginComponent]
+  declarations: [HomeComponent, ContactComponent, PublicLayoutComponent, LoginComponent],
+  providers:[LoginGuard]
 })
 export class UiPublicModule { }

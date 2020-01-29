@@ -32,7 +32,8 @@
       "@dom/data/ngrx-data": ["libs/data/ngrx-data/src/index.ts"],
       "@dom/infra/auth": ["libs/infra/auth/src/index.ts"],
       "@dom/common/dto": ["libs/common/dto/src/index.ts"],
-      "@dom/ui/layout": ["libs/ui/layout/src/index.ts"]
+      "@dom/ui/layout": ["libs/ui/layout/src/index.ts"],
+      "@dom/ui/manage-users": ["libs/ui/manage-users/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
