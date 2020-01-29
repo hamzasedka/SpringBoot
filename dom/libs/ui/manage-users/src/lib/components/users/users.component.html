@@ -1,0 +1,2 @@
+<dom-users-ribbon (addUserCmd)="this.onRowClicked()"></dom-users-ribbon>
+<dom-users-list [users]="this.users$ | async" (rowClick)="this.onRowClicked($event)"></dom-users-list>

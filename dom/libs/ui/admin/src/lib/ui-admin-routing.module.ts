@@ -17,6 +17,10 @@ const USER_SPACE_ROUTES: Routes = [
           displayName: 'Home',
           iconName: 'homr'
         }
+      },
+      {
+        path: 'users',
+        loadChildren: async () => import('@dom/ui/manage-users').then(m => m.UiManageUsersModule)
       }
     ]
   }
@@ -26,4 +30,4 @@ const USER_SPACE_ROUTES: Routes = [
   imports: [RouterModule.forChild(USER_SPACE_ROUTES)],
   exports: [RouterModule]
 })
-export class UiPublicRoutingModule {}
+export class UiPublicRoutingModule { }

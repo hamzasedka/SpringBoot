@@ -1,0 +1,85 @@
+<ng-container *ngIf="this.vm$ | async as vm">
+  <dom-dialog-layout (closeClick)="this.onCloseClick()" [canClose]="!!this.dialogRef">
+    <form [formGroup]="formRegister" (ngSubmit)="this.onRegister(vm.user)">
+      <p>
+        email Status: {{ email.status }} /
+        lastname Status: {{ lastname.status }} /
+        firstname Status: {{ firstname.status }} /
+        password Status: {{ password.status }} /
+        confirmPassword Status: {{ confirmPassword.status }} /
+        phoneNumber Status: {{ confirmPassword.status }} /
+      </p>
+      <div fxLayout="column">
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="accent" type="submit" [disabled]="!formRegister.valid">
+            Ajouter
+          </button>
+        </div>
+        <!-- email -->
+        <mat-form-field color="accent">
+          <input matInput type="email" formControlName="email" placeholder="Email" (focusout)="emailExist($event)"
+            required />
+          <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+        <!-- lastname -->
+        <mat-form-field color="accent">
+          <input matInput type="lastname" formControlName="lastname" placeholder="Nom" required />
+          <mat-error *ngIf="lastname.invalid">{{
+            getErrorMessageLastname()
+          }}</mat-error>
+        </mat-form-field>
+        <!-- firstname -->
+        <mat-form-field color="accent">
+          <input matInput type="firstname" formControlName="firstname" placeholder="Prénom" required />
+          <mat-error *ngIf="firstname.invalid">{{
+            getErrorMessageFirstUsername()
+          }}</mat-error>
+        </mat-form-field>
+        <!-- password -->
+        <mat-form-field color="accent">
+          <input autocomplete="off" matInput [type]="hide ? 'password' : 'text'" formControlName="password" placeholder="Mot de passe"/>
+          <i *ngIf="formRegister.get('password').dirty && !hide" class="fa fa-eye" aria-hidden="true" matSuffix
+            (click)="hide = !hide"></i>
+          <i *ngIf="formRegister.get('password').dirty && hide" class="fa fa-eye-slash" aria-hidden="true" matSuffix
+            (click)="hide = !hide"></i>
+        </mat-form-field>
+        <!-- confirmPassword -->
+        <mat-form-field color="accent" class="mdp">
+          <input autocomplete="off" matInput [type]="hide ? 'password' : 'text'" formControlName="confirmPassword"
+            placeholder="Confirmation de mot de passe" />
+          <i *ngIf="formRegister.get('password').dirty && !hide" class="fa fa-eye" aria-hidden="true" matSuffix
+            (click)="hide = !hide"></i>
+          <i *ngIf="formRegister.get('password').dirty && hide" class="fa fa-eye-slash" aria-hidden="true" matSuffix
+            (click)="hide = !hide"></i>
+          <mat-error *ngIf="confirmPassword.invalid && confirmPassword.dirty">{{
+            getErrorMessagePassword()
+          }}</mat-error>
+        </mat-form-field>
+        <!-- phoneNumber -->
+        <mat-form-field color="accent">
+          <input matInput type="phoneNumber" formControlName="phoneNumber" placeholder="Phone Number" />
+          <mat-error *ngIf="phoneNumber.invalid">{{
+            this.getErrorMessageFirstname()
+          }}</mat-error>
+        </mat-form-field>
+        <!-- Manage Roles -->
+        <mat-form-field class="chip-list">
+          <mat-chip-list #chipList aria-label="Roles selection">
+            <mat-chip *ngFor="let role of selectedRoles; trackBy: this.trackByRole" [selectable]="selectable"
+              [removable]="removable" (removed)="remove(role)">
+              {{role.name}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New Role..." #roleInput [formControl]="roleCtrl" [matAutocomplete]="auto"
+              [matChipInputFor]="chipList" [matChipInputSeparatorKeyCodes]="separatorKeysCodes">
+          </mat-chip-list>
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+            <mat-option *ngFor="let role of filteredRoles$ | async ; trackBy: this.trackByRole" [value]="role">
+              {{role.name}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </div>
+    </form>
+  </dom-dialog-layout>
+</ng-container>

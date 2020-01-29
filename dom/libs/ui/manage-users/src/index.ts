@@ -1,1 +1,1 @@
-export * from './lib/ui-manage-users.module';
+export * from './lib';
