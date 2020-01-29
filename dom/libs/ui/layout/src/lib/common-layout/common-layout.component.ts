@@ -14,11 +14,11 @@ import { Observable } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Component({
-  selector: 'dom-admin-layout',
-  templateUrl: './admin-layout.component.html',
-  styleUrls: ['./admin-layout.component.scss']
+  selector: 'dom-common-layout',
+  templateUrl: './common-layout.component.html',
+  styleUrls: ['./common-layout.component.scss']
 })
-export class AdminLayoutComponent implements AfterViewInit {
+export class CommonLayoutComponent implements AfterViewInit {
 
   @ViewChild('appDrawer', { static: true }) appDrawer: MatSidenav;
 

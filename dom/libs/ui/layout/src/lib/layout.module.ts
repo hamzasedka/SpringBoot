@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { CommonLayoutComponent } from './common-layout/common-layout.component';
 import { RouterModule } from '@angular/router';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -11,7 +11,7 @@ import { DialogLayoutComponent } from './dialog-layout/dialog-layout.component';
 import { AppMaterialDesignModule } from '@dom/ui/common';
 @NgModule({
   declarations: [
-    AdminLayoutComponent,
+    CommonLayoutComponent,
     HeaderComponent,
     FooterComponent,
     MenuListItemComponent,
@@ -23,7 +23,7 @@ import { AppMaterialDesignModule } from '@dom/ui/common';
     RouterModule,
     AppMaterialDesignModule
   ],
-  exports: [AdminLayoutComponent, DialogLayoutComponent],
+  exports: [CommonLayoutComponent, DialogLayoutComponent],
   providers: [NavService]
 })
 export class LayoutModule {}

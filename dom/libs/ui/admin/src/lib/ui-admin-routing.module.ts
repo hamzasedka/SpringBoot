@@ -2,19 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as Components from './components';
 
-const PUBLIC_ROUTES: Routes = [
+const USER_SPACE_ROUTES: Routes = [
   {
-    path: '',
-    component: Components.PublicLayoutComponent,
+    path: 'admin',
+    component: Components.AdminLayoutComponent,
     children: [
       {
         path: '',
         component: Components.HomeComponent,
-        pathMatch: 'full'
-      },
-      {
-        path: 'contact',
-        component: Components.ContactComponent,
         pathMatch: 'full'
       }
     ]
@@ -22,7 +17,7 @@ const PUBLIC_ROUTES: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(PUBLIC_ROUTES)],
+  imports: [RouterModule.forChild(USER_SPACE_ROUTES)],
   exports: [RouterModule]
 })
 export class UiPublicRoutingModule {}

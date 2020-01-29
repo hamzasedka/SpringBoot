@@ -7,7 +7,7 @@ export const ROUTES: Routes = [
     loadChildren: async () => import('@dom/ui/public').then(m => m.UiPublicModule)
   },
   {
-    path: 'admin',
+    path: '',
     loadChildren: async () => import('@dom/ui/admin').then(m => m.UiAdminModule)
   },
   { path: '**', redirectTo: '' }
