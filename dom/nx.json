@@ -62,6 +62,9 @@
     },
     "ui-manage-users": {
       "tags": []
+    },
+    "ui-manage-products": {
+      "tags": []
     }
   }
 }

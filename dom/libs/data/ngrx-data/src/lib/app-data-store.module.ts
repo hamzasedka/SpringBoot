@@ -20,15 +20,14 @@ export class AppDataStoreModule {
     entityDefinitionService: EntityDefinitionService,
     entityDataService: EntityDataService,
     addressDataService: EntitiesService.AddressDataService,
-    userAccountDataService: EntitiesService.UserAccountDataService
+    userAccountDataService: EntitiesService.UserAccountDataService,
+    productsDataService: EntitiesService.ProductsDataService
   ) {
     // Entity Metadata
     entityDefinitionService.registerMetadataMap(ENTITY_METADATA);
     // Data Services
     entityDataService.registerService(Entities.address, addressDataService);
-    entityDataService.registerService(
-      Entities.userAccount,
-      userAccountDataService
-    );
+    entityDataService.registerService(Entities.userAccount,userAccountDataService);
+    entityDataService.registerService(Entities.product,productsDataService);
   }
 }

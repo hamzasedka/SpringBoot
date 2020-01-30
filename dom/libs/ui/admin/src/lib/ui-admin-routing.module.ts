@@ -23,6 +23,10 @@ const USER_SPACE_ROUTES: Routes = [
       {
         path: '',
         loadChildren: async () => import('@dom/ui/manage-users').then(m => m.UiManageUsersModule)
+      },
+      {
+        path: '',
+        loadChildren: async () => import('@dom/ui/manage-products').then(m => m.UiManageProductsModule)
       }
     ]
   }
@@ -57,6 +61,14 @@ export class UiPublicRoutingModule {
             iconName: 'supervised_user_circle',
             order : 1,
             route: '/admin/users'
+          },
+          {
+            id: 'productsMenu',
+            displayName :  'Mes produits',
+            expanded: false,
+            iconName: 'account_balance_wallet',
+            order : 1,
+            route: '/admin/products'
           }
         ]
       }

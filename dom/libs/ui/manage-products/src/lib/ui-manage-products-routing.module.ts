@@ -1,29 +1,29 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import * as Components from './components';
-import { UsersResolver, UserAcoountResolver } from './resolvers';
+import * as Resolvers from './resolvers';
 import { UserRoles } from '@dom/common/dto';
 const USER_ROUTES: Routes = [
   {
-    path: 'users',
-    component: Components.UsersComponent,
+    path: 'products',
+    component: Components.ProductsComponent,
     pathMatch: 'full',
     data: {
-      displayName: 'Gérer les utilisateurs',
-      iconName: 'supervisor_account'
+      displayName: 'Gérer les produits',
+      iconName: 'home'
     },
-    resolve: { _: UsersResolver}
+    resolve: { _: Resolvers.ProductsResolver}
   },
   {
-    path: 'users/:userId',
-    component: Components.EditUserComponent,
+    path: 'products/:productId',
+    component: Components.EditProductsComponent,
     pathMatch: 'full',
     data: {
-      displayName: `Editer l'utilisateur`,
+      displayName: `Editer un produit`,
       iconName: 'supervisor_account',
       permissions: [UserRoles.Users_Read]
     },
-    resolve: { _: UserAcoountResolver}
+    resolve: { _: Resolvers.ProductResolver}
   }
 ];
 
@@ -31,4 +31,4 @@ const USER_ROUTES: Routes = [
   imports: [RouterModule.forChild(USER_ROUTES)],
   exports: [RouterModule]
 })
-export class UiManageUsersRoutingModule {}
+export class UiManageProductsModule {}

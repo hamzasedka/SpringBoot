@@ -18,7 +18,10 @@ export const ENTITY_METADATA: EntityMetadataMap = {
   },
   userAccount: {
     filterFn: EntityFilterFn,
-    sortComparer: (a: Dtos.UserAccount, b: Dtos.UserAccount) => a?.lastname?.localeCompare(b.lastname),
     selectId: (a: Dtos.UserAccount) => a.uid
+  },
+  product: {
+    filterFn: EntityFilterFn,
+    selectId: (a: Dtos.Product) => a.uid
   }
 };

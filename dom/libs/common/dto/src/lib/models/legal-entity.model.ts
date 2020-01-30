@@ -1,11 +1,9 @@
 export interface LegalEntity {
   uid?: string;
   name: string;
-  lastname: string;
-  email: string;
-  emailVerified: boolean;
-  deleted?: boolean;
+  siret: string;
   adresseId: string;
+  deleted?: boolean;
   created_time?: number;
   update_time?: number;
 }
