@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '@dom/infra/auth';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'dom-admin-layout',
@@ -11,12 +12,13 @@ export class AdminLayoutComponent implements OnInit {
 
   username$ = this.authService.authState$.pipe(map(auth => auth?.email));
 
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService, private readonly router: Router) { }
 
   ngOnInit() {
   }
 
-  logout() {
-    this.authService.logout();
+  async logout() {
+    await this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

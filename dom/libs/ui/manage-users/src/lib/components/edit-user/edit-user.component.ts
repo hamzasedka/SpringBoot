@@ -62,7 +62,6 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
     this.filteredRoles$ = this.roleCtrl.valueChanges.pipe(
       map((role: string | null) => !!role ? this._filter(role) : this.allRoles.slice())
     );
-    console.log('roels', this.allRoles)
   }
 
   ngOnInit() {
@@ -147,7 +146,6 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
           from(this.auth.createAthUser(userForm))
             .pipe(
               switchMap(result => {
-                console.log('r=> ', result);
                 const user: UserAccount = {
                   uid: result.uid,
                   roles: userForm.roles

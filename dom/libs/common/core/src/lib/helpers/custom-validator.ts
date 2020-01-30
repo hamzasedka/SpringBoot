@@ -4,7 +4,6 @@ import * as moment from 'moment';
 export function isPhoneNumber(): ValidatorFn {
   return (control: AbstractControl): { [key: string]: any } | null => {
     const phoneNumber = control.value;
-    console.log('isPhoneNumber =>', phoneNumber);
     if (!phoneNumber) {
       return null;
     }
@@ -20,7 +19,6 @@ export function isPhoneNumber(): ValidatorFn {
     const re2 = /[\da-zA-Z]+/;
 
     const result =  re1.test(phoneNumber) && re2.test(phoneNumber) ? null : { forbiddenNumber: { value: phoneNumber } };
-    console.log('isPhoneNumber result =>', result);
     return result;
   };
 }
@@ -50,7 +48,6 @@ export function matchPassword(required: boolean): ValidatorFn {
     const password = control.get('password').value;
     const confirmPass = control.get('confirmPassword').value;
     const result = password === confirmPass ? null : { notSame: true };
-    console.log('MatchPassword => ', result);
     return result;
   };
 }

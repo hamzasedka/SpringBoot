@@ -36,7 +36,6 @@ export class UserAcoountResolver implements Resolve<UserAccount> {
             this.entityServices.userAccountCollectionService.getByKey(uid).pipe(
               switchMap(user => {
                 return this.authService.getAthUser(user.uid).pipe(
-                  tap(console.log),
                   map(authUser => ({ ...user, ...authUser })),
                   tap(u => {
                     this.entityServices.userAccountCollectionService.updateOneInCache(u);

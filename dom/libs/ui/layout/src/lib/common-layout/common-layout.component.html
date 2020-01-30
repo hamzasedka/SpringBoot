@@ -1,23 +1,23 @@
 <dom-top-nav class="fixed-topnav" fxHide.gt-xs></dom-top-nav>
 <mat-sidenav-container>
   <mat-sidenav #appDrawer mode="over" opened="false">
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <h1 class="logo"><a href="">DOMI</a></h1>
+    </div>
     <mat-nav-list>
-      <dom-menu-list-item
-        (disconnectButtonClick)="this.logout()"
-        *ngFor="let item of this.navItems$ | async"
-        [item]="item"
-      >
+      <dom-menu-list-item (disconnectButtonClick)="this.logout()" *ngFor="let item of this.navItems$ | async"
+        [item]="item">
       </dom-menu-list-item>
-      <a
-        mat-list-item
-        [ngStyle]="{ 'padding-left': 12 + 'px' }"
-        (click)="this.logout()"
-      >
+      <a *ngIf="this.userName" mat-list-item [ngStyle]="{ 'padding-left': 12 + 'px' }" (click)="this.logout()">
         <mat-icon class="routeIcon">exit_to_app</mat-icon>
         Se deconnecter
       </a>
+      <a *ngIf="!this.userName" mat-list-item [ngStyle]="{ 'padding-left': 12 + 'px' }" routerLink="/login">
+        <mat-icon class="routeIcon">input</mat-icon>
+        Mon espace client
+      </a>
     </mat-nav-list>
   </mat-sidenav>
-  <dom-top-nav [userEmail]="this.userName" fxHide.xs></dom-top-nav>
+  <dom-top-nav [userEmail]="this.userName" [color]="this.color"></dom-top-nav>
   <router-outlet></router-outlet>
 </mat-sidenav-container>

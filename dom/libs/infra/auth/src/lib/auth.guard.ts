@@ -22,7 +22,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.angularFireAuthGuard.canActivate(route, state)
       .pipe(
         tap(canActivate => {
-          console.log('canActivate',canActivate);
           if (!canActivate) {
             this.router.navigate(['/login']);
           }
@@ -37,7 +36,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
     return this.angularFireAuthGuard.canActivate(childRoute, state)
       .pipe(
         tap(canActivate => {
-          console.log('canActivate',canActivate);
           if (!canActivate) {
             this.router.navigate(['/login']);
           }

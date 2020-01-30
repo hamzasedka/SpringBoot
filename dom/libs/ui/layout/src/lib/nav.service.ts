@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { NavItem } from './nav-item';
-import { Routes } from '@angular/router';
 import { MatSidenav } from '@angular/material/sidenav';
 
 @Injectable()
@@ -25,33 +24,19 @@ export class NavService {
     this.appDrawer.toggle();
   }
 
-  constructMenuLinks(routes: Routes): void {
-    const buildedNav = this.buildMenuLinks('admin', routes);
-    this.navItems.next([...this.navItems.value, ...buildedNav]);
+  registerMenuLinks(items: NavItem[]): void {
+    console.log('registerMenuLinks', items);
+    const allItems = this.orderItems([...this.navItems.value, ...items]);
+    this.navItems.next(allItems);
   }
 
-  private buildMenuLinks(parentPath: string, routes: Routes): NavItem[] {
-    const menuLinks: NavItem[] = [];
-    for (const route of routes) {
-      if (!route.data) {
-        continue;
+  private orderItems(items: NavItem[]): NavItem[] {
+    const ordredItems = items.sort((a, b) => a.order - b.order);
+    for (const item of ordredItems) {
+      if (item.children && item.children.length > 0) {
+        item.children = this.orderItems(item.children);
       }
-      const navItem: NavItem = {
-        route: `${parentPath}/${route.path}`,
-        iconName: route.data.iconName,
-        displayName: route.data.displayName,
-        expanded: route.data.expanded
-      };
-      if (route.children && route.children.length > 0) {
-        for (const childRoute of route.children) {
-          navItem.children = [
-            ...(navItem.children ? Array.from(navItem.children) : []),
-            ...this.buildMenuLinks(navItem.route, [childRoute])
-          ];
-        }
-      }
-      menuLinks.push(navItem);
     }
-    return menuLinks;
+    return ordredItems;
   }
 }

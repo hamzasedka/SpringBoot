@@ -9,6 +9,7 @@ import { RoutingService } from '../routing.service';
 })
 export class TopNavComponent implements OnInit {
   @Input() userEmail: string;
+  @Input() color = 'primary';
 
   constructor(public navService: NavService, public routingService: RoutingService) {}
 

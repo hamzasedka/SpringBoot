@@ -26,10 +26,6 @@ export class UsersComponent implements OnInit {
               private firebaseAuth: AngularFireAuth // TO be removed
               ) {
     this.users$ = this.userAccountService.filteredEntities$;
-    this.firebaseAuth.auth.currentUser.getIdTokenResult().then(token => {
-      console.log('token => ', token);
-      console.log('token.claims => ', token.claims);
-    });
   }
 
   ngOnInit() { }

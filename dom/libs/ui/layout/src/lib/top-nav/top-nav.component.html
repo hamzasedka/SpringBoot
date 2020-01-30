@@ -1,9 +1,9 @@
-<mat-toolbar color="primary" class="mat-elevation-z1">
+<mat-toolbar [color]="this.color" class="mat-elevation-z1">
   <button mat-icon-button id="menu" (click)="navService.toggleNav()">
     <mat-icon>menu</mat-icon>
   </button>
   <div>{{ this.routingService.toolName$ | async}}</div>
-  <div fxFlexFill fxLayout="row" fxLayoutAlign="end center">
+  <div style="width: 100%;"  fxLayout="row" fxLayoutAlign="end center">
     <div fxShow.gt-sm>{{ this.userEmail }}</div>
   </div>
 </mat-toolbar>

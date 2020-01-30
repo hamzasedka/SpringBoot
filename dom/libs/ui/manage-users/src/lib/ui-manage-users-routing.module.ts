@@ -3,10 +3,9 @@ import { RouterModule, Routes } from '@angular/router';
 import * as Components from './components';
 import { UsersResolver, UserAcoountResolver } from './resolvers';
 import { UserRoles } from '@dom/common/dto';
-
 const USER_ROUTES: Routes = [
   {
-    path: '',
+    path: 'users',
     component: Components.UsersComponent,
     pathMatch: 'full',
     data: {

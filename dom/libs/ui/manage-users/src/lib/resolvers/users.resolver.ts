@@ -20,7 +20,6 @@ export class UsersResolver implements Resolve<UserAccount[]> {
       switchMap(users => {
         return combineLatest(users.map(user => {
           return this.authService.getAthUser(user.uid).pipe(
-            tap(console.log),
             map(authUser => ({ ...user, ...authUser })),
             tap(u => {
               this.userAccountService.updateOneInCache(u);

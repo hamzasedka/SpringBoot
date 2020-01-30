@@ -8,7 +8,6 @@
     "start": "ng serve --project=domiciliation --ssl true --ssl-cert ./ssl/server.crt --ssl-key ./ssl/server.key",
     "start:backend": "ng build --project=services-backend && ng serve --project=services-backend",
     "deploy:backend:prod": "ng build --configuration=production --project=services-backend && firebase deploy --only functions",
-    "prebuild": "node   ./libs/ui/common/scripts/css-bundle.js",
     "build": "ng build",
     "build:prod": "ng build --prod",
     "build:backend:prod": "ng build --configuration=production --project=services-backend",

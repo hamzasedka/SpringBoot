@@ -29,4 +29,4 @@ import { AppMaterialDesignModule } from '@dom/ui/common';
   exports: [Components.UsersComponent, Components.EditUserComponent],
   entryComponents: [Components.EditUserComponent]
 })
-export class UiManageUsersModule { }
+export class UiManageUsersModule {}

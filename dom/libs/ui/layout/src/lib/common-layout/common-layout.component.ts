@@ -12,6 +12,7 @@ import { NavService } from '../nav.service';
 import { NavItem } from '../nav-item';
 import { Observable } from 'rxjs';
 import { MatSidenav } from '@angular/material/sidenav';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'dom-common-layout',
@@ -19,6 +20,8 @@ import { MatSidenav } from '@angular/material/sidenav';
   styleUrls: ['./common-layout.component.scss']
 })
 export class CommonLayoutComponent implements AfterViewInit {
+
+  @Input() color = 'primary';
 
   @ViewChild('appDrawer', { static: true }) appDrawer: MatSidenav;
 
@@ -32,7 +35,7 @@ export class CommonLayoutComponent implements AfterViewInit {
     private router: Router,
     private readonly navService: NavService
   ) {
-    this.navItems$ = navService.navItems$;
+    this.navItems$ = navService.navItems$.pipe(tap(console.log));
   }
 
   ngAfterViewInit() {
