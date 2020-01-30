@@ -30,12 +30,12 @@ steps:
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/scripts'
+    PathtoPublish: './scripts'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/firebase.json'
+    PathtoPublish: './firebase.json'
     ArtifactName: 'drop'
     publishLocation: 'Container'
     
