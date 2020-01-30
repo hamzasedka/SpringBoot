@@ -21,20 +21,25 @@ steps:
     npm install -g @angular/cli
     npm install
     ng build --prod
+    dir ./dist
   displayName: 'npm install and build'
+- script: |    
+    dir ./dist/apps
+    pwd
+  displayName: 'test result'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/dist'
+    PathtoPublish: './dist'
     ArtifactName: 'drop/dist'
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/scripts'
+    PathtoPublish: './scripts'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/firebase.json'
+    PathtoPublish: './firebase.json'
     ArtifactName: 'drop'
     publishLocation: 'Container'
     
