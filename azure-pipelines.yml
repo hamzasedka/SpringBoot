@@ -23,6 +23,10 @@ steps:
     ng build --prod
     dir ./dist
   displayName: 'npm install and build'
+- script: |    
+    dir ./dist/apps
+    pwd
+  displayName: 'test result'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: './dist'
