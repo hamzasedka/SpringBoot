@@ -1,12 +1,11 @@
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 
-import { Component, OnInit, ElementRef, ViewChild, OnDestroy, Optional } from '@angular/core';
+import { Component, ElementRef, ViewChild, Optional } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { AuthService } from '@dom/infra/auth';
 import { UserAccountCollectionService } from '@dom/data/ngrx-data';
 import { select, Store as NgRxStore } from '@ngrx/store';
 
-import { Router } from '@angular/router';
 import { UserAccount, UserRoles } from '@dom/common/dto';
 import { MatAutocompleteSelectedEvent, MatAutocomplete } from '@angular/material/autocomplete';
 import { combineLatest, Observable, from, of } from 'rxjs';
@@ -22,7 +21,7 @@ import { NotificationService } from '@dom/ui/common';
   templateUrl: './edit-user.component.html',
   styleUrls: ['./edit-user.component.scss']
 })
-export class EditUserComponent extends BaseRegisterComponent implements OnInit, OnDestroy {
+export class EditUserComponent extends BaseRegisterComponent {
 
   userRolesEnum = UserRoles;
   visible = true;
@@ -50,7 +49,6 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
     );
 
   constructor(
-    private readonly router: Router,
     private readonly auth: AuthService,
     fb: FormBuilder,
     private readonly userAccountDataService: UserAccountCollectionService,
@@ -62,16 +60,6 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
     this.filteredRoles$ = this.roleCtrl.valueChanges.pipe(
       map((role: string | null) => !!role ? this._filter(role) : this.allRoles.slice())
     );
-  }
-
-  ngOnInit() {
-    this.editUserAccount$.subscribe(
-
-    );
-  }
-
-  ngOnDestroy(): void {
-    // takeUntilDestroyed
   }
 
   onCloseClick(): void {
@@ -110,7 +98,7 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
     return this.allRoles.filter(role => role.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
-  trackByRole(_: number, item: EnumItem): number {
+  trackByRole(_: number): number {
     return 1;
   }
 

@@ -14,8 +14,8 @@ export const getProductIdFromRoute = createSelector(
   selectRouteParam('productId'), userId => userId
 );
 
-const productSelectors = new EntitySelectorsFactory().create<Models.Product>(Entities.userAccount);
+const productSelectors = new EntitySelectorsFactory().create<Models.Product>(Entities.product);
 
-export const getEditUserAccount = createSelector(
+export const getEditProduct = createSelector(
   getManageProductsState, state => state.product
 );

@@ -11,8 +11,8 @@ import * as EntitiesService from './services/entities';
 
 @NgModule({
   providers: [
-    Services.EntityServices,
-    { provide: DataEntityServices, useExisting: Services.EntityServices }
+    Services.AppEntityServices,
+    { provide: DataEntityServices, useExisting: Services.AppEntityServices }
   ]
 })
 export class AppDataStoreModule {

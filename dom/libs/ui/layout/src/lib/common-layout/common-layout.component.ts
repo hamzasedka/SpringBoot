@@ -35,7 +35,7 @@ export class CommonLayoutComponent implements AfterViewInit {
     private router: Router,
     private readonly navService: NavService
   ) {
-    this.navItems$ = navService.navItems$.pipe(tap(console.log));
+    this.navItems$ = navService.navItems$;
   }
 
   ngAfterViewInit() {

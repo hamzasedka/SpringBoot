@@ -7,7 +7,7 @@ import {
 } from './entities';
 
 @Injectable()
-export class EntityServices extends EntityServicesBase {
+export class AppEntityServices extends EntityServicesBase {
   constructor(
     entityServicesElements: EntityServicesElements,
     readonly addressCollectionService: AddressCollectionService,

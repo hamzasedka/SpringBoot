@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import * as Models from '@dom/common/dto';
 
 @Component({
   selector: 'dom-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
+  readonly columns: (keyof Models.Product)[] = ['name', 'description', 'priceExcludeTaxe', 'isOption', 'reccurence'];
 
-  constructor() { }
+  @Output() rowClick = new EventEmitter<Models.Product>();
 
-  ngOnInit() {
+  @Input() products: Models.Product[];
+
+  onRowClicked(product: Models.Product) {
+    this.rowClick.emit(product);
   }
-
 }

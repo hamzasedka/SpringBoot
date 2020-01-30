@@ -1,1 +1,31 @@
-<p>products-list works!</p>
+<mat-table [dataSource]="this.products" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.description }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="priceExcludeTaxe">
+    <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.priceExcludeTaxe }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="isOption">
+    <mat-header-cell *matHeaderCellDef> Is Option </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <mat-checkbox disabled="true" class="example-margin" [(ngModel)]="element.isOption"></mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="reccurence">
+    <mat-header-cell *matHeaderCellDef> Reccurence </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.reccurence }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columns" (click)="this.onRowClicked(row)"></mat-row>
+</mat-table>

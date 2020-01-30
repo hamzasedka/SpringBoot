@@ -1,1 +1,2 @@
-<p>products works!</p>
+<dom-products-menu (addProduct)="this.onRowClicked()"></dom-products-menu>
+<dom-products-list [products]="this.products$ | async" (rowClick)="this.onRowClicked($event)"></dom-products-list>

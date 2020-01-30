@@ -25,7 +25,6 @@ export class NavService {
   }
 
   registerMenuLinks(items: NavItem[]): void {
-    console.log('registerMenuLinks', items);
     const allItems = this.orderItems([...this.navItems.value, ...items]);
     this.navItems.next(allItems);
   }

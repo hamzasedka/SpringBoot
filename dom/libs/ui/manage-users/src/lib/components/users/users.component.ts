@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store as NgRxStore } from '@ngrx/store';
 import * as Store from '../../store';
 
@@ -6,31 +6,26 @@ import {
   MatDialog, MatDialogRef, MatDialogState
 } from '@angular/material/dialog';
 import { EditUserComponent } from '../edit-user';
-import { UserAccount } from '@dom/common/dto';
+import * as Models from '@dom/common/dto';
 import { Observable } from 'rxjs';
-import { UserAccountCollectionService } from '@dom/data/ngrx-data';
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AppEntityServices } from '@dom/data/ngrx-data';
 
 @Component({
   selector: 'dom-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
-  users$: Observable<UserAccount[]>;
-
+export class UsersComponent {
+  users$: Observable<Models.UserAccount[]>;
   private dialogRef: MatDialogRef<EditUserComponent, never>;
   constructor(public dialog: MatDialog,
               private readonly store: NgRxStore<Store.UsersAllFeaturesState>,
-              private readonly userAccountService: UserAccountCollectionService,
-              private firebaseAuth: AngularFireAuth // TO be removed
+              private readonly entityServices: AppEntityServices
               ) {
-    this.users$ = this.userAccountService.filteredEntities$;
+    this.users$ = this.entityServices.userAccountCollectionService.filteredEntities$;
   }
 
-  ngOnInit() { }
-
-  onRowClicked(userAccount?: UserAccount) {
+  onRowClicked(userAccount?: Models.UserAccount) {
     this.store.dispatch(Store.setEditUserAccount({ user: userAccount }));
     if (!this.dialogRef || this.dialogRef.getState() !== MatDialogState.OPEN) {
       this.dialogRef = this.dialog.open(EditUserComponent, {
@@ -43,7 +38,6 @@ export class UsersComponent implements OnInit {
         closeOnNavigation: true,
         restoreFocus: true
       });
-      // dialogRef.afterClosed().subscribe(result => {});
     }
   }
 }

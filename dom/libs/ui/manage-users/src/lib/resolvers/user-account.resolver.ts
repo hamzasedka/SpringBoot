@@ -4,7 +4,7 @@ import { select, Store as NgRxStore } from '@ngrx/store';
 import { EMPTY, from, Observable, combineLatest, of } from 'rxjs';
 import { catchError, switchMap, take, tap, map, filter } from 'rxjs/operators';
 
-import { EntityServices } from '@dom/data/ngrx-data';
+import { AppEntityServices } from '@dom/data/ngrx-data';
 import * as Store from '../store';
 import { UserAccount } from '@dom/common/dto';
 import { AuthService } from '@dom/infra/auth';
@@ -15,7 +15,7 @@ import { AuthService } from '@dom/infra/auth';
 export class UserAcoountResolver implements Resolve<UserAccount> {
   constructor(
     private readonly router: Router,
-    private readonly entityServices: EntityServices,
+    private readonly entityServices: AppEntityServices,
     private readonly store: NgRxStore<Store.UsersAllFeaturesState>,
     private readonly authService: AuthService
   ) { }

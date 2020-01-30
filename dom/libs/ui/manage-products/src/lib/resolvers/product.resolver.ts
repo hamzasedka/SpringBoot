@@ -4,7 +4,7 @@ import { select, Store as NgRxStore } from '@ngrx/store';
 import { EMPTY, from, Observable } from 'rxjs';
 import { catchError, switchMap, take, tap, filter } from 'rxjs/operators';
 
-import { EntityServices } from '@dom/data/ngrx-data';
+import { AppEntityServices } from '@dom/data/ngrx-data';
 import * as Store from '../store';
 import * as Models from '@dom/common/dto';
 
@@ -14,7 +14,7 @@ import * as Models from '@dom/common/dto';
 export class ProductResolver implements Resolve<Models.Product> {
   constructor(
     private readonly router: Router,
-    private readonly entityServices: EntityServices,
+    private readonly entityServices: AppEntityServices,
     private readonly store: NgRxStore<Store.ProductsAllFeaturesState>,
   ) { }
 
