@@ -60,6 +60,9 @@ export function initializeFirebaseAdmin(firebaseConfig, firebaseAdminConfig) {
 
 export function startUp(config: NestServerConfig, httpsOptions: SecureContextOptions): any {
   const server = express();
+  // Automatically allow cross-origin requests
+  server.use(cors({ origin: true }));
+
   createNestServer(config, server)
     .then(v => console.log('Nest is Ready'))
     .catch(err => console.error('Nest is broken', err));
