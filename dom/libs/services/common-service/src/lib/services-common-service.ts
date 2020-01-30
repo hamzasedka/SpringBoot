@@ -6,6 +6,7 @@ import * as express from 'express';
 import * as https from 'https';
 import * as admin from 'firebase-admin';
 import { SecureContextOptions } from 'tls';
+import * as cors from 'cors';
 
 export interface NestServerConfig {
   module: any;
