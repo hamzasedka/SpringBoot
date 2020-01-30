@@ -3,7 +3,7 @@
     <mat-icon>menu</mat-icon>
   </button>
   <div>{{ this.routingService.toolName$ | async}}</div>
-  <div style="width: 100%;"  fxLayout="row" fxLayoutAlign="end center">
-    <div fxShow.gt-sm>{{ this.userEmail }}</div>
+  <div fxHide.xs style="width: 100%;"  fxLayout="row" fxLayoutAlign="end center">
+    <div>{{ this.userEmail }}</div>
   </div>
 </mat-toolbar>

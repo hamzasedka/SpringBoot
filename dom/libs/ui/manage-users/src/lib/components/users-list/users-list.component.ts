@@ -7,7 +7,7 @@ import { UserAccount } from '@dom/common/dto';
   styleUrls: ['./users-list.component.scss']
 })
 export class UsersListComponent {
-  readonly columns: (keyof UserAccount)[] = ['lastname', 'firstname', 'email'];
+  readonly columns: (keyof UserAccount)[] = ['lastname', 'firstname', 'email', 'phoneNumber'];
 
   @Output() rowClick = new EventEmitter<UserAccount>();
   @Input() users: UserAccount[];

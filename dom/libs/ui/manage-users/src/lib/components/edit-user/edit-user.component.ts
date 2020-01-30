@@ -138,7 +138,9 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
         roles: this.selectedRoles.map(r => r.id as UserRoles),
         displayName: `${formValue.lastname} ${formValue.firstname}`,
         password: formValue.password === formValue.confirmPassword ? formValue.password : undefined,
-        phoneNumber: !!formValue.phoneNumber ? formValue.phoneNumber : undefined
+        phoneNumber: !!formValue.phoneNumber ? formValue.phoneNumber : undefined,
+        firstname: formValue.firstname,
+        lastname: formValue.lastname
       };
       // add new
       if (userForm && ObjectHelper.isEmpty(initialUser)) {
@@ -148,7 +150,9 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
               switchMap(result => {
                 const user: UserAccount = {
                   uid: result.uid,
-                  roles: userForm.roles
+                  roles: userForm.roles,
+                  firstname: userForm.firstname,
+                  lastname: userForm.lastname
                 };
                 return this.userAccountDataService.add(user).pipe(
                   tap(() => {
@@ -167,7 +171,9 @@ export class EditUserComponent extends BaseRegisterComponent implements OnInit, 
             switchMap(result => {
               const user: UserAccount = {
                 uid: result.uid,
-                roles: userForm.roles
+                roles: userForm.roles,
+                firstname: userForm.firstname,
+                lastname: userForm.lastname
               };
               return this.userAccountDataService.update(user).pipe(
                 tap(() => {
