@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   authServiceUrl:
-    'https://us-central1-domiciliation-b2f4c.cloudfunctions.net/authService/api/v1',
+    'https://us-central1-domiciliation-b2f4c.cloudfunctions.net/authService/v1',
     firebase: {
       apiKey: 'AIzaSyCYB2kcCluw9UiP_BzycDntKE1oAIIjqyM',
       authDomain: 'domiciliation-b2f4c.firebaseapp.com',
