@@ -29,7 +29,7 @@ import { RouterModule } from '@angular/router';
   providers: [
     {
       provide: API_URL_TOKEN,
-      useValue: environment.apiUrl
+      useValue: environment.authServiceUrl
     },
     {
       provide: HTTP_INTERCEPTORS,

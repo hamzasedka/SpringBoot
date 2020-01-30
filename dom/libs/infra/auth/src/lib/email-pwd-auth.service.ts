@@ -19,7 +19,7 @@ export class AuthService {
   constructor(
     private readonly httpClient: HttpClient,
     private firebaseAuth: AngularFireAuth,
-    @Inject(API_URL_TOKEN) private readonly apiUrl: string) {}
+    @Inject(API_URL_TOKEN) private readonly authServiceUrl: string) {}
 
   login(user: UserAccount): Observable<User> {
     const signInPromise = this.firebaseAuth.auth.signInWithEmailAndPassword(
@@ -40,7 +40,7 @@ export class AuthService {
   }
 
   getAthUser(uid: string): Observable<User> {
-    return this.httpClient.get<User>(`${this.apiUrl}/user/${uid}`);
+    return this.httpClient.get<User>(`${this.authServiceUrl}/user/${uid}`);
   }
 
   createAthUser(userAccount: UserAccount): Observable<User> {
@@ -60,7 +60,7 @@ export class AuthService {
     if (userAccount.roles) {
       user.roles = userAccount.roles;
     }
-    return this.httpClient.post<User>(`${this.apiUrl}/user`, userAccount);
+    return this.httpClient.post<User>(`${this.authServiceUrl}/user`, userAccount);
   }
 
   updateAthUser(userAccount: UserAccount): Observable<User> {
@@ -82,6 +82,6 @@ export class AuthService {
     if (userAccount.roles) {
       user.roles = userAccount.roles;
     }
-    return this.httpClient.put<User>(`${this.apiUrl}/user`, user);
+    return this.httpClient.put<User>(`${this.authServiceUrl}/user`, user);
   }
 }

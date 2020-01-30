@@ -1,18 +1,18 @@
 import { DefaultDataServiceConfig } from '@ngrx/data';
 
 export function BuildDefaultDataServiceConfig(
-  apiUrl: string
+  authServiceUrl: string
 ): DefaultDataServiceConfig {
   return {
-    root: apiUrl,
+    root: authServiceUrl,
     entityHttpResourceUrls: {
       address: {
-        entityResourceUrl: `${apiUrl}/address/`,
-        collectionResourceUrl: `${apiUrl}/address`
+        entityResourceUrl: `${authServiceUrl}/address/`,
+        collectionResourceUrl: `${authServiceUrl}/address`
       },
       userAccount: {
-        entityResourceUrl: `${apiUrl}/userAccount/`,
-        collectionResourceUrl: `${apiUrl}/userAccount`
+        entityResourceUrl: `${authServiceUrl}/userAccount/`,
+        collectionResourceUrl: `${authServiceUrl}/userAccount`
       }
     }
   };
