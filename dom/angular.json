@@ -692,6 +692,68 @@
           "styleext": "scss"
         }
       }
+    },
+    "ui-manage-orders": {
+      "projectType": "library",
+      "root": "libs/ui/manage-orders",
+      "sourceRoot": "libs/ui/manage-orders/src",
+      "prefix": "dom",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/manage-orders/tsconfig.lib.json",
+              "libs/ui/manage-orders/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/manage-orders/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/manage-orders/jest.config.js",
+            "tsConfig": "libs/ui/manage-orders/tsconfig.spec.json",
+            "setupFile": "libs/ui/manage-orders/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
+    },
+    "ui-subscribe": {
+      "projectType": "library",
+      "root": "libs/ui/subscribe",
+      "sourceRoot": "libs/ui/subscribe/src",
+      "prefix": "dom",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/subscribe/tsconfig.lib.json",
+              "libs/ui/subscribe/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/subscribe/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/subscribe/jest.config.js",
+            "tsConfig": "libs/ui/subscribe/tsconfig.spec.json",
+            "setupFile": "libs/ui/subscribe/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

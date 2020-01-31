@@ -2,7 +2,7 @@ import { IdentityEntity } from './identity-entity';
 
 export interface Product  extends IdentityEntity{
   uid?: string;
-  legalEntityId: string;
+  companyId: string;
   name: string;
   description: string;
   addressId?: string;

@@ -1,9 +1,8 @@
 import { IdentityEntity } from './identity-entity';
 
-export interface DocumentScan   extends IdentityEntity{
+export interface Document   extends IdentityEntity{
   uid?: string;
-  subscriptionId: number;
-  pdfUrl: string;
+  url: string;
   deleted?: boolean;
   created_time?: number;
 }

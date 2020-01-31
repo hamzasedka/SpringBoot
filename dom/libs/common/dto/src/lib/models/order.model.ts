@@ -4,7 +4,7 @@ export interface Order   extends IdentityEntity {
   // Order
   uid: string;
   productId: string;
-  legalEntityId: string;
+  companyId: string;
   priceCardId: string;
   startDate: Date;
   endDate: Date;

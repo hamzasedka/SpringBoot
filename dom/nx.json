@@ -71,6 +71,12 @@
     },
     "infra-pwa": {
       "tags": []
+    },
+    "ui-manage-orders": {
+      "tags": []
+    },
+    "ui-subscribe": {
+      "tags": []
     }
   }
 }

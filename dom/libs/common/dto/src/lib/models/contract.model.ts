@@ -1,6 +1,6 @@
 export interface Contract {
   uid?: string;
-  subscriptionId: number;
+  orderId: number;
   pdfUrl: string;
   deleted?: boolean;
   created_time?: number;

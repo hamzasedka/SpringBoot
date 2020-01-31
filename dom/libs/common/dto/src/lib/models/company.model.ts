@@ -1,9 +1,10 @@
 import { IdentityEntity } from './identity-entity';
 
-export interface LegalEntity   extends IdentityEntity{
+export interface Company   extends IdentityEntity{
   uid?: string;
   name: string;
-  siret: string;
+  siren: string;
+  préfectoralId: string;
   adresseId: string;
   deleted?: boolean;
   created_time?: number;
