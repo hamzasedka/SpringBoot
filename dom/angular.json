@@ -23,7 +23,8 @@
             "aot": true,
             "assets": [
               "apps/domiciliation/src/favicon.ico",
-              "apps/domiciliation/src/assets"
+              "apps/domiciliation/src/assets",
+              "apps/domiciliation/src/manifest.webmanifest"
             ],
             "styles": ["apps/domiciliation/src/styles.scss"],
             "scripts": []
@@ -55,7 +56,33 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/domiciliation/ngsw-config.json"
+            },
+            "pwa": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/domiciliation/src/environments/environment.ts",
+                  "with": "apps/domiciliation/src/environments/environment.pwa.ts"
+                }
+              ],
+              "optimization": false,
+              "sourceMap": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "apps/domiciliation/ngsw-config.json"
             }
           }
         },

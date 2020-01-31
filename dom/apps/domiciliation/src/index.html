@@ -1,15 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <title>Domiciliation</title>
-    <base href="/" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-      <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Domiciliation</title>
+  <base href="/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1976d2">
+  <style>
+    .center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    #spinner {
+      border: 4vh solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 4vh solid #f15723;
+      border-right: 4vh solid #34b679;
+      border-bottom: 4vh solid #fec527;
+      border-left: 4vh solid #51aed9;
+      width: 35vh;
+      height: 35vh;
+      -webkit-animation: spin 2s linear infinite;
+      animation: spin 2s linear infinite;
+    }
+
+    @-webkit-keyframes spin {
+      0% {
+        -webkit-transform: rotate(0deg);
+      }
+
+      100% {
+        -webkit-transform: rotate(360deg);
+      }
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
 </head>
-  <body>
-    <dom-root></dom-root>
-  </body>
+
+<body>
+  <dom-root>
+          <!--
+        dom-root is the root component bootstraped by Angular.
+        Everything inside is what is displayed by Angular while the app is still loading.
+        Once loaded, all tags inside dom-root are removed, and dom-root itself is replaced by the Angular application.
+        It is the perfect place to add a splashscreen for the PWA! :-)
+        However, as the root Angular component has not been bootstraped here, we can't use a dedicated clean component nor use SCSS for instance.
+        That is the reason why we needed to introduce inline style tags for the CSS.
+      -->
+      <div class="center">
+        <div id="spinner"></div>
+      </div>
+  </dom-root>
+  <noscript>Please enable JavaScript to continue using this application.</noscript>
+</body>
+
 </html>

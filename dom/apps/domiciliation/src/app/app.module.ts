@@ -12,6 +12,8 @@ import { environment } from '../environments/environment';
 import { API_URL_TOKEN } from '@dom/common/core';
 import { TokenInterceptor, AuthenticationModule } from '@dom/infra/auth';
 import { RouterModule } from '@angular/router';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { InfraPwaModule } from '@dom/infra/pwa';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +26,9 @@ import { RouterModule } from '@angular/router';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     NgrxStoreModule,
-    AuthenticationModule
+    AuthenticationModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    InfraPwaModule
   ],
   providers: [
     {

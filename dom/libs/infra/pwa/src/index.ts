@@ -1,1 +1,1 @@
-export * from './lib/infra-pwa.module';
+export * from './lib';

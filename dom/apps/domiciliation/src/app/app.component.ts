@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PwaService } from '@dom/infra/pwa';
 
 @Component({
   selector: 'dom-root',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'domiciliation';
+  constructor(private readonly pwaService: PwaService) {
+    this.pwaService.activate();
+  }
 }
