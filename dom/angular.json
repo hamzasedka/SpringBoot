@@ -630,6 +630,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "ui-manage-addresses": {
+      "projectType": "library",
+      "root": "libs/ui/manage-addresses",
+      "sourceRoot": "libs/ui/manage-addresses/src",
+      "prefix": "dom",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/ui/manage-addresses/tsconfig.lib.json",
+              "libs/ui/manage-addresses/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/ui/manage-addresses/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/ui/manage-addresses/jest.config.js",
+            "tsConfig": "libs/ui/manage-addresses/tsconfig.spec.json",
+            "setupFile": "libs/ui/manage-addresses/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

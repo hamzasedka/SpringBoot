@@ -34,7 +34,8 @@
       "@dom/common/dto": ["libs/common/dto/src/index.ts"],
       "@dom/ui/layout": ["libs/ui/layout/src/index.ts"],
       "@dom/ui/manage-users": ["libs/ui/manage-users/src/index.ts"],
-      "@dom/ui/manage-products": ["libs/ui/manage-products/src/index.ts"]
+      "@dom/ui/manage-products": ["libs/ui/manage-products/src/index.ts"],
+      "@dom/ui/manage-addresses": ["libs/ui/manage-addresses/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

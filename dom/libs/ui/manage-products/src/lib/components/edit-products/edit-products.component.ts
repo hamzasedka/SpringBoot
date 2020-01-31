@@ -21,8 +21,6 @@ export class EditProductsComponent implements OnInit, OnDestroy {
 
   private readonly editProduct$ = this.store.pipe(select(Store.getEditProduct)).pipe(
     tap(product => {
-      console.log('product received > ', product);
-      console.log('product received uid > ', product?.uid);
       if (!!product) {
         const clone = {...product};
         delete clone.uid; // never remove from original object reference
