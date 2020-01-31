@@ -1,0 +1,22 @@
+[debug] [2020-01-31T22:36:27.508Z] ----------------------------------------------------------------------
+[debug] [2020-01-31T22:36:27.511Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\haith\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-01-31T22:36:27.511Z] CLI Version:   7.12.0
+[debug] [2020-01-31T22:36:27.511Z] Platform:      win32
+[debug] [2020-01-31T22:36:27.511Z] Node Version:  v12.3.1
+[debug] [2020-01-31T22:36:27.512Z] Time:          Fri Jan 31 2020 23:36:27 GMT+0100 (GMT+01:00)
+[debug] [2020-01-31T22:36:27.512Z] ----------------------------------------------------------------------
+[debug] [2020-01-31T22:36:27.512Z] 
+[debug] [2020-01-31T22:36:27.525Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-31T22:36:27.526Z] > authorizing via signed-in user
+[debug] [2020-01-31T22:36:27.526Z] [iam] checking project domiciliation-b2f4c for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-01-31T22:36:27.528Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/domiciliation-b2f4c:testIamPermissions  
+
+[debug] [2020-01-31T22:36:28.354Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-31T22:36:28.356Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/domiciliation-b2f4c  
+ 
+[debug] [2020-01-31T22:36:28.634Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Deploying to 'domiciliation-b2f4c'...
+[info] 
+[info] i  deploying functions, hosting
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
