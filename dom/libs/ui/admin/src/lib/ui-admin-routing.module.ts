@@ -31,6 +31,10 @@ const USER_SPACE_ROUTES: Routes = [
       {
         path: '',
         loadChildren: async () => import('@dom/ui/manage-companies').then(m => m.UiManageCompaniesModule)
+      },
+      {
+        path: '',
+        loadChildren: async () => import('@dom/ui/manage-addresses').then(m => m.UiManageAddressesModule)
       }
     ]
   }
@@ -53,14 +57,14 @@ export class UiPublicRoutingModule {
       },
       {
         id: 'adminMenu',
-        displayName :  'Manage',
+        displayName :  'Gérer',
         expanded: true,
         iconName: 'settings',
         order : 2,
         children:[
           {
             id: 'usersMenu',
-            displayName :  'Users',
+            displayName :  'Utilisateurs',
             expanded: false,
             iconName: 'supervised_user_circle',
             order : 1,
@@ -68,7 +72,7 @@ export class UiPublicRoutingModule {
           },
           {
             id: 'productsMenu',
-            displayName :  'Mes produits',
+            displayName :  'Produits',
             expanded: false,
             iconName: 'account_balance_wallet',
             order : 1,
@@ -76,11 +80,19 @@ export class UiPublicRoutingModule {
           },
           {
             id: 'companiesMenu',
-            displayName :  'Mes entreprises',
+            displayName :  'Entreprises',
             expanded: false,
             iconName: 'business',
             order : 1,
             route: '/admin/companies'
+          },
+          {
+            id: 'addressesMenu',
+            displayName :  'Adresses',
+            expanded: false,
+            iconName: 'my_location',
+            order : 1,
+            route: '/admin/addresses'
           }
         ]
       }

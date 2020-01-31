@@ -1,1 +1,1 @@
-export * from './lib/ui-manage-addresses.module';
+export * from './lib';
