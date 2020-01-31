@@ -661,6 +661,37 @@
           "styleext": "scss"
         }
       }
+    },
+    "infra-pwa": {
+      "projectType": "library",
+      "root": "libs/infra/pwa",
+      "sourceRoot": "libs/infra/pwa/src",
+      "prefix": "dom",
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/infra/pwa/tsconfig.lib.json",
+              "libs/infra/pwa/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/infra/pwa/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/infra/pwa/jest.config.js",
+            "tsConfig": "libs/infra/pwa/tsconfig.spec.json",
+            "setupFile": "libs/infra/pwa/src/test-setup.ts"
+          }
+        }
+      },
+      "schematics": {
+        "@nrwl/angular:component": {
+          "styleext": "scss"
+        }
+      }
     }
   },
   "cli": {

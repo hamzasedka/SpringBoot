@@ -68,6 +68,9 @@
     },
     "ui-manage-addresses": {
       "tags": []
+    },
+    "infra-pwa": {
+      "tags": []
     }
   }
 }
