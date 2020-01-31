@@ -26,7 +26,8 @@ export class ProductsComponent {
   }
 
   onRowClicked(product?: Models.Product) {
-    this.store.dispatch(Store.setEditProduct({ product }));
+    console.log('onRowClicked', product);
+    this.store.dispatch(Store.setEditProduct({ productId: product?.uid }));
     if (!this.dialogRef || this.dialogRef.getState() !== MatDialogState.OPEN) {
       this.dialogRef = this.dialog.open(EditProductsComponent, {
         minWidth: '100%',

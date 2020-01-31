@@ -4,7 +4,7 @@ import { NotificationService } from '@dom/ui/common';
 import { MatDialogRef } from '@angular/material/dialog';
 import { select, Store as NgRxStore } from '@ngrx/store';
 import * as Store from '../../store';
-import { combineLatest, Observable, of, BehaviorSubject } from 'rxjs';
+import { combineLatest, Observable, BehaviorSubject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@dom/common/core';
 import { AppEntityServices } from '@dom/data/ngrx-data';
@@ -21,8 +21,12 @@ export class EditProductsComponent implements OnInit, OnDestroy {
 
   private readonly editProduct$ = this.store.pipe(select(Store.getEditProduct)).pipe(
     tap(product => {
+      console.log('product received > ', product);
+      console.log('product received uid > ', product?.uid);
       if (!!product) {
-        this.formRegister.setValue(product);
+        const clone = {...product};
+        delete clone.uid; // never remove from original object reference
+        this.formRegister.setValue(clone);
       }
     })
   );
@@ -40,8 +44,9 @@ export class EditProductsComponent implements OnInit, OnDestroy {
     this.buildFormRegister();
     combineLatest([this.editProduct$, this.formRegister.valueChanges])
       .pipe(
-        map(([product]) => ({ product }))
+        map(([product, changes]) => ({ product, changes }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
+        console.log('refresh view : ', r)
         this.vmBehavior.next(r);
       });
   }
@@ -53,15 +58,26 @@ export class EditProductsComponent implements OnInit, OnDestroy {
     // takeUntilDestroyed
   }
 
-  async onSave(){
-    const product = this.formRegister.value as Models.Product;
-    await this.entityServices.productsCollectionService.upsert(product).toPromise();
+
+  onCloseClick(): void {
+    this.dialogRef?.close();
+  }
+
+  async onSave(initialProduct: Models.Product){
+    console.log('initialProduct to upsert: ', initialProduct);
+    const product = {...this.formRegister.value as Models.Product, uid: initialProduct?.uid};
+    console.log('product to upsert: ', product);
+    await this.entityServices.productsCollectionService.upsert(product).pipe(
+      tap(p =>{
+        this.store.dispatch(Store.setEditProduct({ productId: p?.uid }));
+        this.notificationService.error('Enregistré.');
+      })
+    ).toPromise();
   }
 
   private buildFormRegister() {
     this.formRegister = this.fb.group(
       {
-        uid: [''],
         name: ['', Validators.compose([Validators.required])],
         description: [''],
         priceExcludeTaxe: [undefined, Validators.compose([Validators.required, Validators.min(0.1)])],

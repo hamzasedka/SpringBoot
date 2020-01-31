@@ -1,5 +1,7 @@
-export interface Product {
-  uid: string;
+import { IdentityEntity } from './identity-entity';
+
+export interface Product  extends IdentityEntity{
+  uid?: string;
   legalEntityId: string;
   name: string;
   description: string;

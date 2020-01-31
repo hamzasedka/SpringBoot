@@ -7,7 +7,7 @@ export const resetsetEditProduct = createAction(
   `[${Selectors.PRODUCTS_FEATURE_NAME}]{${Selectors.EDIT_PRODUCTS_TOOL_NAME}} Reset current product to edit`);
 export const setEditProduct = createAction(
   `[${Selectors.PRODUCTS_FEATURE_NAME}]{${Selectors.EDIT_PRODUCTS_TOOL_NAME}} Set current product to edit`,
-  props<{ product: Models.Product }>()
+  props<{ productId: string }>()
 );
 
 const actions = union({

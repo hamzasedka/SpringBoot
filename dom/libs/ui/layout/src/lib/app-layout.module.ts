@@ -23,4 +23,4 @@ import { AppMaterialDesignModule, NotificationModule } from '@dom/ui/common';
   exports: [CommonLayoutComponent, DialogLayoutComponent, NotificationModule],
   providers: [NavService]
 })
-export class LayoutModule {}
+export class AppLayoutModule {}

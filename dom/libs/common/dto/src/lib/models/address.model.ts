@@ -1,5 +1,7 @@
-export interface Address {
-  uid: string;
+import { IdentityEntity } from './identity-entity';
+
+export interface Address extends IdentityEntity{
+  uid?: string;
   addressLine1: string;
   addressLine2: string;
   postalCode: string;

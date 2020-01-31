@@ -1,5 +1,7 @@
-export interface PaymentMedhod {
-  uid: string;
+import { IdentityEntity } from './identity-entity';
+
+export interface PaymentMedhod   extends IdentityEntity{
+  uid?: string;
   subscriptionId: number;
   name: string;
   addressId: string;

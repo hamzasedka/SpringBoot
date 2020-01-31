@@ -1,4 +1,6 @@
-export interface Subscription {
+import { IdentityEntity } from './identity-entity';
+
+export interface Order   extends IdentityEntity {
   // Order
   uid: string;
   productId: string;

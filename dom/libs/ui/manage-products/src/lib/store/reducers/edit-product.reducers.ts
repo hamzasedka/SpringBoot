@@ -6,8 +6,8 @@ import * as State from '../states';
 const reducer = createReducer<State.EditProductState, Actions.EditProductActions>(
     State.EDIT_USER_INITIAL_STATE,
     on(Actions.resetsetEditProduct, () => ({ ...State.EDIT_USER_INITIAL_STATE })),
-    on(Actions.setEditProduct, (state, { product }) => ({
-        ...state, product
+    on(Actions.setEditProduct, (state, { productId }) => ({
+        ...state, productId
     })),
 );
 

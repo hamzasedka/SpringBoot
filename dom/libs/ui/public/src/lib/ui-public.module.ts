@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { UiPublicRoutingModule } from './ui-public-routing.module';
-import { LayoutModule } from '@dom/ui/layout';
+import { AppLayoutModule } from '@dom/ui/layout';
 import { ContactComponent } from './components/contact/contact.component';
 import { PublicLayoutComponent } from './components/public-layout/public-layout.component';
 import { LoginComponent } from './components/login/login.component';
@@ -14,7 +14,7 @@ import { LoginGuard } from './components';
   imports: [
     CommonModule,
     UiPublicRoutingModule,
-    LayoutModule,
+    AppLayoutModule,
     AppMaterialDesignModule,
     FormsModule,
     ReactiveFormsModule

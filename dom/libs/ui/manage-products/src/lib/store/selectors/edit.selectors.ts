@@ -16,6 +16,18 @@ export const getProductIdFromRoute = createSelector(
 
 const productSelectors = new EntitySelectorsFactory().create<Models.Product>(Entities.product);
 
+export const getEditProductUid = createSelector(
+  getManageProductsState, state => state.productId
+);
+
+export const getEditProductByUid = createSelector(
+  productSelectors.selectEntityMap,
+  (productsDictionary, {uid}) => !!productsDictionary[uid] ? productsDictionary[uid] : undefined as Models.Product
+);
+
+
 export const getEditProduct = createSelector(
-  getManageProductsState, state => state.product
+  productSelectors.selectEntityMap,
+  getEditProductUid,
+  (productsDictionary, uid) => !!productsDictionary[uid] ? productsDictionary[uid] : undefined as Models.Product
 );

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NotificationModule } from '@dom/ui/common';
 
-import { LayoutModule } from '@dom/ui/layout';
+import { AppLayoutModule } from '@dom/ui/layout';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersStoreModule } from './store';
 import * as Components from './components';
@@ -14,7 +14,7 @@ import { AppMaterialDesignModule } from '@dom/ui/common';
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    LayoutModule,
+    AppLayoutModule,
     UsersStoreModule,
     NotificationModule,
     UiManageUsersRoutingModule,

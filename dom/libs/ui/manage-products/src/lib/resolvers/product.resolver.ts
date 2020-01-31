@@ -27,7 +27,7 @@ export class ProductResolver implements Resolve<Models.Product> {
           this.entityServices.productsCollectionService.getByKey(uid)
           : this.fail()),
       tap(product => {
-        this.store.dispatch(Store.setEditProduct({ product }));
+        this.store.dispatch(Store.setEditProduct({ productId: product?.uid }));
       }),
       catchError(() => this.fail())
     );

@@ -1,6 +1,6 @@
 <ng-container *ngIf="this.vm$ | async as vm">
   <dom-dialog-layout (closeClick)="this.onCloseClick()" [canClose]="!!this.dialogRef">
-    <form [formGroup]="formRegister" (ngSubmit)="this.onSave()">
+    <form [formGroup]="formRegister" (ngSubmit)="this.onSave(vm.product)">
       <div fxLayout="column">
         <div fxLayoutAlign="center center">
           <button mat-raised-button color="accent" type="submit" [disabled]="!formRegister.valid">

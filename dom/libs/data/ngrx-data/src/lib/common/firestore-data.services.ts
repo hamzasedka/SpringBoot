@@ -21,8 +21,9 @@ import { Update } from '@ngrx/entity';
 import { Entities } from './entities';
 import { BaseCollectionService } from './base.services';
 import { QueryPredicates } from './query-predicate';
+import { IdentityEntity } from '@dom/common/dto';
 
-export class FireBaseDataService<T> extends DefaultDataService<T> {
+export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataService<T> {
   private itemDoc: AngularFirestoreDocument<T>;
   constructor(
     entityName: string,
@@ -31,27 +32,6 @@ export class FireBaseDataService<T> extends DefaultDataService<T> {
     private afs: AngularFirestore
   ) {
     super(entityName, http, httpUrlGenerator);
-  }
-
-  add(entity: T): Observable<T> {
-    const uid = ENTITY_METADATA[this.entityName].selectId(entity);
-    if (!!uid) {
-      return this.updateEntity(entity);
-    }
-    const ref = this.afs.collection<T>(this.entityName).add(entity);
-    return from(ref).pipe(
-      switchMap(r =>
-        this.getWithIdEntity(
-          this.afs.doc<T>(`${this.entityName}/${r.id}`).snapshotChanges()
-        )
-      )
-    );
-  }
-
-  delete(key: number | string): Observable<number | string> {
-    this.itemDoc = this.afs.doc<T>(`${this.entityName}/${key}`);
-    this.itemDoc.delete();
-    return of(key);
   }
 
   getAll(): Observable<T[]> {
@@ -88,10 +68,36 @@ export class FireBaseDataService<T> extends DefaultDataService<T> {
     );
   }
 
+  add(entity: T): Observable<T> {
+    const clone = {...entity};
+    const uid = ENTITY_METADATA[this.entityName].selectId(clone);
+    if (!!uid) {
+      return this.updateEntity(clone);
+    }
+    delete clone.uid;
+    const ref = this.afs.collection<T>(this.entityName).add(clone);
+    return from(ref).pipe(
+      switchMap(r => {
+        return this.getWithIdEntity(this.afs.doc<T>(`${this.entityName}/${r.id}`).snapshotChanges());
+      }
+      )
+    );
+  }
+
+  delete(key: number | string): Observable<number | string> {
+    this.itemDoc = this.afs.doc<T>(`${this.entityName}/${key}`);
+    this.itemDoc.delete();
+    return of(key);
+  }
+
+
+
   updateEntity(entity: T): Observable<T> {
-    const uid = ENTITY_METADATA[this.entityName].selectId(entity);
+    const clone = {...entity};
+    const uid = ENTITY_METADATA[this.entityName].selectId(clone);
     this.itemDoc = this.afs.doc<T>(`${this.entityName}/${uid}`);
-    return from(this.itemDoc.set(entity, { merge: true })).pipe(
+    delete clone.uid;
+    return from(this.itemDoc.set(clone, { merge: true })).pipe(
       switchMap(() => this.getWithIdEntity(this.itemDoc.snapshotChanges()))
     );
   }
@@ -104,7 +110,7 @@ export class FireBaseDataService<T> extends DefaultDataService<T> {
   upsert(entity: T): Observable<T> {
     const uid = ENTITY_METADATA[this.entityName].selectId(entity);
     if (!uid) {
-      this.add(entity);
+      return this.add(entity);
     }
     return this.updateEntity(entity);
   }
@@ -132,7 +138,7 @@ export class FireBaseDataService<T> extends DefaultDataService<T> {
 
 export abstract class FireBaseCollectionService<
   T
-> extends BaseCollectionService<T> {
+  > extends BaseCollectionService<T> {
   constructor(
     entityName: Entities,
     serviceElementsFactory: EntityCollectionServiceElementsFactory

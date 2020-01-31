@@ -1,6 +1,7 @@
 import { UserRoles } from '../enums';
+import { IdentityEntity } from './identity-entity';
 
-export interface UserAccount {
+export interface UserAccount  extends IdentityEntity{
   uid?: string;
   email?: string;
   firstname?: string;
