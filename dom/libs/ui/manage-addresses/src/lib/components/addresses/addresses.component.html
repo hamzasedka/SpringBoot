@@ -1,1 +1,2 @@
-<p>addresses works!</p>
+<dom-addresses-menu (addProduct)="this.onRowClicked()"></dom-addresses-menu>
+<dom-addresses-list [items]="this.items$ | async" (rowClick)="this.onRowClicked($event)"></dom-addresses-list>

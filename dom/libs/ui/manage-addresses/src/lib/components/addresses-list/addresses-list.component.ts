@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, Input } from '@angular/core';
+import * as Models from '@dom/common/dto';
 
 @Component({
   selector: 'dom-addresses-list',
   templateUrl: './addresses-list.component.html',
   styleUrls: ['./addresses-list.component.scss']
 })
-export class AddressesListComponent implements OnInit {
+export class AddressesListComponent {
 
-  constructor() { }
+  readonly columns: (keyof Models.Address)[] = ['addressLine1', 'addressLine2', 'postalCode', 'locality', 'country'];
 
-  ngOnInit() {
+  @Output() rowClick = new EventEmitter<Models.Address>();
+
+  @Input() items: Models.Address[];
+
+  onRowClicked(item: Models.Address) {
+    this.rowClick.emit(item);
   }
-
 }
+

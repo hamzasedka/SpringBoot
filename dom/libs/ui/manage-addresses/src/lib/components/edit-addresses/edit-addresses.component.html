@@ -1,1 +1,38 @@
-<p>edit-addresses works!</p>
+<ng-container *ngIf="this.vm$ | async as vm">
+  <dom-dialog-layout (closeClick)="this.onCloseClick()" [canClose]="!!this.dialogRef">
+    <form [formGroup]="formRegister" (ngSubmit)="this.onSave(vm.address)">
+      <div fxLayout="column">
+        <div fxLayoutAlign="center center">
+          <button mat-raised-button color="accent" type="submit" [disabled]="!formRegister.valid">
+            Ajouter
+          </button>
+        </div>
+        <!-- addressLine1 -->
+        <mat-form-field color="accent">
+          <input matInput type="text" formControlName="addressLine1" placeholder="Numéro et Rue" />
+          <mat-error *ngIf="vm.addressLine1Error">{{ vm.addressLine1Error }}</mat-error>
+        </mat-form-field>
+        <!-- addressLine2 -->
+        <mat-form-field color="accent">
+          <input matInput type="text" formControlName="addressLine2" placeholder="Complément" />
+          <mat-error *ngIf="vm.addressLine2Error">{{ vm.addressLine2Error }}</mat-error>
+        </mat-form-field>
+        <!-- postalCode -->
+        <mat-form-field color="accent">
+          <input matInput type="text" formControlName="postalCode" placeholder="Code postal" />
+          <mat-error *ngIf="vm.postalCodeError">{{ vm.postalCodeError }}</mat-error>
+        </mat-form-field>
+        <!-- locality -->
+        <mat-form-field color="accent">
+          <input matInput type="text" formControlName="locality" placeholder="Commune" />
+          <mat-error *ngIf="vm.localityError">{{ vm.localityError }}</mat-error>
+        </mat-form-field>
+        <!-- country -->
+        <mat-form-field color="accent">
+          <input matInput type="text" formControlName="country" placeholder="Pays" />
+          <mat-error *ngIf="vm.countryError">{{ vm.countryError }}</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+  </dom-dialog-layout>
+</ng-container>
