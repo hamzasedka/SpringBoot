@@ -1,0 +1,19 @@
+<mat-table [dataSource]="this.items" class="mat-elevation-z8">
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.name }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="siren">
+    <mat-header-cell *matHeaderCellDef> Siren </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.siren }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="prefectoralId">
+    <mat-header-cell *matHeaderCellDef> Agrément préfectoral</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{ element.prefectoralId }} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columns" (click)="this.onRowClicked(row)"></mat-row>
+</mat-table>

@@ -38,7 +38,8 @@
       "@dom/ui/manage-addresses": ["libs/ui/manage-addresses/src/index.ts"],
       "@dom/infra/pwa": ["libs/infra/pwa/src/index.ts"],
       "@dom/ui/manage-orders": ["libs/ui/manage-orders/src/index.ts"],
-      "@dom/ui/subscribe": ["libs/ui/subscribe/src/index.ts"]
+      "@dom/ui/subscribe": ["libs/ui/subscribe/src/index.ts"],
+      "@dom/ui/manage-companies": ["libs/ui/manage-companies/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

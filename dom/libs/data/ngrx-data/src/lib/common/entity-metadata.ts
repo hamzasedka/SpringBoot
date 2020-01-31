@@ -23,5 +23,9 @@ export const ENTITY_METADATA: EntityMetadataMap = {
   product: {
     filterFn: EntityFilterFn,
     selectId: (a: Dtos.Product) => a.uid
+  },
+  company: {
+    filterFn: EntityFilterFn,
+    selectId: (a: Dtos.Company) => a.uid
   }
 };

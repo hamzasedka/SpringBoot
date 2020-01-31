@@ -1,5 +1,6 @@
 export enum Entities {
   address = 'address',
   userAccount = 'userAccount',
-  product = 'product'
+  product = 'product',
+  company = 'company'
 }

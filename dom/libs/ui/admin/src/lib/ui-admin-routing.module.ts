@@ -27,6 +27,10 @@ const USER_SPACE_ROUTES: Routes = [
       {
         path: '',
         loadChildren: async () => import('@dom/ui/manage-products').then(m => m.UiManageProductsModule)
+      },
+      {
+        path: '',
+        loadChildren: async () => import('@dom/ui/manage-companies').then(m => m.UiManageCompaniesModule)
       }
     ]
   }
@@ -69,6 +73,14 @@ export class UiPublicRoutingModule {
             iconName: 'account_balance_wallet',
             order : 1,
             route: '/admin/products'
+          },
+          {
+            id: 'companiesMenu',
+            displayName :  'Mes entreprises',
+            expanded: false,
+            iconName: 'business',
+            order : 1,
+            route: '/admin/companies'
           }
         ]
       }

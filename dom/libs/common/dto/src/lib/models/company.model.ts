@@ -4,7 +4,9 @@ export interface Company   extends IdentityEntity{
   uid?: string;
   name: string;
   siren: string;
-  préfectoralId: string;
+  prefectoralId: string;
+  isHosting?: boolean;
+  isHostedBy?: string;
   adresseId: string;
   deleted?: boolean;
   created_time?: number;
