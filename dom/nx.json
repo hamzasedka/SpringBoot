@@ -80,6 +80,9 @@
     },
     "ui-manage-companies": {
       "tags": []
+    },
+    "ui-manages-documents": {
+      "tags": []
     }
   }
 }

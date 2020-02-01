@@ -1,0 +1,4 @@
+<dom-uploader (filesDroppped)="this.onFilesDroppped($event)"></dom-uploader>
+<div *ngFor="let file of this.files$ | async">
+  <dom-upload-task [file]="file"></dom-upload-task>
+</div>

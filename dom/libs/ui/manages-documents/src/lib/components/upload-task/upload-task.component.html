@@ -1,0 +1,16 @@
+<div *ngIf="percentage | async as pct">
+  <mat-progress-bar mode="determinate" [value]="pct" color="warn"></mat-progress-bar>
+</div>
+<mat-card *ngIf="(snapshot | async) as snap">
+  <span *ngIf="isActive(snap)">{{ snap.bytesTransferred }} of {{ snap.totalBytes }}</span>
+  <div *ngIf="downloadURL as url">
+    <a [href]="url" target="_blank" rel="noopener">Télécharger!</a>
+  </div>
+  <hr>
+  <mat-card-actions *ngIf="isActive(snap)">
+    <button (click)="task.pause()" mat-raised-button color="primary" [disabled]="!isActive(snap)">Pause</button>
+    <button (click)="task.cancel()" mat-raised-button color="accent" [disabled]="!isActive(snap)">Annuler</button>
+    <button (click)="task.resume()" mat-raised-button color="warn"
+      [disabled]="!(snap?.state === 'paused')">Reprendre</button>
+  </mat-card-actions>
+</mat-card>
