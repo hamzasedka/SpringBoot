@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
-import { AngularFirestore } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
@@ -13,6 +12,7 @@ export class UploadTaskComponent implements OnInit {
 
   @Input() parentDirectory = 'docs';
   @Input() file: File;
+  @Output() fileRemoved = new EventEmitter<File>();
 
   task: AngularFireUploadTask;
 
@@ -20,7 +20,7 @@ export class UploadTaskComponent implements OnInit {
   snapshot: Observable<any>;
   downloadURL;
 
-  constructor(private storage: AngularFireStorage, private db: AngularFirestore) { }
+  constructor(private storage: AngularFireStorage) { }
 
   ngOnInit() {
     this.startUpload();
@@ -29,13 +29,10 @@ export class UploadTaskComponent implements OnInit {
   startUpload() {
     // The storage path
     const path = `${this.parentDirectory}/${Date.now()}_${this.file.name}`;
-
     // Reference to storage bucket
     const ref = this.storage.ref(path);
-
     // The main task
     this.task = this.storage.upload(path, this.file);
-
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
 
@@ -48,6 +45,20 @@ export class UploadTaskComponent implements OnInit {
         // this.db.collection('files').add({ downloadURL: this.downloadURL, path });
       }),
     );
+  }
+
+  async delete(event) {
+    console.log('event: ',event);
+    event.stopPropagation();
+    if (!!this.downloadURL) {
+      try {
+        console.log('remove : ',this.downloadURL);
+        this.storage.storage.refFromURL(this.downloadURL).delete();
+        this.fileRemoved.emit(this.file);
+      } catch (error) {
+        console.log('error : ',error);
+      }
+    }
   }
 
   isActive(snapshot) {

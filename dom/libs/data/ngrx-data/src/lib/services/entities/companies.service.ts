@@ -21,7 +21,7 @@ export class CompaniesDataService extends FireBaseDataService<Models.Company> {
     httpUrlGenerator: HttpUrlGenerator,
     afs: AngularFirestore
   ) {
-    super(Entities.address, http, httpUrlGenerator, afs);
+    super(Entities.company, http, httpUrlGenerator, afs);
   }
 }
 
@@ -30,6 +30,6 @@ export class CompaniesDataService extends FireBaseDataService<Models.Company> {
 })
 export class CompaniesCollectionService extends BaseCollectionService<Models.Company> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super(Entities.address, serviceElementsFactory);
+    super(Entities.company, serviceElementsFactory);
   }
 }

@@ -13,4 +13,9 @@ export class FireStorageUploaderComponent {
   onFilesDroppped(files: File[]) {
     this.files.next(files);
   }
+
+  onFileRemoved(file: File) {
+    const files = this.files.value.filter(f => f !== file);
+    this.files.next(files);
+  }
 }

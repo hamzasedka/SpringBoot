@@ -61,6 +61,7 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
   }
 
   async onSave(initialCompany: Models.Company){
+    console.log('submmitted onSave');
     const company = {...this.formRegister.value as Models.Company, uid: initialCompany?.uid};
     await this.entityServices.companiesCollectionService.upsert(company).pipe(
       tap(p =>{

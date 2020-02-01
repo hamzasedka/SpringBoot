@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./uploader.component.scss']
 })
 export class UploaderComponent {
-  @Input() filesLimit = 1;
+  @Input() filesLimit = 10;
   @Output() filesDroppped = new EventEmitter<File[]>();
 
   isHovering: boolean;
@@ -16,9 +16,14 @@ export class UploaderComponent {
     this.isHovering = event;
   }
 
-  onDrop(files: FileList) {
-    for (let i = 0; i < files.length && files.length <= this.filesLimit; i++) {
-      this.files.push(files.item(i));
+  onDrop(receivedFiles: FileList) {
+    for (let i = 0; i < receivedFiles.length; i++) {
+      if (this.files.length < this.filesLimit) {
+        this.files.push(receivedFiles.item(i));
+      }
+      else {
+        break;
+      }
     }
     this.filesDroppped.emit(this.files);
   }
