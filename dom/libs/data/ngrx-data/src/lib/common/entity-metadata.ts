@@ -12,8 +12,6 @@ function EntityFilterFn<EntityType>(
 export const ENTITY_METADATA: EntityMetadataMap = {
   address: {
     filterFn: EntityFilterFn,
-    sortComparer: (a: Dtos.Address, b: Dtos.Address) =>
-      a.addressLine1.localeCompare(b.addressLine1),
     selectId: (a: Dtos.Address) => a.uid
   },
   userAccount: {
