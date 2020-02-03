@@ -106,7 +106,7 @@ export class UiPublicRoutingModule {
         expanded: false,
         iconName: 'add_shopping_cart',
         order : 1,
-        route: '/subscribe'
+        route: '/admin/subscribe'
       }
     ]);
   }

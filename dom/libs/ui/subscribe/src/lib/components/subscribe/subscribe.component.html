@@ -2,9 +2,7 @@
   <mat-step [stepControl]="adresseFormGroup">
     <form [formGroup]="adresseFormGroup">
       <ng-template matStepLabel>ADRESSES</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
-      </mat-form-field>
+      <dom-select-address formControlName="firstCtrl"></dom-select-address>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
@@ -13,9 +11,7 @@
   <mat-step [stepControl]="informationFormGroup">
     <form [formGroup]="informationFormGroup">
       <ng-template matStepLabel>INFORMATIONS</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="firstCtrl" required>
-      </mat-form-field>
+      <dom-company-infos formControlName="firstCtrl"></dom-company-infos>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -25,9 +21,7 @@
   <mat-step [stepControl]="optionsFormGroup">
     <form [formGroup]="optionsFormGroup">
       <ng-template matStepLabel>OPTIONS</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="firstCtrl" required>
-      </mat-form-field>
+      <dom-expedition-address formControlName="firstCtrl"></dom-expedition-address>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -37,9 +31,7 @@
   <mat-step [stepControl]="paymentFormGroup">
     <form [formGroup]="paymentFormGroup">
       <ng-template matStepLabel>PAIMENT</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="firstCtrl" required>
-      </mat-form-field>
+      <dom-payment-medhod formControlName="firstCtrl"></dom-payment-medhod>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -49,9 +41,7 @@
   <mat-step [stepControl]="contractFormGroup">
     <form [formGroup]="contractFormGroup">
       <ng-template matStepLabel>CONTRAT</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="firstCtrl" required>
-      </mat-form-field>
+      <dom-contract formControlName="firstCtrl"></dom-contract>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
