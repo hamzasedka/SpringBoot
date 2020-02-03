@@ -28,9 +28,8 @@
           </mat-checkbox>
           <mat-error *ngIf="vm.isHostingError">{{ vm.isHosting }}</mat-error>
         </div>
-        <div>
-          <dom-fire-storage-uploader></dom-fire-storage-uploader>
-        </div>
+        <!--  Kbis doc downloader -->
+        <dom-fire-storage-uploader formControlName="kbisDocIds"></dom-fire-storage-uploader>
       </div>
     </form>
   </dom-dialog-layout>

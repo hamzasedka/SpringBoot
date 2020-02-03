@@ -8,6 +8,7 @@ export interface Company   extends IdentityEntity{
   isHosting?: boolean;
   isHostedBy?: string;
   adresseId: string;
+  kbisDocIds: string[];
   deleted?: boolean;
   created_time?: number;
   update_time?: number;

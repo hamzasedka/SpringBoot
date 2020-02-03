@@ -20,8 +20,9 @@ import { ENTITY_METADATA } from './entity-metadata';
 import { Update } from '@ngrx/entity';
 import { Entities } from './entities';
 import { BaseCollectionService } from './base.services';
-import { QueryPredicates } from './query-predicate';
 import { IdentityEntity } from '@dom/common/dto';
+import { QueryPredicates } from './query-predicate';
+
 
 export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataService<T> {
   private itemDoc: AngularFirestoreDocument<T>;
@@ -52,9 +53,7 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
           let query:
             | firebase.firestore.CollectionReference
             | firebase.firestore.Query = ref;
-          const queryParamsList: QueryPredicates = JSON.parse(
-            queryParams as string
-          );
+          const queryParamsList: QueryPredicates = JSON.parse(queryParams as string);
           for (const queryParam of queryParamsList) {
             query = query.where(
               queryParam.fieldPath,
@@ -150,6 +149,8 @@ export abstract class FireBaseCollectionService<
     queryPredicates: QueryPredicates,
     options?: EntityActionOptions
   ): Observable<T[]> {
+    console.log('queryPredicates => ', queryPredicates);
+
     return this.getWithQuery(
       { queryPredicates: queryPredicates.toString() },
       options

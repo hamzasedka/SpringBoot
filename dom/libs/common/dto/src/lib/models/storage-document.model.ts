@@ -1,6 +1,6 @@
 import { IdentityEntity } from './identity-entity';
 
-export interface StorageDocument   extends IdentityEntity{
+export class StorageDocument  implements IdentityEntity{
   uid?: string;
   name: string;
   url: string;

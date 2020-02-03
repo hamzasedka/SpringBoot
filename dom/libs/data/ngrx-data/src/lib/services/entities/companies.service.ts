@@ -7,7 +7,8 @@ import {
 import {
   Entities,
   BaseCollectionService,
-  FireBaseDataService
+  FireBaseDataService,
+  FireBaseCollectionService
 } from '../../common';
 import * as Models from '@dom/common/dto';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -28,7 +29,7 @@ export class CompaniesDataService extends FireBaseDataService<Models.Company> {
 @Injectable({
   providedIn: 'root'
 })
-export class CompaniesCollectionService extends BaseCollectionService<Models.Company> {
+export class CompaniesCollectionService extends FireBaseCollectionService<Models.Company> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super(Entities.company, serviceElementsFactory);
   }

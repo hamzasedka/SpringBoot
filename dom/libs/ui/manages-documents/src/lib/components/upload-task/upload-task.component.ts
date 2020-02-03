@@ -3,7 +3,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 import { StorageDocument } from '@dom/common/dto';
-import { FileUploaded } from '../../models';
+import { AppEntityServices } from '@dom/data/ngrx-data';
 
 @Component({
   selector: 'dom-upload-task',
@@ -13,23 +13,23 @@ import { FileUploaded } from '../../models';
 export class UploadTaskComponent implements OnInit {
 
   @Input() parentDirectory = 'docs';
-  @Input() disabled : boolean;
-  @Input() file: File | StorageDocument;
-  @Output() fileRemoved = new EventEmitter<File>();
-  @Output() fileUploaded = new EventEmitter<FileUploaded>();
+  @Input() disabled: boolean;
+  @Input() file: StorageDocument;
+  @Output() fileRemoved = new EventEmitter<StorageDocument>();
+  @Output() fileUploaded = new EventEmitter<StorageDocument>();
 
   task: AngularFireUploadTask;
   percentage: Observable<number>;
   snapshot: Observable<any>;
   downloadURL: string;
 
-  constructor(private storage: AngularFireStorage) { }
+  constructor(private storage: AngularFireStorage, private readonly appEntityServices: AppEntityServices) { }
 
   ngOnInit() {
-    if(this.file instanceof File){
+    if ((this.file as any).file) {
       this.startUpload();
-    } else{
-      this.downloadURL = this.file.name;
+    } else {
+      this.downloadURL = this.file?.url;
     }
   }
 
@@ -39,31 +39,34 @@ export class UploadTaskComponent implements OnInit {
     // Reference to storage bucket
     const ref = this.storage.ref(path);
     // The main task
-    this.task = this.storage.upload(path, this.file);
+    this.task = this.storage.upload(path, (this.file as any).file);
     // Progress monitoring
     this.percentage = this.task.percentageChanges();
 
     this.snapshot = this.task.snapshotChanges().pipe(
       tap(console.log),
-      // The file's download URL
       finalize(async () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
         const metadata = await ref.getMetadata().toPromise();
-        this.fileUploaded.emit({
-          name: metadata.name as string,
-          url: this.downloadURL
-        });
+        const newDoc = {
+          name: metadata.name,
+          url: this.downloadURL,
+          created_time: Date.now()
+        };
+        const insertedDocument = await this.appEntityServices.storageDocumentsCollectionService.add(newDoc).toPromise();
+        this.file.uid = insertedDocument.uid;
+        this.file.url = insertedDocument.url;
+        this.fileUploaded.emit(insertedDocument);
       }),
     );
   }
 
-  async delete(event) {
+  async deleteDoc(event) {
     event.stopPropagation();
+    this.fileRemoved.emit(this.file);
     if (!!this.downloadURL) {
       try {
-        console.log('remove : ', this.downloadURL);
-        this.storage.storage.refFromURL(this.downloadURL).delete();
-        this.fileRemoved.emit(this.file as File);
+        await this.storage.storage.refFromURL(this.downloadURL).delete();
       } catch (error) {
         console.log('error : ', error);
       }

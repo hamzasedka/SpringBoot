@@ -1,9 +1,9 @@
-import { Component , forwardRef } from '@angular/core';
+import { Component, forwardRef } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { StorageDocument } from '@dom/common/dto';
-import { ControlValueAccessor , NG_VALUE_ACCESSOR } from '@angular/forms';
-import { FileUploaded } from '../../models';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AppEntityServices } from '@dom/data/ngrx-data';
+
 
 @Component({
   selector: 'dom-fire-storage-uploader',
@@ -19,21 +19,29 @@ import { AppEntityServices } from '@dom/data/ngrx-data';
 })
 export class FireStorageUploaderComponent implements ControlValueAccessor {
 
-  private files = new BehaviorSubject<(File | StorageDocument)[]>([]);
+  private files = new BehaviorSubject<StorageDocument[]>([]);
   files$ = this.files.asObservable();
-  disabled : boolean;
-  propagateChange = (_: any) => {};
 
-  constructor(private readonly appEntityServices: AppEntityServices){}
+  disabled: boolean;
+
+  propagateChange = (_: any) => { };
+
+  constructor(private readonly appEntityServices: AppEntityServices) { }
 
   onFilesDroppped(files: File[]) {
-    this.files.next(files);
+    this.files.next(files.map(f => ({ name: f?.name, file: f, url: '' })));
   }
 
   // implements ControlValueAccessor
-
-  writeValue(files: StorageDocument[]): void {
-    this.files.next(files);
+  writeValue(docIds: string[] | string): void {
+    const listIds = Array.isArray(docIds) ? docIds : [docIds];
+    if (docIds && docIds.length > 0) {
+      Promise.all(listIds.map(docId => this.appEntityServices.storageDocumentsCollectionService.getByKey(docId).toPromise())).then(
+        files => {
+          this.files.next(files);
+        }
+      );
+    }
   }
 
   registerOnChange(fn: any): void {
@@ -48,18 +56,18 @@ export class FireStorageUploaderComponent implements ControlValueAccessor {
   }
 
   // internal changes
-  onFileRemoved(file: File) {
-    const files = this.files.value.filter(f => f !== file);
+  onFileRemoved(file: StorageDocument) {
+    console.log('onFileRemoved => ', file);
+    const files = this.files.value.filter(f => f?.uid !== file?.uid);
+    this.propagateChange(files.map(d => d?.uid));
     this.files.next(files);
   }
 
-  async onFileUploaded(file: FileUploaded) {
-   const insertedDocument = await  this.appEntityServices.storageDocumentsCollectionService.add(
-      {
-        name: file.name,
-        url: file.url
-      }
-    ).toPromise();
-    this.propagateChange(insertedDocument);
+  async onFileUploaded(storageDocument: StorageDocument) {
+    try {
+      this.propagateChange([storageDocument?.uid]);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
