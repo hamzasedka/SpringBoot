@@ -1,6 +1,8 @@
-<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px" >
-  <dom-uploader fxFlex="30" (filesDroppped)="this.onFilesDroppped($event)"></dom-uploader>
-  <div fxFlex="70" *ngFor="let file of this.files$ | async" fxLayout="column" fxLayoutAlign="space-around center">
-    <dom-upload-task [file]="file" (fileRemoved)="onFileRemoved($event)"></dom-upload-task>
+<mat-card class="uploader-container">
+  <div class="uploader-label">{{ this.label}}</div>
+  <dom-uploader class="dom-uploader" (filesDroppped)="this.onFilesDroppped($event)"></dom-uploader>
+  <div fxLayout="column" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-around stretch" fxLayoutGap="10px">
+    <dom-upload-task *ngFor="let file of this.files$ | async" [file]="file" (fileRemoved)="onFileRemoved($event)"
+      (fileUploaded)="this.onFileUploaded($event)" [disabled]="this.disabled"></dom-upload-task>
   </div>
-</div>
+</mat-card>

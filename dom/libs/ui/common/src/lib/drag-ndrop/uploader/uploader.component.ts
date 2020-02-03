@@ -6,7 +6,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./uploader.component.scss']
 })
 export class UploaderComponent {
-  @Input() filesLimit = 10;
+  @Input() filesLimit = 100;
   @Output() filesDroppped = new EventEmitter<File[]>();
 
   isHovering: boolean;

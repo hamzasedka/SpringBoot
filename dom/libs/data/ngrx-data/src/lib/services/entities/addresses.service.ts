@@ -6,17 +6,17 @@ import {
 } from '@ngrx/data';
 import {
   Entities,
-  BaseDataService,
   BaseCollectionService,
-  FireBaseDataService
+  FireBaseDataService,
+  FireBaseCollectionService
 } from '../../common';
-import { Address } from '@dom/common/dto';
+import * as Models from '@dom/common/dto';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AddressDataService extends FireBaseDataService<Address> {
+export class AddressDataService extends FireBaseDataService<Models.Address> {
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
@@ -29,7 +29,7 @@ export class AddressDataService extends FireBaseDataService<Address> {
 @Injectable({
   providedIn: 'root'
 })
-export class AddressCollectionService extends BaseCollectionService<Address> {
+export class AddressCollectionService extends FireBaseCollectionService<Models.Address> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super(Entities.address, serviceElementsFactory);
   }

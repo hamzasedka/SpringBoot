@@ -10,27 +10,27 @@ import {
   FireBaseDataService,
   FireBaseCollectionService
 } from '../../common';
-import * as Models from '@dom/common/dto';
 import { AngularFirestore } from '@angular/fire/firestore';
+import * as Models from '@dom/common/dto';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsDataService extends FireBaseDataService<Models.Product> {
+export class StorageDocumentDataService extends FireBaseDataService<Models.StorageDocument> {
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
     afs: AngularFirestore
   ) {
-    super(Entities.product, http, httpUrlGenerator, afs);
+    super(Entities.storageDocument, http, httpUrlGenerator, afs);
   }
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProductsCollectionService extends FireBaseCollectionService<Models.Product> {
+export class StorageDocumentsCollectionService extends FireBaseCollectionService<Models.StorageDocument> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
-    super(Entities.product, serviceElementsFactory);
+    super(Entities.storageDocument, serviceElementsFactory);
   }
 }

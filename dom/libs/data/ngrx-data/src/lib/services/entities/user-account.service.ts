@@ -11,7 +11,7 @@ import {
   QueryPredicates,
   QueryPredicate
 } from '../../common';
-import { UserAccount } from '@dom/common/dto';
+import * as Models from '@dom/common/dto';
 import {
   AngularFirestore
 } from '@angular/fire/firestore';
@@ -22,7 +22,7 @@ import { AngularFireAuth,  } from '@angular/fire/auth';
 @Injectable({
   providedIn: 'root'
 })
-export class UserAccountDataService extends FireBaseDataService<UserAccount> {
+export class UserAccountDataService extends FireBaseDataService<Models.UserAccount> {
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
@@ -36,14 +36,12 @@ export class UserAccountDataService extends FireBaseDataService<UserAccount> {
 @Injectable({
   providedIn: 'root'
 })
-export class UserAccountCollectionService extends FireBaseCollectionService<
-  UserAccount
-> {
+export class UserAccountCollectionService extends FireBaseCollectionService<Models.UserAccount> {
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super(Entities.userAccount, serviceElementsFactory);
   }
 
-  getByEmail(username: string): Observable<UserAccount[]> {
+  getByEmail(username: string): Observable<Models.UserAccount[]> {
     return this.getWithQueryPredicates(
       new QueryPredicates(new QueryPredicate('email', '==', username))
     );

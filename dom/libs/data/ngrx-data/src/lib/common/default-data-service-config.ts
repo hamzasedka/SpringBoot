@@ -17,6 +17,10 @@ export function BuildDefaultDataServiceConfig(
       product: {
         entityResourceUrl: `${authServiceUrl}/product/`,
         collectionResourceUrl: `${authServiceUrl}/product`
+      },
+      storageDocument: {
+        entityResourceUrl: `${authServiceUrl}/storageDocument/`,
+        collectionResourceUrl: `${authServiceUrl}/storageDocument`
       }
     }
   };

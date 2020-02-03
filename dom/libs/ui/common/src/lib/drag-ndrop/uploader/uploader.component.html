@@ -1,5 +1,5 @@
 <div class="dropzone" domDropzone (hovered)="toggleHover($event)" (dropped)="onDrop($event)" [class.hovering]="isHovering">
-  <button *ngIf="this.files.length < this.filesLimit" (click)="fileUpload.click()" mat-mini-fab color="primary">
+  <button [disabled]="this.files.length >= this.filesLimit" (click)="fileUpload.click()" mat-mini-fab color="primary">
     <mat-icon>cloud_upload</mat-icon>
   </button>
   <input #fileUpload type="file" style="visibility: hidden;" [hidden]="true" (change)="onDrop($event.target.files)">

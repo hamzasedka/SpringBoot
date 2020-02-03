@@ -25,5 +25,9 @@ export const ENTITY_METADATA: EntityMetadataMap = {
   company: {
     filterFn: EntityFilterFn,
     selectId: (a: Dtos.Company) => a.uid
+  },
+  storageDocument: {
+    filterFn: EntityFilterFn,
+    selectId: (a: Dtos.StorageDocument) => a.uid
   }
 };
