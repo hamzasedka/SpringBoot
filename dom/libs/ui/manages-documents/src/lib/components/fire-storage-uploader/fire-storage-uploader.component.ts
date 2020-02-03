@@ -1,4 +1,4 @@
-import { Component, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { StorageDocument } from '@dom/common/dto';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -19,6 +19,7 @@ import { AppEntityServices } from '@dom/data/ngrx-data';
 })
 export class FireStorageUploaderComponent implements ControlValueAccessor {
 
+  @Input() label:string;
   private files = new BehaviorSubject<StorageDocument[]>([]);
   files$ = this.files.asObservable();
 

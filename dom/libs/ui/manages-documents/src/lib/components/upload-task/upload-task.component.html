@@ -20,11 +20,6 @@
         <mat-icon>play_arrow</mat-icon>
       </button>
     </ng-container>
-
-    <button mat-mini-fab color="accent">
-      <mat-icon>home</mat-icon>
-    </button>
-
     <button *ngIf="this.downloadURL" (click)="this.deleteDoc($event)" mat-mini-fab color="accent">
       <mat-icon>delete</mat-icon>
     </button>
