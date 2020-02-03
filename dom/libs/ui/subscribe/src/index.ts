@@ -1,1 +1,1 @@
-export * from './lib/ui-subscribe.module';
+export * from './lib';

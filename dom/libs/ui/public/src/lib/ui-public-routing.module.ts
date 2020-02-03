@@ -24,6 +24,10 @@ const PUBLIC_ROUTES: Routes = [
         component: Components.LoginComponent,
         pathMatch: 'full',
         canActivate: [ LoginGuard]
+      },
+      {
+        path: '',
+        loadChildren: async () => import('@dom/ui/subscribe').then(m => m.UiSubscribeModule)
       }
     ]
   }
@@ -43,6 +47,14 @@ export class UiPublicRoutingModule {
         iconName: 'settings',
         order : 99,
         route: '/admin'
+      },
+      {
+        id: 'subscribenMenu',
+        displayName :  `S'abonner`,
+        expanded: false,
+        iconName: 'add_shopping_cart',
+        order : 1,
+        route: '/subscribe'
       }
     ]);
   }

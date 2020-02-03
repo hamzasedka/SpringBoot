@@ -35,6 +35,10 @@ const USER_SPACE_ROUTES: Routes = [
       {
         path: '',
         loadChildren: async () => import('@dom/ui/manage-addresses').then(m => m.UiManageAddressesModule)
+      },
+      {
+        path: '',
+        loadChildren: async () => import('@dom/ui/subscribe').then(m => m.UiSubscribeModule)
       }
     ]
   }
@@ -95,6 +99,14 @@ export class UiPublicRoutingModule {
             route: '/admin/addresses'
           }
         ]
+      },
+      {
+        id: 'subscribenMenu',
+        displayName :  `S'abonner`,
+        expanded: false,
+        iconName: 'add_shopping_cart',
+        order : 1,
+        route: '/subscribe'
       }
     ]);
   }

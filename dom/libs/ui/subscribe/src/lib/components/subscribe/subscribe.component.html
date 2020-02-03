@@ -1,0 +1,61 @@
+<mat-horizontal-stepper [linear]="false" #stepper>
+  <mat-step [stepControl]="adresseFormGroup">
+    <form [formGroup]="adresseFormGroup">
+      <ng-template matStepLabel>ADRESSES</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="informationFormGroup">
+    <form [formGroup]="informationFormGroup">
+      <ng-template matStepLabel>INFORMATIONS</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="optionsFormGroup">
+    <form [formGroup]="optionsFormGroup">
+      <ng-template matStepLabel>OPTIONS</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="paymentFormGroup">
+    <form [formGroup]="paymentFormGroup">
+      <ng-template matStepLabel>PAIMENT</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="contractFormGroup">
+    <form [formGroup]="contractFormGroup">
+      <ng-template matStepLabel>CONTRAT</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+</mat-horizontal-stepper>
