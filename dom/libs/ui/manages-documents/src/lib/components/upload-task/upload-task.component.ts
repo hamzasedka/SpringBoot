@@ -2,11 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
-
-export interface FileUploaded {
-  name: string;
-  url: string;
-}
+import { StorageDocument } from '@dom/common/dto';
+import { FileUploaded } from '../../models';
 
 @Component({
   selector: 'dom-upload-task',
@@ -16,20 +13,24 @@ export interface FileUploaded {
 export class UploadTaskComponent implements OnInit {
 
   @Input() parentDirectory = 'docs';
-  @Input() file: File;
+  @Input() disabled : boolean;
+  @Input() file: File | StorageDocument;
   @Output() fileRemoved = new EventEmitter<File>();
   @Output() fileUploaded = new EventEmitter<FileUploaded>();
 
   task: AngularFireUploadTask;
-
   percentage: Observable<number>;
   snapshot: Observable<any>;
-  downloadURL;
+  downloadURL: string;
 
   constructor(private storage: AngularFireStorage) { }
 
   ngOnInit() {
-    this.startUpload();
+    if(this.file instanceof File){
+      this.startUpload();
+    } else{
+      this.downloadURL = this.file.name;
+    }
   }
 
   startUpload() {
@@ -57,13 +58,12 @@ export class UploadTaskComponent implements OnInit {
   }
 
   async delete(event) {
-    console.log('event: ', event);
     event.stopPropagation();
     if (!!this.downloadURL) {
       try {
         console.log('remove : ', this.downloadURL);
         this.storage.storage.refFromURL(this.downloadURL).delete();
-        this.fileRemoved.emit(this.file);
+        this.fileRemoved.emit(this.file as File);
       } catch (error) {
         console.log('error : ', error);
       }

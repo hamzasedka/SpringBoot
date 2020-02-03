@@ -2,7 +2,7 @@ export * from './identity-entity';
 export * from './address.model';
 export * from './bill.model';
 export * from './contract.model';
-export * from './document.model';
+export * from './storage-document.model';
 export * from './company.model';
 export * from './payment-method.model';
 export * from './product.model';

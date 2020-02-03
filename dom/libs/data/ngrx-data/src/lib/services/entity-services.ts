@@ -4,7 +4,8 @@ import {
   AddressCollectionService,
   UserAccountCollectionService,
   ProductsCollectionService,
-  CompaniesCollectionService
+  CompaniesCollectionService,
+  StorageDocumentsCollectionService
 } from './entities';
 
 @Injectable()
@@ -14,14 +15,16 @@ export class AppEntityServices extends EntityServicesBase {
     readonly addressCollectionService: AddressCollectionService,
     readonly userAccountCollectionService: UserAccountCollectionService,
     readonly productsCollectionService: ProductsCollectionService,
-    readonly companiesCollectionService: CompaniesCollectionService
+    readonly companiesCollectionService: CompaniesCollectionService,
+    readonly storageDocumentsCollectionService: StorageDocumentsCollectionService
   ) {
     super(entityServicesElements);
     this.registerEntityCollectionServices([
       addressCollectionService,
       userAccountCollectionService,
       productsCollectionService,
-      companiesCollectionService
+      companiesCollectionService,
+      storageDocumentsCollectionService
     ]);
   }
 }

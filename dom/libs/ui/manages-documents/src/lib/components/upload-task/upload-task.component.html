@@ -1,22 +1,26 @@
 <div *ngIf="percentage | async as pct">
   <mat-progress-bar mode="determinate" [value]="pct" color="warn"></mat-progress-bar>
 </div>
-<mat-card *ngIf="(snapshot | async) as snap">
-  <span *ngIf="isActive(snap)">{{ snap.bytesTransferred }} of {{ snap.totalBytes }}</span>
+<mat-card>
+
   <div *ngIf="this.downloadURL as url">
-    <a [href]="url" target="_blank" rel="noopener">{{ snap?.metadata?.name }}</a>
+    <a [href]="url" target="_blank" rel="noopener">{{ this.file?.name }}</a>
   </div>
   <hr>
   <mat-card-actions>
-    <button (click)="task.pause()" mat-mini-fab color="primary" *ngIf="isActive(snap)"  >
-      <mat-icon>pause</mat-icon>
-    </button>
-    <button (click)="task.cancel()" mat-mini-fab color="accent" *ngIf="isActive(snap)">
-      <mat-icon>stop</mat-icon>
-    </button>
-    <button (click)="task.resume()" mat-mini-fab color="warn" *ngIf="(snap?.state === 'paused')">
-      <mat-icon>play_arrow</mat-icon>
-    </button>
+    <ng-container *ngIf="(snapshot | async) as snap">
+      <span *ngIf="isActive(snap)">{{ snap.bytesTransferred }} of {{ snap.totalBytes }}</span>
+      <button (click)="task.pause()" mat-mini-fab color="primary" *ngIf="isActive(snap)"   [disabled]="this.disabled">
+        <mat-icon>pause</mat-icon>
+      </button>
+      <button (click)="task.cancel()" mat-mini-fab color="accent" *ngIf="isActive(snap)"  [disabled]="this.disabled">
+        <mat-icon>stop</mat-icon>
+      </button>
+      <button (click)="task.resume()" mat-mini-fab color="warn" *ngIf="(snap?.state === 'paused')"  [disabled]="this.disabled">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+    </ng-container>
+
     <button *ngIf="this.downloadURL" (click)="this.delete($event)" mat-mini-fab color="accent">
       <mat-icon>delete</mat-icon>
     </button>
