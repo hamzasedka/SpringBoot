@@ -1,4 +1,5 @@
 import { IdentityEntity } from './identity-entity';
+import { PriceCard } from './price-card.model';
 
 export interface Product  extends IdentityEntity{
   uid?: string;
@@ -6,20 +7,9 @@ export interface Product  extends IdentityEntity{
   name: string;
   description: string;
   addressId?: string;
+  priceCards?: PriceCard[];
   relatedProducts?: string[];
   isOption?: boolean;
-
-  // price Card
-  priceExcludeTaxe: number;
-  priceIncludeTaxe: number;
-  strikethroughPrice?: number;
-  currencySymbol: string;
-  canApplyPromotion: boolean;
-  reccurence: 'day' | 'mounth' | 'year';
-  contractCommitment: number;
-  contractCommitmentUnit: 'day' | 'mounth' | 'year';
-  //-----
-
   deleted?: boolean;
   created_time?: number;
 }

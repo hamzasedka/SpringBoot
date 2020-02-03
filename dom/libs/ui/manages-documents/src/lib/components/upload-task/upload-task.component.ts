@@ -3,6 +3,11 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { Observable } from 'rxjs';
 import { finalize, tap } from 'rxjs/operators';
 
+export interface FileUploaded {
+  name: string;
+  url: string;
+}
+
 @Component({
   selector: 'dom-upload-task',
   templateUrl: './upload-task.component.html',
@@ -13,6 +18,7 @@ export class UploadTaskComponent implements OnInit {
   @Input() parentDirectory = 'docs';
   @Input() file: File;
   @Output() fileRemoved = new EventEmitter<File>();
+  @Output() fileUploaded = new EventEmitter<FileUploaded>();
 
   task: AngularFireUploadTask;
 
@@ -41,22 +47,25 @@ export class UploadTaskComponent implements OnInit {
       // The file's download URL
       finalize(async () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
-        // TO_SAVE file to db
-        // this.db.collection('files').add({ downloadURL: this.downloadURL, path });
+        const metadata = await ref.getMetadata().toPromise();
+        this.fileUploaded.emit({
+          name: metadata.name as string,
+          url: this.downloadURL
+        });
       }),
     );
   }
 
   async delete(event) {
-    console.log('event: ',event);
+    console.log('event: ', event);
     event.stopPropagation();
     if (!!this.downloadURL) {
       try {
-        console.log('remove : ',this.downloadURL);
+        console.log('remove : ', this.downloadURL);
         this.storage.storage.refFromURL(this.downloadURL).delete();
         this.fileRemoved.emit(this.file);
       } catch (error) {
-        console.log('error : ',error);
+        console.log('error : ', error);
       }
     }
   }

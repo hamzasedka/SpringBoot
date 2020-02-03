@@ -1,4 +1,4 @@
-<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="20px" >
+<div fxLayout="row" fxLayoutAlign="space-around center" fxLayoutGap="10px" >
   <dom-uploader fxFlex="30" (filesDroppped)="this.onFilesDroppped($event)"></dom-uploader>
   <div fxFlex="70" *ngFor="let file of this.files$ | async" fxLayout="column" fxLayoutAlign="space-around center">
     <dom-upload-task [file]="file" (fileRemoved)="onFileRemoved($event)"></dom-upload-task>

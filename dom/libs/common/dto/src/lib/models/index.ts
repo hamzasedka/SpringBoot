@@ -9,3 +9,4 @@ export * from './product.model';
 export * from './order.model';
 export * from './user-account-legal-entity.model';
 export * from './user-account.model';
+export * from './price-card.model';

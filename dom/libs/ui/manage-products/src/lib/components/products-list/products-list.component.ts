@@ -7,7 +7,7 @@ import * as Models from '@dom/common/dto';
   styleUrls: ['./products-list.component.scss']
 })
 export class ProductsListComponent {
-  readonly columns: (keyof Models.Product)[] = ['name', 'description', 'priceExcludeTaxe', 'isOption', 'reccurence'];
+  readonly columns: (keyof Models.Product)[] = ['name', 'description', 'isOption'];
 
   @Output() rowClick = new EventEmitter<Models.Product>();
 
