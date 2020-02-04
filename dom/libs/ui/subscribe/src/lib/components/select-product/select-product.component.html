@@ -1,0 +1,17 @@
+<ng-container *ngIf="this.vm$ | async as vm">
+  <div>
+    <form [formGroup]="this.selectProductForm">
+      <div fxLayout="column">
+        <mat-form-field color="accent">
+          <mat-select formControlName="addressId" placeholder="Choisir une adresse" required>
+            <mat-option *ngFor="let product of this.products;" [value]="product.uid">
+              {{ product.shortDescription }}
+            </mat-option>
+          </mat-select>
+          <input matInput type="text" formControlName="addressId" placeholder="" />
+          <mat-error *ngIf="vm.addressIdError">{{ vm.addressLine1Error }}</mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    </div>
+</ng-container>

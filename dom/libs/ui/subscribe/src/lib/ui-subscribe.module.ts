@@ -22,7 +22,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatStepperModule
   ],
   declarations: [
-    Models.SelectAddressComponent,
+    Models.SelectProductComponent,
     Models.CompanyInfosComponent, Models.ExpeditionAddressComponent,
     Models.PaymentMedhodComponent,
     Models.ContractComponent,
