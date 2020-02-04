@@ -5,10 +5,11 @@ export interface Company   extends IdentityEntity{
   name: string;
   siren: string;
   prefectoralId: string;
+  creationInProgress?: boolean;
   isHosting?: boolean;
   isHostedBy?: string;
   adresseId: string;
-  kbisDocIds: string[];
+  companyDocIds: string[];
   deleted?: boolean;
   created_time?: number;
   update_time?: number;

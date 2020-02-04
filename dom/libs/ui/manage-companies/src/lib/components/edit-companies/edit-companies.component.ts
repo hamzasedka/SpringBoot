@@ -45,7 +45,6 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
         map(([company, changes]) => ({ company, changes }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
         this.vmBehavior.next(r);
-        console.log(r);
       });
   }
 
@@ -79,7 +78,8 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
         siren: ['', Validators.compose([Validators.required])],
         prefectoralId: ['', Validators.compose([Validators.required])],
         isHosting: ['', Validators.compose([Validators.required])],
-        kbisDocIds: ['']
+        companyDocIds: [''],
+        creationInProgress: [false]
       }
     );
   }
