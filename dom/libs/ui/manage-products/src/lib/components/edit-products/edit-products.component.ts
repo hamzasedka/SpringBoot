@@ -22,7 +22,7 @@ export class EditProductsComponent implements OnInit, OnDestroy {
   private readonly editProduct$ = this.store.pipe(select(Store.getEditProduct)).pipe(
     tap(product => {
       if (!!product) {
-        const clone = {...product};
+        const clone = { ...product };
         delete clone.uid; // never remove from original object reference
         this.formRegister.setValue(clone);
       }
@@ -61,14 +61,12 @@ export class EditProductsComponent implements OnInit, OnDestroy {
     this.dialogRef?.close();
   }
 
-  async onSave(initialProduct: Models.Product){
-    console.log('initialProduct to upsert: ', initialProduct);
-    const product = {...this.formRegister.value as Models.Product, uid: initialProduct?.uid};
-    console.log('product to upsert: ', product);
+  async onSave(initialProduct: Models.Product) {
+    const product = { ...this.formRegister.value as Models.Product, uid: initialProduct?.uid };
     await this.entityServices.productsCollectionService.upsert(product).pipe(
-      tap(p =>{
+      tap(p => {
         this.store.dispatch(Store.setEditProduct({ productId: p?.uid }));
-        this.notificationService.error('Enregistré.');
+        this.notificationService.success('Enregistré.');
       })
     ).toPromise();
   }
@@ -83,10 +81,10 @@ export class EditProductsComponent implements OnInit, OnDestroy {
         strikethroughPrice: [undefined, Validators.compose([Validators.required, Validators.min(0.1)])],
         isOption: [false],
         canApplyPromotion: [false]
-/*         ,
-        reccurence: ['', Validators.compose([Validators.required])],
-        contractCommitment: [undefined, Validators.compose([Validators.required])],
-        contractCommitmentUnit: ['', Validators.compose([Validators.required])] */
+        /*         ,
+                reccurence: ['', Validators.compose([Validators.required])],
+                contractCommitment: [undefined, Validators.compose([Validators.required])],
+                contractCommitmentUnit: ['', Validators.compose([Validators.required])] */
       }
     );
   }

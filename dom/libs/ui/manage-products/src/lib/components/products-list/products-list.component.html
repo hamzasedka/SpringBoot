@@ -16,6 +16,16 @@
     </mat-cell>
   </ng-container>
 
+
+  <ng-container matColumnDef="deleted">
+    <mat-header-cell *matHeaderCellDef> Supprimer </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-mini-fab color="accent" (click)="this.onDelete(element)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: columns" (click)="this.onRowClicked(row)"></mat-row>
 </mat-table>

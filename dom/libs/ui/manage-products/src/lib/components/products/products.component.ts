@@ -9,6 +9,7 @@ import { EditProductsComponent } from '../edit-products';
 import * as Models from '@dom/common/dto';
 import { Observable } from 'rxjs';
 import { AppEntityServices } from '@dom/data/ngrx-data';
+import { NotificationService } from '@dom/ui/common';
 
 @Component({
   selector: 'dom-products',
@@ -20,7 +21,8 @@ export class ProductsComponent {
   private dialogRef: MatDialogRef<EditProductsComponent, never>;
   constructor(public dialog: MatDialog,
               private readonly store: NgRxStore<Store.ProductsAllFeaturesState>,
-              private readonly entityServices: AppEntityServices
+              private readonly entityServices: AppEntityServices,
+              private readonly notificationService: NotificationService
               ) {
     this.products$ = this.entityServices.productsCollectionService.filteredEntities$;
   }
@@ -39,6 +41,15 @@ export class ProductsComponent {
         closeOnNavigation: true,
         restoreFocus: true
       });
+    }
+  }
+
+  async onDelete(product: Models.Product) {
+    try {
+      await this.entityServices.productsCollectionService.delete(product.uid).toPromise();
+      this.notificationService.success('Supprimé.');
+    } catch (error) {
+      this.notificationService.error(error?.message);
     }
   }
 }
