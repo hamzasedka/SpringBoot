@@ -20,7 +20,7 @@ import { AppLayoutModule } from '@dom/ui/layout';
     MatInputModule,
     AppLayoutModule
   ],
-  declarations: [Components.EditProductsComponent, Components.ProductsComponent, Components.ProductsMenuComponent, Components.ProductsListComponent],
+  declarations: [Components.EditProductsComponent, Components.ProductsComponent, Components.ProductsMenuComponent, Components.ProductsListComponent, Components.EditPriceCardsComponent],
   exports: [Components.ProductsComponent],
   entryComponents: [Components.ProductsComponent]
 })

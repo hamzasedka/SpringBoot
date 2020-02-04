@@ -17,31 +17,17 @@
           <textarea matInput formControlName="description" placeholder="Description"></textarea>
           <mat-error *ngIf="vm.descriptionError">{{ vm.descriptionError }}</mat-error>
         </mat-form-field>
-        <!-- priceExcludeTaxe -->
-        <mat-form-field color="accent">
-          <input matInput type="number" formControlName="priceExcludeTaxe" placeholder="Prix HT" />
-          <mat-error *ngIf="vm.priceExcludeTaxeError">{{ vm.priceExcludeTaxeError }}</mat-error>
-        </mat-form-field>
-        <!-- priceIncludeTaxe -->
-        <mat-form-field color="accent">
-          <input matInput type="number" formControlName="priceIncludeTaxe" placeholder="Prix TTC" />
-          <mat-error *ngIf="vm.priceIncludeTaxeError">{{ vm.priceIncludeTaxeError }}</mat-error>
-        </mat-form-field>
-        <!-- strikethroughPrice -->
-        <mat-form-field color="accent">
-          <textarea matInput formControlName="strikethroughPrice" placeholder="Ancien Prix"></textarea>
-          <mat-error *ngIf="vm.strikethroughPriceError">{{ vm.strikethroughPriceError }}</mat-error>
-        </mat-form-field>
         <!-- isOption -->
         <div color="accent">
           <mat-checkbox formControlName="isOption" placeholder="Un produit option">Produit option</mat-checkbox>
           <mat-error *ngIf="vm.isOptionError">{{ vm.isOptionError }}</mat-error>
         </div>
-        <!-- canApplyPromotion -->
-        <div color="accent">
-          <mat-checkbox formControlName="canApplyPromotion" placeholder="Peux appliquer un code promotion">Permettre
-            d'appliquer un code promotion</mat-checkbox>
-          <mat-error *ngIf="vm.canApplyPromotionError">{{ vm.canApplyPromotionError }}</mat-error>
+        <!--  Price cards -->
+        <div>
+          <button class="btn-ribbon" mat-fab aria-label="Add" (click)="this.onAdd()">
+            <mat-icon>add</mat-icon>
+          </button>
+          <dom-edit-price-cards></dom-edit-price-cards>
         </div>
       </div>
     </form>

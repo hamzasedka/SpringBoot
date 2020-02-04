@@ -76,15 +76,7 @@ export class EditProductsComponent implements OnInit, OnDestroy {
       {
         name: ['', Validators.compose([Validators.required])],
         description: [''],
-        priceExcludeTaxe: [undefined, Validators.compose([Validators.required, Validators.min(0.1)])],
-        priceIncludeTaxe: [undefined, Validators.compose([Validators.required, Validators.min(0.1)])],
-        strikethroughPrice: [undefined, Validators.compose([Validators.required, Validators.min(0.1)])],
         isOption: [false],
-        canApplyPromotion: [false]
-        /*         ,
-                reccurence: ['', Validators.compose([Validators.required])],
-                contractCommitment: [undefined, Validators.compose([Validators.required])],
-                contractCommitmentUnit: ['', Validators.compose([Validators.required])] */
       }
     );
   }

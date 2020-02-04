@@ -1,0 +1,85 @@
+<ng-container [formGroup]="this.formValue">
+  <mat-table [formArrayName]="this.priceCardsArrayName" [dataSource]="this.formArray.value"
+    [trackBy]="this.trackByPriceCard">
+
+    <!-- priceExcludeTaxe -->
+    <ng-container matColumnDef="priceExcludeTaxe">
+      <mat-header-cell fxFlex *matHeaderCellDef>Prix HT</mat-header-cell>
+      <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
+        <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
+          <mat-label>Prix HT</mat-label>
+          <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
+          <input type="number" matInput placeholder="Prix HT" required min="0"
+            formControlName="priceExcludeTaxe" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <!-- priceIncludeTaxe -->
+    <ng-container matColumnDef="priceIncludeTaxe">
+      <mat-header-cell fxFlex *matHeaderCellDef>Prix TTC</mat-header-cell>
+      <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
+        <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
+          <mat-label>Prix HT</mat-label>
+          <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
+          <input type="number" matInput placeholder="Prix TTC" required min="0"
+            formControlName="priceIncludeTaxe" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <!-- strikethroughPrice -->
+    <ng-container matColumnDef="strikethroughPrice">
+      <mat-header-cell fxFlex *matHeaderCellDef>Ancien Prix</mat-header-cell>
+      <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
+        <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
+          <mat-label>Ancien Prix</mat-label>
+          <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
+          <input type="number" matInput placeholder="Ancien Prix" required min="0"
+            formControlName="strikethroughPrice" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <!-- canApplyPromotion -->
+    <ng-container matColumnDef="canApplyPromotion">
+      <mat-header-cell fxFlex *matHeaderCellDef>Peux appliquer un code promotion</mat-header-cell>
+      <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
+        <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
+          <mat-label>Prix HT</mat-label>
+          <input type="number" matInput placeholder="Peux appliquer un code promotion" required min="0"
+            formControlName="canApplyPromotion" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <!-- contractCommitment -->
+    <ng-container matColumnDef="contractCommitment">
+      <mat-header-cell fxFlex *matHeaderCellDef>Prix HT</mat-header-cell>
+      <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
+        <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
+          <mat-label>Prix HT</mat-label>
+          <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
+          <input type="number" matInput placeholder="Wholesale Price" required min="0"
+            formControlName="contractCommitment" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <!-- contractCommitmentUnit -->
+    <ng-container matColumnDef="contractCommitmentUnit">
+      <mat-header-cell fxFlex *matHeaderCellDef>Prix HT</mat-header-cell>
+      <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
+        <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
+          <mat-label>Prix HT</mat-label>
+          <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
+          <input type="number" matInput placeholder="Wholesale Price" required min="0"
+            formControlName="contractCommitmentUnit" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="this.displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: this.displayedColumns;"></mat-row>
+  </mat-table>
+</ng-container>

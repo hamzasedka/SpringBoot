@@ -8,7 +8,6 @@ export interface PriceCard extends IdentityEntity {
   strikethroughPrice?: number;
   currencySymbol: string;
   canApplyPromotion: boolean;
-  reccurence: Reccurences;
   contractCommitment: number;
   contractCommitmentUnit: Reccurences;
   deleted?: boolean;
