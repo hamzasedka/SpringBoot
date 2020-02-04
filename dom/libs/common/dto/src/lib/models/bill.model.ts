@@ -1,6 +1,6 @@
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 
-export interface Bill  extends IdentityEntity{
+export interface Bill  extends IdentityEntity, DeletedEntity{
   uid?: string;
   amount: number;
   currencySymbol: string;

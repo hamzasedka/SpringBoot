@@ -28,4 +28,8 @@ export class UploaderComponent {
     this.filesDroppped.emit(this.files);
   }
 
+  onUploadClick(fileUpload, event:MouseEvent){
+    event.preventDefault();
+    fileUpload.click();
+  }
 }

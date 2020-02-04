@@ -1,4 +1,3 @@
-export * from './identity-entity';
 export * from './address.model';
 export * from './bill.model';
 export * from './contract.model';

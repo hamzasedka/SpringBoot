@@ -19,9 +19,9 @@ export class CompaniesComponent {
   items$: Observable<Models.Company[]>;
   private dialogRef: MatDialogRef<EditCompaniesComponent, never>;
   constructor(public dialog: MatDialog,
-              private readonly store: NgRxStore<Store.CompaniesAllFeaturesState>,
-              private readonly entityServices: AppEntityServices
-              ) {
+    private readonly store: NgRxStore<Store.CompaniesAllFeaturesState>,
+    private readonly entityServices: AppEntityServices
+  ) {
     this.items$ = this.entityServices.companiesCollectionService.filteredEntities$;
   }
 
@@ -39,5 +39,9 @@ export class CompaniesComponent {
         restoreFocus: true
       });
     }
+  }
+
+  async onDelete(company?: Models.Company) {
+    await this.entityServices.companiesCollectionService.update({uid: company.uid, deleted: true});
   }
 }

@@ -11,13 +11,13 @@ export type WhereFilterOpEx =
 export class QueryPredicate<T> {
   constructor(
     readonly fieldPath: string,
-    readonly opStr: WhereFilterOpEx,
+    readonly filterOpStr: WhereFilterOpEx,
     readonly value: T | undefined
   ) {
     if (!this.fieldPath) {
       throw new Error('QueryPredicate<T>(): fieldPath must be specified');
     }
-    if (!this.opStr) {
+    if (!this.filterOpStr) {
       throw new Error('QueryPredicate<T>(): opStr must be specified');
     }
   }

@@ -1,6 +1,6 @@
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 
-export interface PaymentMedhod   extends IdentityEntity{
+export interface PaymentMedhod   extends IdentityEntity, DeletedEntity{
   uid?: string;
   orderId: number;
   name: string;

@@ -23,7 +23,7 @@ export class AddressesComponent {
               private readonly store: NgRxStore<Store.AddressesAllFeaturesState>,
               private readonly entityServices: AppEntityServices
               ) {
-    this.items$ = this.entityServices.companiesCollectionService.filteredEntities$.pipe(tap(console.log));
+    this.items$ = this.entityServices.companiesCollectionService.filteredEntities$;
   }
 
   onRowClicked(address?: Models.Address) {

@@ -1,6 +1,6 @@
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 
-export interface Order   extends IdentityEntity {
+export interface Order   extends IdentityEntity, DeletedEntity {
   // Order
   uid: string;
   orderItems: OrderItem[];

@@ -1,6 +1,6 @@
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 
-export interface Company   extends IdentityEntity{
+export interface Company   extends IdentityEntity, DeletedEntity{
   uid?: string;
   name: string;
   siren: string;
