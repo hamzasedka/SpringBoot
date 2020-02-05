@@ -17,14 +17,15 @@ import * as Models from '@dom/common/dto';
 })
 export class EditCompaniesComponent implements OnInit, OnDestroy {
 
-  formRegister: FormGroup;
+  companyForm: FormGroup;
 
   private readonly editCompany$ = this.store.pipe(select(Store.getEditCompany)).pipe(
     tap(item => {
       if (!!item) {
-        const clone = {...item};
+        const clone = { ...item };
         delete clone.uid; // never remove from original object reference
-        this.formRegister.setValue(clone);
+        delete clone.deleted;
+        this.companyForm.setValue(clone);
       }
     })
   );
@@ -32,23 +33,27 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
   private vmBehavior = new BehaviorSubject<any>({});
   readonly vm$: Observable<any> = this.vmBehavior.asObservable();
 
+  public get formKeys(): string[] {
+    return Object.keys(this.companyForm.controls);
+  }
+
   constructor(
     private readonly fb: FormBuilder,
     @Optional() public dialogRef: MatDialogRef<EditCompaniesComponent>,
     private readonly notificationService: NotificationService,
     private readonly store: NgRxStore<Store.CompaniesAllFeaturesState>,
     private readonly entityServices: AppEntityServices
-  ) {
+  ) {}
+
+  ngOnInit() {
     this.buildFormRegister();
-    combineLatest([this.editCompany$, this.formRegister.valueChanges])
+    this.setCondionnelValidators();
+    combineLatest([this.editCompany$, this.companyForm.valueChanges])
       .pipe(
         map(([company, changes]) => ({ company, changes }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
         this.vmBehavior.next(r);
       });
-  }
-
-  ngOnInit() {
   }
 
   ngOnDestroy(): void {
@@ -60,26 +65,56 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
     this.dialogRef?.close();
   }
 
-  async onSave(initialCompany: Models.Company){
-    console.log('submmitted onSave');
-    const company = {...this.formRegister.value as Models.Company, uid: initialCompany?.uid};
+  async onSave(initialCompany: Models.Company, event: MouseEvent) {
+    event.preventDefault();
+    const company = { ...this.companyForm.value as Models.Company, uid: initialCompany?.uid };
     await this.entityServices.companiesCollectionService.upsert(company).pipe(
-      tap(p =>{
+      tap(p => {
         this.store.dispatch(Store.setEditCompany({ companyId: p?.uid }));
         this.notificationService.error('Enregistré.');
+        this.dialogRef?.close();
       })
     ).toPromise();
   }
 
   private buildFormRegister() {
-    this.formRegister = this.fb.group(
+    this.companyForm = this.fb.group(
       {
         name: ['', Validators.compose([Validators.required])],
-        siren: ['', Validators.compose([Validators.required])],
-        prefectoralId: ['', Validators.compose([Validators.required])],
-        isHosting: ['', Validators.compose([Validators.required])],
-        companyDocIds: [''],
-        creationInProgress: [false]
+        creationInProgress: [false],
+        siren: [''],
+        isHosting: [false],
+        prefectoralId: [''],
+        companyDocIds: [[]],
+      }
+    );
+  }
+
+  private setCondionnelValidators() {
+    const creationInProgressControl = this.companyForm.get('creationInProgress');
+    const sirenControl = this.companyForm.get('siren');
+    const isHostingControl = this.companyForm.get('isHosting');
+    const prefectoralIdControl = this.companyForm.get('prefectoralId');
+
+    creationInProgressControl.valueChanges.pipe(takeUntilDestroyed(this)).subscribe(
+      creationInProgress => {
+        if (creationInProgress === false) {
+          sirenControl.setValidators([Validators.required]);
+        } else {
+          sirenControl.setValidators(null);
+        }
+        sirenControl.updateValueAndValidity();
+      }
+    );
+
+    isHostingControl.valueChanges.pipe(takeUntilDestroyed(this)).subscribe(
+      isHosting => {
+        if (isHosting === true) {
+          prefectoralIdControl.setValidators([Validators.required]);
+        } else {
+          prefectoralIdControl.setValidators(null);
+        }
+        prefectoralIdControl.updateValueAndValidity();
       }
     );
   }

@@ -1,10 +1,9 @@
 <ng-container *ngIf="this.vm$ | async as vm">
-  <div>{{ this.formRegister.status | json}}</div>
   <dom-dialog-layout (closeClick)="this.onCloseClick()" [canClose]="!!this.dialogRef">
-    <form [formGroup]="formRegister" (ngSubmit)="this.onSave(vm.company)">
+    <form [formGroup]="companyForm" (ngSubmit)="this.onSave(vm.company, $event)">
       <div fxLayout="column">
         <div fxLayoutAlign="center center">
-          <button mat-raised-button color="accent" type="submit" [disabled]="!formRegister.valid">
+          <button mat-raised-button color="accent" type="submit" [disabled]="!companyForm.valid">
             Ajouter
           </button>
         </div>
