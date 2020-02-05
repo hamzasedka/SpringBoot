@@ -1,7 +1,7 @@
 import { UserRoles } from '../enums';
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 
-export interface UserAccount  extends IdentityEntity{
+export interface UserAccount extends IdentityEntity, DeletedEntity {
   uid?: string;
   email?: string;
   firstname?: string;

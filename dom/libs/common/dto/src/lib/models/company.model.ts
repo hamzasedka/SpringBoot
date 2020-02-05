@@ -1,14 +1,15 @@
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 
-export interface Company   extends IdentityEntity{
+export interface Company   extends IdentityEntity, DeletedEntity{
   uid?: string;
   name: string;
   siren: string;
   prefectoralId: string;
+  creationInProgress?: boolean;
   isHosting?: boolean;
   isHostedBy?: string;
   adresseId: string;
-  kbisDocIds: string[];
+  companyDocIds: string[];
   deleted?: boolean;
   created_time?: number;
   update_time?: number;

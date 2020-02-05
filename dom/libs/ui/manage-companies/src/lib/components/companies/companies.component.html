@@ -1,2 +1,4 @@
 <dom-companies-menu (addProduct)="this.onRowClicked()"></dom-companies-menu>
-<dom-companies-list [items]="this.items$ | async" (rowClick)="this.onRowClicked($event)"></dom-companies-list>
+<dom-companies-list [items]="this.items$ | async"
+(rowClick)="this.onRowClicked($event)"
+(deleteClick)="this.onDelete($event)"></dom-companies-list>

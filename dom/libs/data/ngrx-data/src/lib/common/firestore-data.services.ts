@@ -20,8 +20,8 @@ import { ENTITY_METADATA } from './entity-metadata';
 import { Update } from '@ngrx/entity';
 import { Entities } from './entities';
 import { BaseCollectionService } from './base.services';
-import { IdentityEntity } from '@dom/common/dto';
-import { QueryPredicates } from './query-predicate';
+import { IdentityEntity, DeletedEntity, DeletedFilter } from '@dom/common/core';
+import { QueryPredicates, QueryPredicate } from './query-predicate';
 
 
 export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataService<T> {
@@ -57,7 +57,7 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
           for (const queryParam of queryParamsList) {
             query = query.where(
               queryParam.fieldPath,
-              queryParam.opStr,
+              queryParam.filterOpStr,
               queryParam.value
             );
           }
@@ -68,7 +68,7 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
   }
 
   add(entity: T): Observable<T> {
-    const clone = {...entity};
+    const clone = { ...entity };
     const uid = ENTITY_METADATA[this.entityName].selectId(clone);
     if (!!uid) {
       return this.updateEntity(clone);
@@ -92,7 +92,7 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
 
 
   updateEntity(entity: T): Observable<T> {
-    const clone = {...entity};
+    const clone = { ...entity };
     const uid = ENTITY_METADATA[this.entityName].selectId(clone);
     this.itemDoc = this.afs.doc<T>(`${this.entityName}/${uid}`);
     delete clone.uid;
@@ -135,25 +135,23 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
   }
 }
 
-export abstract class FireBaseCollectionService<
-  T
-  > extends BaseCollectionService<T> {
+export abstract class FireBaseCollectionService<T extends DeletedEntity> extends BaseCollectionService<T> {
   constructor(
     entityName: Entities,
     serviceElementsFactory: EntityCollectionServiceElementsFactory
   ) {
     super(entityName, serviceElementsFactory);
+    this.setFilter(new DeletedFilter<T>());
   }
 
   getWithQueryPredicates(
     queryPredicates: QueryPredicates,
     options?: EntityActionOptions
   ): Observable<T[]> {
-    console.log('queryPredicates => ', queryPredicates);
+    return this.getWithQuery(queryPredicates.toString(),options);
+  }
 
-    return this.getWithQuery(
-      { queryPredicates: queryPredicates.toString() },
-      options
-    );
+  getAll() {
+    return this.getWithQueryPredicates(new QueryPredicates(new QueryPredicate<boolean>('deleted', '==', false)));
   }
 }

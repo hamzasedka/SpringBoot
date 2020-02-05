@@ -8,13 +8,19 @@ import * as Models from '@dom/common/dto';
 })
 export class CompaniesListComponent {
 
-  readonly columns: (keyof Models.Company)[] = ['name', 'siren', 'prefectoralId'];
+  readonly columns: (keyof Models.Company)[] = ['name', 'siren', 'prefectoralId', 'deleted'];
 
   @Output() rowClick = new EventEmitter<Models.Company>();
+  @Output() deleteClick = new EventEmitter<Models.Company>();
 
   @Input() items: Models.Company[];
 
-  onRowClicked(product: Models.Company) {
-    this.rowClick.emit(product);
+  onRowClicked(company: Models.Company) {
+    this.rowClick.emit(company);
+  }
+
+  onDeleteClicked(company: Models.Company, event: MouseEvent) {
+    event.preventDefault();
+    this.deleteClick.emit(company);
   }
 }

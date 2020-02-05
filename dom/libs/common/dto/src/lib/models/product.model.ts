@@ -1,7 +1,7 @@
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 import { PriceCard } from './price-card.model';
 
-export interface Product  extends IdentityEntity{
+export interface Product  extends IdentityEntity, DeletedEntity{
   uid?: string;
   companyId: string;
   name: string;

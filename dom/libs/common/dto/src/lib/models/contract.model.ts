@@ -1,4 +1,6 @@
-export interface Contract {
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
+
+export class Contract  implements IdentityEntity, DeletedEntity {
   uid?: string;
   orderId: number;
   pdfUrl: string;

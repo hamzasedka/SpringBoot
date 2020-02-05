@@ -1,6 +1,6 @@
-import { IdentityEntity } from './identity-entity';
+import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 
-export class StorageDocument  implements IdentityEntity{
+export class StorageDocument  implements IdentityEntity, DeletedEntity{
   uid?: string;
   name: string;
   url: string;
