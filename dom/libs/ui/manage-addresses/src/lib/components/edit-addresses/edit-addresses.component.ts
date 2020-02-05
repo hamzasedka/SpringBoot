@@ -1,4 +1,4 @@
-import { Component, OnInit, Optional, OnDestroy } from '@angular/core';
+import { Component, OnInit, Optional, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NotificationService } from '@dom/ui/common';
 import { MatDialogRef } from '@angular/material/dialog';
@@ -13,7 +13,8 @@ import * as Models from '@dom/common/dto';
 @Component({
   selector: 'dom-edit-addresses',
   templateUrl: './edit-addresses.component.html',
-  styleUrls: ['./edit-addresses.component.scss']
+  styleUrls: ['./edit-addresses.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditAddressesComponent implements OnInit, OnDestroy {
 

@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
 import * as Models from '@dom/common/dto';
 
 @Component({
   selector: 'dom-addresses-list',
   templateUrl: './addresses-list.component.html',
-  styleUrls: ['./addresses-list.component.scss']
+  styleUrls: ['./addresses-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddressesListComponent {
 

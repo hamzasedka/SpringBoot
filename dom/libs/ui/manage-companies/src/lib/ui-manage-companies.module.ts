@@ -8,7 +8,7 @@ import {MatInputModule} from '@angular/material/input';
 import { AppLayoutModule } from '@dom/ui/layout';
 import { UiManageCompaniesRoutingModule } from './ui-manage-companies-routing.module';
 import { UiManagesDocumentsModule } from '@dom/ui/manages-documents';
-
+import { UiManageAddressesModule } from '@dom/ui/manage-addresses';
 @NgModule({
   imports: [
     CommonModule,
@@ -20,7 +20,8 @@ import { UiManagesDocumentsModule } from '@dom/ui/manages-documents';
     ReactiveFormsModule,
     MatInputModule,
     AppLayoutModule,
-    UiManagesDocumentsModule
+    UiManagesDocumentsModule,
+    UiManageAddressesModule
   ],
   declarations: [Components.EditCompaniesComponent, Components.CompaniesComponent, Components.CompaniesMenuComponent, Components.CompaniesListComponent],
   exports: [Components.CompaniesComponent],

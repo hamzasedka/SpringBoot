@@ -7,7 +7,7 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class FloatBtnComponent {
   @Output() add = new EventEmitter();
-  onClick() {
-    this.add.emit();
+  onClick(event: MouseEvent) {
+    this.add.emit(event);
   }
 }
