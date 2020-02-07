@@ -1,7 +1,7 @@
 <ng-container *ngIf="this.vm$ | async as vm">
   <dom-dialog-layout (closeClick)="this.onCloseClick()" [canClose]="!!this.dialogRef">
     <form [formGroup]="companyForm" (ngSubmit)="this.onSave(vm.company, $event)">
-      <div fxLayout="column">
+      <div fxLayout="column" fxLayoutGap>
         <div fxLayoutAlign="center center">
           <button mat-raised-button color="accent" type="submit" [disabled]="!companyForm.valid">
             Ajouter
@@ -34,6 +34,9 @@
           <textarea matInput formControlName="prefectoralId" placeholder="Agrément préfectoral"></textarea>
           <mat-error *ngIf="vm.prefectoralIdError">{{ vm.prefectoralIdError }}</mat-error>
         </mat-form-field>
+
+        <!--  addressId -->
+        <dom-addresses-input formControlName="addressId"></dom-addresses-input>
 
         <!--  Kbis doc downloader -->
         <dom-fire-storage-uploader [label]="'Charger les justificatifs legales (Kbis...) :'"

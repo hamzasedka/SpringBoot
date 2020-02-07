@@ -18,14 +18,15 @@ import * as Models from '@dom/common/dto';
 })
 export class EditAddressesComponent implements OnInit, OnDestroy {
 
-  formRegister: FormGroup;
+  editAddresssform: FormGroup;
 
   private readonly editIem$ = this.store.pipe(select(Store.getEditAddress)).pipe(
     tap(item => {
       if (!!item) {
         const clone = {...item};
         delete clone.uid; // never remove from original object reference
-        this.formRegister.setValue(clone);
+        delete clone.deleted;
+        this.editAddresssform.setValue(clone);
       }
     })
   );
@@ -41,7 +42,7 @@ export class EditAddressesComponent implements OnInit, OnDestroy {
     private readonly entityServices: AppEntityServices
   ) {
     this.buildFormRegister();
-    combineLatest([this.editIem$, this.formRegister.valueChanges])
+    combineLatest([this.editIem$, this.editAddresssform.valueChanges])
       .pipe(
         map(([address, changes]) => ({ address, changes }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
@@ -62,7 +63,7 @@ export class EditAddressesComponent implements OnInit, OnDestroy {
   }
 
   async onSave(initialAddress: Models.Address){
-    const address = {...this.formRegister.value as Models.Address, uid: initialAddress?.uid};
+    const address = {...this.editAddresssform.value as Models.Address, uid: initialAddress?.uid};
     await this.entityServices.addressCollectionService.upsert(address).pipe(
       tap(p =>{
         this.store.dispatch(Store.setEditAddress({ addressId: p?.uid }));
@@ -72,7 +73,7 @@ export class EditAddressesComponent implements OnInit, OnDestroy {
   }
 
   private buildFormRegister() {
-    this.formRegister = this.fb.group(
+    this.editAddresssform = this.fb.group(
       {
         addressLine1: ['', Validators.compose([Validators.required])],
         addressLine2: [''],

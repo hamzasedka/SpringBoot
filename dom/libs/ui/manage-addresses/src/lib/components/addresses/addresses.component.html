@@ -1,2 +1,8 @@
-<dom-addresses-menu (addProduct)="this.onRowClicked($event)"></dom-addresses-menu>
-<dom-addresses-list [items]="this.items$ | async" (rowClick)="this.onRowClicked($event)"></dom-addresses-list>
+<dom-dialog-layout [canClose]="!!this.dialogRef">
+  <dom-addresses-menu (addProduct)="this.onRowClicked($event)"></dom-addresses-menu>
+  <dom-addresses-list [items]="this.items$ | async"
+  (rowClick)="this.onRowClicked($event)"
+  (selectClick)="this.onSelectClicked($event)"
+  (deleteClick)="this.onDeleteClick($event)"
+  [canSelectAddress]="!!this.dialogRef"></dom-addresses-list>
+</dom-dialog-layout>

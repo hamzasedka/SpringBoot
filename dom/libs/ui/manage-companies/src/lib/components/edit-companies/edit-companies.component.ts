@@ -86,6 +86,7 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
         isHosting: [false],
         prefectoralId: [''],
         companyDocIds: [[]],
+        addressId: ['']
       }
     );
   }

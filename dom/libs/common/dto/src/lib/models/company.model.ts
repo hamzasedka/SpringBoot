@@ -8,7 +8,7 @@ export interface Company   extends IdentityEntity, DeletedEntity{
   creationInProgress?: boolean;
   isHosting?: boolean;
   isHostedBy?: string;
-  adresseId: string;
+  adressId: string;
   companyDocIds: string[];
   deleted?: boolean;
   created_time?: number;

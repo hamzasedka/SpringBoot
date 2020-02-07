@@ -53,7 +53,8 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
           let query:
             | firebase.firestore.CollectionReference
             | firebase.firestore.Query = ref;
-          const queryParamsList: QueryPredicates = JSON.parse(queryParams as string);
+         const queryParamsList: QueryPredicates = JSON.parse(queryParams as string);
+          console.log('queryParamsList => ',queryParamsList );
           for (const queryParam of queryParamsList) {
             query = query.where(
               queryParam.fieldPath,
@@ -61,6 +62,8 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
               queryParam.value
             );
           }
+          console.log('query => ',query );
+          // return query.where("deleted", "==", false);
           return query;
         })
         .snapshotChanges()
@@ -141,17 +144,31 @@ export abstract class FireBaseCollectionService<T extends DeletedEntity> extends
     serviceElementsFactory: EntityCollectionServiceElementsFactory
   ) {
     super(entityName, serviceElementsFactory);
-    this.setFilter(new DeletedFilter<T>());
+    this.setFilter(new DeletedFilter<T>(false));
   }
 
   getWithQueryPredicates(
     queryPredicates: QueryPredicates,
     options?: EntityActionOptions
   ): Observable<T[]> {
-    return this.getWithQuery(queryPredicates.toString(),options);
+    return this.getWithQuery(queryPredicates.toString(), options);
   }
 
-  getAll() {
+  getAll(): Observable<T[]> {
     return this.getWithQueryPredicates(new QueryPredicates(new QueryPredicate<boolean>('deleted', '==', false)));
+  }
+
+  add(entity: T): Observable<T> {
+    if (entity.deleted === undefined || entity.deleted === null) {
+      entity.deleted = false;
+    }
+    return super.add(entity);
+  }
+
+  upsert(entity: T, options?: EntityActionOptions): Observable<T> {
+    if (entity.deleted === undefined || entity.deleted === null) {
+      entity.deleted = false;
+    }
+    return super.upsert(entity, options);
   }
 }

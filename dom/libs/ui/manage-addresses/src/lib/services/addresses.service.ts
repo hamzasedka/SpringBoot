@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef, MatDialogState } from '@angular/material/dialog';
+import { MatDialog, MatDialogState } from '@angular/material/dialog';
 import { Observable, of } from 'rxjs';
 import { AddressesComponent } from '../components/addresses';
+import { Address } from '@dom/common/dto';
 
 @Injectable()
 export class AddresssesService {
-  private addressesDialogRef: MatDialogRef<AddressesComponent, never>;
+  private  addressesDialogRef;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private readonly dialog: MatDialog) { }
 
-  selectAddress(): Observable<never> {
+  selectAddress(): Observable<Address> {
     if (!this.addressesDialogRef || this.addressesDialogRef.getState() !== MatDialogState.OPEN) {
-      this.addressesDialogRef = this.dialog.open(AddressesComponent, {
+      this.addressesDialogRef = this.dialog.open<AddressesComponent, any, Address>(AddressesComponent, {
         minWidth: '100%',
-        minHeight: '50%',
+        minHeight: '70vh',
         maxHeight: '70vh',
         position: { bottom: '0px', left: '0px' },
         data: {},

@@ -1,4 +1,14 @@
 <mat-table [dataSource]="this.items" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="selected">
+    <mat-header-cell *matHeaderCellDef> #</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-mini-fab (click)="this.onSelectClicked(element, $event)">
+        <mat-icon>check_box_outline_blank</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <ng-container matColumnDef="addressLine1">
     <mat-header-cell *matHeaderCellDef> Rue </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{ element.addressLine1 }} </mat-cell>
@@ -24,6 +34,15 @@
     <mat-cell *matCellDef="let element"> {{ element.country }} </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="deleted">
+    <mat-header-cell *matHeaderCellDef> Supprimer</mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-mini-fab (click)="this.onDeleteClicked(element, $event)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: columns" (click)="this.onRowClicked(row)"></mat-row>
+  <mat-row *matRowDef="let row; columns: columns" (click)="this.onRowClicked(row, $event)"></mat-row>
 </mat-table>

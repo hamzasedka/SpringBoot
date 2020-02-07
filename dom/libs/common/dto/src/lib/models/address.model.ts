@@ -8,6 +8,7 @@ export interface Address extends IdentityEntity, DeletedEntity{
   locality: string;
   country: string;
   deleted?: boolean;
+  selected?: boolean;
   created_time?: number;
   update_time?: number;
 }

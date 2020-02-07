@@ -21,8 +21,9 @@ import { AddresssesService, EditAddresssesService } from './services';
     MatInputModule,
     AppLayoutModule
   ],
-  declarations: [Components.EditAddressesComponent, Components.AddressesComponent, Components.AddressesMenuComponent, Components.AddressesListComponent],
-  exports: [Components.AddressesComponent, Components.AddressesComponent],
+  declarations: [Components.EditAddressesComponent, Components.AddressesComponent,
+    Components.AddressesMenuComponent, Components.AddressesListComponent, Components.AddressesInputComponent],
+  exports: [Components.AddressesComponent, Components.AddressesComponent, Components.AddressesInputComponent],
   entryComponents: [Components.AddressesComponent, Components.EditAddressesComponent],
   providers: [AddresssesService , EditAddresssesService]
 })
