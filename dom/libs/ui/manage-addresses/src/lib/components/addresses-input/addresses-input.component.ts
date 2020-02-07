@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@dom/common/core';
 import { AppEntityServices } from '@dom/data/ngrx-data';
 import { AddresssesService } from '../../services';
+import { Address } from '@dom/common/dto';
 
 @Component({
   selector: 'dom-addresses-input',
@@ -55,8 +56,15 @@ export class AddressesInputComponent implements OnInit, OnDestroy, ControlValueA
   }
 
   async onSearchAddress() {
-    const result = await this.addresssesService.selectAddress().toPromise();
-
+    const selectedAddress: Address = await this.addresssesService.selectAddress().toPromise();
+    if (this.propagateChange) {
+      this.propagateChange(selectedAddress?.uid);
+    }
+    this.addresssform.setValue(
+      {
+        address: this.addressToString(selectedAddress)
+      }
+    );
   }
 
   private buildFormRegister() {
@@ -69,17 +77,17 @@ export class AddressesInputComponent implements OnInit, OnDestroy, ControlValueA
 
   // implements ControlValueAccessor
   writeValue(addressId: string): void {
-    if(!!addressId){
+    if (!!addressId) {
       this.appEntityServices.addressCollectionService
-      .getByKey(addressId).pipe(takeUntilDestroyed(this)).subscribe(
-        address => {
-          this.addresssform.setValue(
-            {
-              address: `${address.addressLine1} ${address.addressLine2} ${address.postalCode} ${address.locality}`
-            }
-          );
-        }
-      );
+        .getByKey(addressId).pipe(takeUntilDestroyed(this)).subscribe(
+          address => {
+            this.addresssform.setValue(
+              {
+                address: this.addressToString(address)
+              }
+            );
+          }
+        );
     }
   }
   registerOnChange(fn: any): void {
@@ -91,4 +99,8 @@ export class AddressesInputComponent implements OnInit, OnDestroy, ControlValueA
     this.disabled = isDisabled;
   }
   // end of ControlValueAccessor implementations
+
+  private addressToString(address: Address): string {
+    return `${address.addressLine1} ${address.addressLine2} ${address.postalCode} ${address.locality}`;
+  }
 }

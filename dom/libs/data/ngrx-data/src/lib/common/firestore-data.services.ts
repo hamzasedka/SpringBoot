@@ -54,7 +54,6 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
             | firebase.firestore.CollectionReference
             | firebase.firestore.Query = ref;
          const queryParamsList: QueryPredicates = JSON.parse(queryParams as string);
-          console.log('queryParamsList => ',queryParamsList );
           for (const queryParam of queryParamsList) {
             query = query.where(
               queryParam.fieldPath,
@@ -62,8 +61,6 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
               queryParam.value
             );
           }
-          console.log('query => ',query );
-          // return query.where("deleted", "==", false);
           return query;
         })
         .snapshotChanges()

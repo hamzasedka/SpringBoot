@@ -1,10 +1,11 @@
-import { Component, EventEmitter, Output, Input } from '@angular/core';
+import { Component, EventEmitter, Output, Input, ChangeDetectionStrategy } from '@angular/core';
 import * as Models from '@dom/common/dto';
 
 @Component({
   selector: 'dom-companies-list',
   templateUrl: './companies-list.component.html',
-  styleUrls: ['./companies-list.component.scss']
+  styleUrls: ['./companies-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CompaniesListComponent {
 
