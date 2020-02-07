@@ -3,8 +3,8 @@
       <form [formGroup]="editAddresssform" (ngSubmit)="this.onSave(vm.address)">
         <div fxLayout="column">
           <div fxLayoutAlign="center center">
-            <button mat-raised-button color="accent" type="submit" [disabled]="!editAddresssform.valid">
-              Ajouter
+            <button mat-mini-fab color="accent" type="submit" [disabled]="!editAddresssform.valid">
+              <mat-icon>save</mat-icon>
             </button>
           </div>
           <!-- addressLine1 -->

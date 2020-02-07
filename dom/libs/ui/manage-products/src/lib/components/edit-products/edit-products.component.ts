@@ -1,5 +1,5 @@
 import { Component, OnInit, Optional, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { NotificationService } from '@dom/ui/common';
 import { MatDialogRef } from '@angular/material/dialog';
 import { select, Store as NgRxStore } from '@ngrx/store';
@@ -32,6 +32,10 @@ export class EditProductsComponent implements OnInit, OnDestroy {
   private vmBehavior = new BehaviorSubject<any>({});
   readonly vm$: Observable<any> = this.vmBehavior.asObservable();
 
+  get priceCardsForm(): AbstractControl {
+    return this.formRegister.get('priceCards');
+  }
+
   constructor(
     private readonly fb: FormBuilder,
     @Optional() public dialogRef: MatDialogRef<EditProductsComponent>,
@@ -44,7 +48,6 @@ export class EditProductsComponent implements OnInit, OnDestroy {
       .pipe(
         map(([product, changes]) => ({ product, changes }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
-        console.log('refresh view : ', r)
         this.vmBehavior.next(r);
       });
   }
@@ -59,6 +62,13 @@ export class EditProductsComponent implements OnInit, OnDestroy {
 
   onCloseClick(): void {
     this.dialogRef?.close();
+  }
+
+  onAddPriceCards(product: Models.Product, event: MouseEvent) {
+    event.preventDefault();
+    const priceCards: Models.PriceCard[] = this.priceCardsForm.value as [Models.PriceCard];
+    priceCards.push({});
+    this.priceCardsForm.setValue(priceCards);
   }
 
   async onSave(initialProduct: Models.Product) {
@@ -77,6 +87,7 @@ export class EditProductsComponent implements OnInit, OnDestroy {
         name: ['', Validators.compose([Validators.required])],
         description: [''],
         isOption: [false],
+        priceCards: [[]]
       }
     );
   }

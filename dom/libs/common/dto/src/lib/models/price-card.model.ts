@@ -3,13 +3,13 @@ import { Reccurences } from '../enums';
 
 export interface PriceCard extends IdentityEntity, DeletedEntity {
   uid?: string;
-  priceExcludeTaxe: number;
-  priceIncludeTaxe: number;
+  priceExcludeTaxe?: number;
+  priceIncludeTaxe?: number;
   strikethroughPrice?: number;
-  currencySymbol: string;
-  canApplyPromotion: boolean;
-  contractCommitment: number;
-  contractCommitmentUnit: Reccurences;
+  currencySymbol?: string;
+  canApplyPromotion?: boolean;
+  contractCommitment?: number;
+  contractCommitmentUnit?: Reccurences;
   deleted?: boolean;
   created_time?: number;
 }

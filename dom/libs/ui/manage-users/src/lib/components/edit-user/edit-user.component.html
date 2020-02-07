@@ -3,8 +3,8 @@
     <form [formGroup]="formRegister" (ngSubmit)="this.onRegister(vm.user)">
       <div fxLayout="column">
         <div fxLayoutAlign="center center">
-          <button mat-raised-button color="accent" type="submit" [disabled]="!formRegister.valid">
-            Ajouter
+          <button mat-mini-fab color="accent" type="submit" [disabled]="!formRegister.valid">
+            <mat-icon>save</mat-icon>
           </button>
         </div>
         <!-- email -->

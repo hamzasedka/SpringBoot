@@ -3,8 +3,8 @@
     <form [formGroup]="companyForm" (ngSubmit)="this.onSave(vm.company, $event)">
       <div fxLayout="column" fxLayoutGap>
         <div fxLayoutAlign="center center">
-          <button mat-raised-button color="accent" type="submit" [disabled]="!companyForm.valid">
-            Ajouter
+          <button mat-mini-fab color="accent" type="submit" [disabled]="!companyForm.valid">
+            <mat-icon>save</mat-icon>
           </button>
         </div>
         <!-- name -->

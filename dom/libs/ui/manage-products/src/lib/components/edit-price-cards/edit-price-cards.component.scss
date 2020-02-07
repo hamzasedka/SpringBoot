@@ -1,0 +1,40 @@
+mat-table {
+  background-color: #fafafa;
+  margin: 1em;
+}
+
+// This is to correctly set responsive design
+mat-header-cell,
+mat-cell {
+  font-size: inherit;
+  padding-right: 1em;
+}
+
+mat-header-cell:first-of-type,
+mat-cell:first-of-type {
+  padding-left: 0.5em;
+}
+
+mat-header-cell:last-of-type,
+mat-cell:last-of-type {
+  padding-right: 0.5em;
+}
+
+mat-row:last-of-type {
+  border-bottom-width: 0;
+}
+
+// This is to correctly align the currency symbol with the input value
+:host {
+  ::ng-deep {
+    .mat-form-field-prefix {
+      top: 0;
+    }
+
+    .currency {
+      .mat-form-field-label {
+        margin-top: 0;
+      }
+    }
+  }
+}

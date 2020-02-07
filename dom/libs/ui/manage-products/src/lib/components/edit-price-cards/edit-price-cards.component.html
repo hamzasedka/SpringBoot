@@ -1,7 +1,6 @@
 <ng-container [formGroup]="this.formValue">
   <mat-table [formArrayName]="this.priceCardsArrayName" [dataSource]="this.formArray.value"
     [trackBy]="this.trackByPriceCard">
-
     <!-- priceExcludeTaxe -->
     <ng-container matColumnDef="priceExcludeTaxe">
       <mat-header-cell fxFlex *matHeaderCellDef>Prix HT</mat-header-cell>
@@ -20,7 +19,7 @@
       <mat-header-cell fxFlex *matHeaderCellDef>Prix TTC</mat-header-cell>
       <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
         <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
-          <mat-label>Prix HT</mat-label>
+          <mat-label>Prix TTC</mat-label>
           <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
           <input type="number" matInput placeholder="Prix TTC" required min="0"
             formControlName="priceIncludeTaxe" />
@@ -46,7 +45,7 @@
       <mat-header-cell fxFlex *matHeaderCellDef>Peux appliquer un code promotion</mat-header-cell>
       <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
         <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
-          <mat-label>Prix HT</mat-label>
+          <mat-label>Peux appliquer un code promotion</mat-label>
           <input type="number" matInput placeholder="Peux appliquer un code promotion" required min="0"
             formControlName="canApplyPromotion" />
         </mat-form-field>
@@ -55,12 +54,11 @@
 
     <!-- contractCommitment -->
     <ng-container matColumnDef="contractCommitment">
-      <mat-header-cell fxFlex *matHeaderCellDef>Prix HT</mat-header-cell>
+      <mat-header-cell fxFlex *matHeaderCellDef>Durée d'engagement</mat-header-cell>
       <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
         <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
-          <mat-label>Prix HT</mat-label>
-          <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
-          <input type="number" matInput placeholder="Wholesale Price" required min="0"
+          <mat-label>Durée d'engagement</mat-label>
+          <input type="number" matInput placeholder="Durée d'engagement" required min="0"
             formControlName="contractCommitment" />
         </mat-form-field>
       </mat-cell>
@@ -68,16 +66,25 @@
 
     <!-- contractCommitmentUnit -->
     <ng-container matColumnDef="contractCommitmentUnit">
-      <mat-header-cell fxFlex *matHeaderCellDef>Prix HT</mat-header-cell>
+      <mat-header-cell fxFlex *matHeaderCellDef>Unité de la durée d'engagement</mat-header-cell>
       <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
         <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
-          <mat-label>Prix HT</mat-label>
-          <span matPrefix>{{ this.getCurrency() }}&nbsp;</span>
-          <input type="number" matInput placeholder="Wholesale Price" required min="0"
+          <mat-label>Unité de la durée d'engagement</mat-label>
+          <input type="number" matInput placeholder="Unité de la durée d'engagement" required min="0"
             formControlName="contractCommitmentUnit" />
         </mat-form-field>
       </mat-cell>
     </ng-container>
+
+       <!-- delete -->
+       <ng-container matColumnDef="delete">
+        <mat-header-cell fxFlex *matHeaderCellDef>#</mat-header-cell>
+        <mat-cell fxFlex *matCellDef="let element; let rowIndex = index">
+          <button mat-mini-fab color="accent" (click)="this.onDelete(rowIndex, $event)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
 
     <mat-header-row *matHeaderRowDef="this.displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: this.displayedColumns;"></mat-row>

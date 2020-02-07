@@ -24,10 +24,13 @@
         </div>
         <!--  Price cards -->
         <div>
-          <button class="btn-ribbon" mat-fab aria-label="Add" (click)="this.onAdd()">
-            <mat-icon>add</mat-icon>
-          </button>
-          <dom-edit-price-cards></dom-edit-price-cards>
+          <div fxLayout="row" fxLayoutAlign="end center">
+            <h3>Rajouter des prix</h3>
+            <button class="btn-ribbon" mat-fab aria-label="Add" (click)="this.onAddPriceCards(vm.product, $event)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <dom-edit-price-cards formControlName="priceCards"></dom-edit-price-cards>
         </div>
       </div>
     </form>
