@@ -16,7 +16,7 @@
     },
     "domiciliation-e2e": {
       "tags": [],
-      "implicitDependencies": ["domiciliation"]
+      "implicitDependencies": ["domiciliation", "domiciliation"]
     },
     "services-backend": {
       "tags": []
