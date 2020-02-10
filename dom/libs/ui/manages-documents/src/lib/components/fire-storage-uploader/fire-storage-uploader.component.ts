@@ -64,9 +64,9 @@ export class FireStorageUploaderComponent implements ControlValueAccessor {
     this.files.next(files);
   }
 
-  async onFileUploaded(storageDocument: StorageDocument) {
+  async onFileUploaded(storageDocument: StorageDocument, files: StorageDocument[]) {
     try {
-      this.propagateChange([storageDocument?.uid]);
+      this.propagateChange([...files.map(f=> f.uid), storageDocument?.uid]);
     } catch (error) {
       console.error(error);
     }

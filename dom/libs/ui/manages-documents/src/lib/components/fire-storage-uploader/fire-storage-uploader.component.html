@@ -2,7 +2,7 @@
   <div class="uploader-label">{{ this.label}}</div>
   <dom-uploader class="dom-uploader" (filesDroppped)="this.onFilesDroppped($event)"></dom-uploader>
   <div fxLayout="column" fxLayout="column" fxLayout.gt-xs="row" fxLayoutAlign="space-around stretch" fxLayoutGap="10px">
-    <dom-upload-task *ngFor="let file of this.files$ | async" [file]="file" (fileRemoved)="onFileRemoved($event)"
-      (fileUploaded)="this.onFileUploaded($event)" [disabled]="this.disabled"></dom-upload-task>
+    <dom-upload-task *ngFor="let file of this.files$ | async as files" [file]="file" (fileRemoved)="onFileRemoved($event)"
+      (fileUploaded)="this.onFileUploaded($event, files)" [disabled]="this.disabled"></dom-upload-task>
   </div>
 </mat-card>
