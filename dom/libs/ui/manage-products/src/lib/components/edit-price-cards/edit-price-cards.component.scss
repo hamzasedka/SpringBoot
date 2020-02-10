@@ -1,6 +1,14 @@
+.container{
+  max-width: 100%;
+  overflow: auto;
+}
+td.mat-column-delete {
+  width: 20px;
+}
+
 mat-table {
-  background-color: #fafafa;
   margin: 1em;
+  min-width: 800px;
 }
 
 // This is to correctly set responsive design

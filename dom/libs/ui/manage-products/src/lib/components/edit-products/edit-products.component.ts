@@ -9,6 +9,7 @@ import { map, tap } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@dom/common/core';
 import { AppEntityServices } from '@dom/data/ngrx-data';
 import * as Models from '@dom/common/dto';
+import { Reccurences } from '@dom/common/dto';
 
 @Component({
   selector: 'dom-edit-products',
@@ -24,6 +25,7 @@ export class EditProductsComponent implements OnInit, OnDestroy {
       if (!!product) {
         const clone = { ...product };
         delete clone.uid; // never remove from original object reference
+        delete clone.deleted;
         this.formRegister.setValue(clone);
       }
     })
@@ -49,6 +51,7 @@ export class EditProductsComponent implements OnInit, OnDestroy {
         map(([product, changes]) => ({ product, changes }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
         this.vmBehavior.next(r);
+        console.log('r=> ', r)
       });
   }
 
@@ -59,7 +62,6 @@ export class EditProductsComponent implements OnInit, OnDestroy {
     // takeUntilDestroyed
   }
 
-
   onCloseClick(): void {
     this.dialogRef?.close();
   }
@@ -67,7 +69,12 @@ export class EditProductsComponent implements OnInit, OnDestroy {
   onAddPriceCards(product: Models.Product, event: MouseEvent) {
     event.preventDefault();
     const priceCards: Models.PriceCard[] = this.priceCardsForm.value as [Models.PriceCard];
-    priceCards.push({});
+    priceCards.push({
+      canApplyPromotion : true,
+      contractCommitment: 24,
+      contractCommitmentUnit: Reccurences.Mounth,
+      currencySymbol: '€'
+    });
     this.priceCardsForm.setValue(priceCards);
   }
 

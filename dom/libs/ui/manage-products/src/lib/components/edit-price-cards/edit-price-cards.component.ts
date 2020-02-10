@@ -4,8 +4,9 @@ import {
   NG_VALIDATORS, AbstractControl, ValidationErrors
 } from '@angular/forms';
 import * as Models from '@dom/common/dto';
-import { takeUntilDestroyed } from '@dom/common/core';
+import { takeUntilDestroyed, EnumItem, EnumHelper } from '@dom/common/core';
 import { tap } from 'rxjs/operators';
+import { Reccurences } from '@dom/common/dto';
 
 @Component({
   selector: 'dom-edit-price-cards',
@@ -19,27 +20,30 @@ import { tap } from 'rxjs/operators';
 })
 export class EditPriceCardsComponent implements OnInit, OnDestroy, ControlValueAccessor, Validator {
 
-  formValue: FormGroup;
+  tableForm: FormGroup;
+  reccurences = Reccurences
+  contractCommitmentUnits: EnumItem[] = EnumHelper.EnumToList(this.reccurences);
+
   readonly priceCardsArrayName = 'priceCards';
 
   readonly displayedColumns: string[] = [
+    'delete',
     'priceExcludeTaxe',
     'priceIncludeTaxe',
     'strikethroughPrice',
     'canApplyPromotion',
     'contractCommitment',
-    'contractCommitmentUnit',
-    'delete'
+    'contractCommitmentUnit'
   ];
 
   constructor(private readonly formBuilder: FormBuilder, private readonly changeDetector: ChangeDetectorRef) { }
 
   get formArray(): FormArray {
-    return this.formValue.controls[this.priceCardsArrayName] as FormArray;
+    return this.tableForm.controls[this.priceCardsArrayName] as FormArray;
   }
 
   ngOnInit(): void {
-    this.formValue = this.formBuilder.group({
+    this.tableForm = this.formBuilder.group({
       [this.priceCardsArrayName]: this.formBuilder.array([])
     });
   }
@@ -51,8 +55,8 @@ export class EditPriceCardsComponent implements OnInit, OnDestroy, ControlValueA
     return element.uid;
   }
 
-  getCurrency(): string {
-    return 'EURO'
+  getCurrency(index: number): string {
+    return this.formArray.at(index)?.value?.currencySymbol;
   }
 
   private createFormGroupFromPriceCard(priceCard: Models.PriceCard): FormGroup {
@@ -62,7 +66,8 @@ export class EditPriceCardsComponent implements OnInit, OnDestroy, ControlValueA
       strikethroughPrice: [{ value: priceCard.strikethroughPrice ?? null, disabled: false }, [Validators.min(0)]],
       canApplyPromotion: [{ value: priceCard.strikethroughPrice ?? null, disabled: false }],
       contractCommitment: [{ value: priceCard.contractCommitment ?? null, disabled: false }, [Validators.required, Validators.min(0)]],
-      contractCommitmentUnit: [{ value: priceCard.contractCommitmentUnit ?? null, disabled: false }, [Validators.required, Validators.min(0)]]
+      contractCommitmentUnit: [{ value: priceCard.contractCommitmentUnit ?? null, disabled: false }, [Validators.required, Validators.min(0)]],
+      currencySymbol: [priceCard.currencySymbol ?? null, [Validators.required]]
     });
   }
 
@@ -120,7 +125,7 @@ export class EditPriceCardsComponent implements OnInit, OnDestroy, ControlValueA
   }
 
   registerOnChange(fn: any): void {
-    this.formArray.valueChanges.pipe(takeUntilDestroyed(this), tap(console.log)).subscribe(fn);
+    this.formArray.valueChanges.pipe(takeUntilDestroyed(this)).subscribe(fn);
   }
   registerOnTouched(fn: any): void {
   }
@@ -130,9 +135,7 @@ export class EditPriceCardsComponent implements OnInit, OnDestroy, ControlValueA
 
   onDelete(index: number, event: MouseEvent) {
     event.preventDefault();
-    console.log(index);
-    const values = this.formArray.value as Models.PriceCard[];
-    values.splice(index, 1);
-    this.writeValue(values);
+    this.formArray.removeAt(index);
+    this.formArray.updateValueAndValidity();
   }
 }
