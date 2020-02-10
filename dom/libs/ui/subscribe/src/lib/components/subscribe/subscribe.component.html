@@ -1,17 +1,17 @@
 <mat-horizontal-stepper [linear]="false" #stepper>
-  <mat-step [stepControl]="adresseFormGroup">
-    <form [formGroup]="adresseFormGroup">
+  <mat-step [stepControl]="productsFormGroup">
+    <form [formGroup]="productsFormGroup">
       <ng-template matStepLabel>ADRESSES</ng-template>
-      <dom-select-address formControlName="firstCtrl"></dom-select-address>
+      <dom-select-product [products]="this.products$ | async" formControlName="products"></dom-select-product>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
-  <mat-step [stepControl]="informationFormGroup">
-    <form [formGroup]="informationFormGroup">
+  <mat-step [stepControl]="informationsFormGroup">
+    <form [formGroup]="informationsFormGroup">
       <ng-template matStepLabel>INFORMATIONS</ng-template>
-      <dom-company-infos formControlName="firstCtrl"></dom-company-infos>
+      <dom-company-infos formControlName="informations"></dom-company-infos>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -21,7 +21,7 @@
   <mat-step [stepControl]="optionsFormGroup">
     <form [formGroup]="optionsFormGroup">
       <ng-template matStepLabel>OPTIONS</ng-template>
-      <dom-expedition-address formControlName="firstCtrl"></dom-expedition-address>
+      <dom-expedition-address formControlName="options"></dom-expedition-address>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -31,7 +31,7 @@
   <mat-step [stepControl]="paymentFormGroup">
     <form [formGroup]="paymentFormGroup">
       <ng-template matStepLabel>PAIMENT</ng-template>
-      <dom-payment-medhod formControlName="firstCtrl"></dom-payment-medhod>
+      <dom-payment-medhod formControlName="payment"></dom-payment-medhod>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>
@@ -41,7 +41,7 @@
   <mat-step [stepControl]="contractFormGroup">
     <form [formGroup]="contractFormGroup">
       <ng-template matStepLabel>CONTRAT</ng-template>
-      <dom-contract formControlName="firstCtrl"></dom-contract>
+      <dom-contract formControlName="contract"></dom-contract>
       <div>
         <button mat-button matStepperPrevious>Back</button>
         <button mat-button matStepperNext>Next</button>

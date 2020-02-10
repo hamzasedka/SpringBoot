@@ -22,12 +22,13 @@ export class SelectProductComponent implements OnInit, OnDestroy, ControlValueAc
   readonly vm$: Observable<any> = this.vmBehavior.asObservable();
 
   constructor(private readonly fb: FormBuilder) {
+    this.buildFormRegister();
     combineLatest([this.selectProductForm.valueChanges])
       .pipe(
         map(([changes]) =>
           ({
             changes,
-            addressIdError: ''
+            productIddError: ''
           }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
         this.vmBehavior.next(r);
@@ -53,11 +54,7 @@ export class SelectProductComponent implements OnInit, OnDestroy, ControlValueAc
   private buildFormRegister() {
     this.selectProductForm = this.fb.group(
       {
-        addressLine1: ['', Validators.compose([Validators.required])],
-        addressLine2: [''],
-        postalCode: ['', Validators.compose([Validators.required])],
-        locality: ['', Validators.compose([Validators.required])],
-        country: ['', Validators.compose([Validators.required])]
+        productId: ['', Validators.compose([Validators.required])],
       }
     );
   }

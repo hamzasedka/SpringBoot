@@ -43,7 +43,7 @@ export class UserAccountCollectionService extends FireBaseCollectionService<Mode
 
   getByEmail(username: string): Observable<Models.UserAccount[]> {
     return this.getWithQueryPredicates(
-      new QueryPredicates(new QueryPredicate('email', '==', username))
+      new QueryPredicates<Models.UserAccount>(new QueryPredicate<Models.UserAccount>('email', '==', username))
     );
   }
 

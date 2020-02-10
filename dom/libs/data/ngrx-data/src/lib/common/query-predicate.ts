@@ -10,9 +10,9 @@ export type WhereFilterOpEx =
 
 export class QueryPredicate<T> {
   constructor(
-    readonly fieldPath: string,
+    readonly fieldPath: (keyof T),
     readonly filterOpStr: WhereFilterOpEx,
-    readonly value: T | undefined
+    readonly value: any
   ) {
     if (!this.fieldPath) {
       throw new Error('QueryPredicate<T>(): fieldPath must be specified');
@@ -27,7 +27,7 @@ export class QueryPredicate<T> {
   }
 }
 
-export class QueryPredicates extends Array<QueryPredicate<any>> {
+export class QueryPredicates<T> extends Array<QueryPredicate<T>> {
   toString(): string {
     return JSON.stringify(this);
   }

@@ -53,10 +53,10 @@ export class FireBaseDataService<T extends IdentityEntity> extends DefaultDataSe
           let query:
             | firebase.firestore.CollectionReference
             | firebase.firestore.Query = ref;
-         const queryParamsList: QueryPredicates = JSON.parse(queryParams as string);
+         const queryParamsList: QueryPredicates<T> = JSON.parse(queryParams as string);
           for (const queryParam of queryParamsList) {
             query = query.where(
-              queryParam.fieldPath,
+              queryParam.fieldPath as string,
               queryParam.filterOpStr,
               queryParam.value
             );
@@ -145,14 +145,14 @@ export abstract class FireBaseCollectionService<T extends DeletedEntity> extends
   }
 
   getWithQueryPredicates(
-    queryPredicates: QueryPredicates,
+    queryPredicates: QueryPredicates<T>,
     options?: EntityActionOptions
   ): Observable<T[]> {
     return this.getWithQuery(queryPredicates.toString(), options);
   }
 
   getAll(): Observable<T[]> {
-    return this.getWithQueryPredicates(new QueryPredicates(new QueryPredicate<boolean>('deleted', '==', false)));
+    return this.getWithQueryPredicates(new QueryPredicates<T>(new QueryPredicate<T>('deleted', '==', false)));
   }
 
   add(entity: T): Observable<T> {

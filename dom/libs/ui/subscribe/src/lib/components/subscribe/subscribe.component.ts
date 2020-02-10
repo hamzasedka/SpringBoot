@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import * as Models from '@dom/common/dto';
+import { Observable } from 'rxjs';
+import { AppEntityServices, QueryPredicates, QueryPredicate } from '@dom/data/ngrx-data';
 
 @Component({
   selector: 'dom-subscribe',
@@ -8,29 +11,37 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 })
 export class SubscribeComponent implements OnInit {
 
-  adresseFormGroup: FormGroup;
-  informationFormGroup: FormGroup;
+  productsFormGroup: FormGroup;
+  informationsFormGroup: FormGroup;
   optionsFormGroup: FormGroup;
   paymentFormGroup: FormGroup;
   contractFormGroup: FormGroup;
 
-  constructor(private _formBuilder: FormBuilder) { }
+  products$: Observable<Models.Product[]> =
+    this.services.productsCollectionService.getWithQueryPredicates(
+      new QueryPredicates<Models.Product>(
+        new QueryPredicate<Models.Product>('isHosting', '==', true),
+        new QueryPredicate<Models.Product>('isOption', '==', false)
+        )
+    );
+
+  constructor(private _formBuilder: FormBuilder, private readonly services: AppEntityServices) { }
 
   ngOnInit() {
-    this.adresseFormGroup = this._formBuilder.group({
-      firstCtrl: ['']
+    this.productsFormGroup = this._formBuilder.group({
+      products: ['']
     });
-    this.informationFormGroup = this._formBuilder.group({
-      firstCtrl: ['']
+    this.informationsFormGroup = this._formBuilder.group({
+      informations: ['']
     });
     this.optionsFormGroup = this._formBuilder.group({
-      firstCtrl: ['']
+      options: ['']
     });
     this.paymentFormGroup = this._formBuilder.group({
-      firstCtrl: ['']
+      payment: ['']
     });
     this.contractFormGroup = this._formBuilder.group({
-      firstCtrl: ['']
+      contract: ['']
     });
   }
 

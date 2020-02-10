@@ -114,6 +114,9 @@ export class AddressesInputComponent implements OnInit, OnDestroy, ControlValueA
   // end of ControlValueAccessor implementations
 
   private addressToString(address: Address): string {
-    return `${address.addressLine1} ${address.addressLine2} ${address.postalCode} ${address.locality}`;
+    if(!address){
+      return '';
+    }
+    return `${address?.addressLine1} ${address?.addressLine2} ${address?.postalCode} ${address?.locality}`;
   }
 }

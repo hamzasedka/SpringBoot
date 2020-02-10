@@ -3,12 +3,12 @@
     <form [formGroup]="this.selectProductForm">
       <div fxLayout="column">
         <mat-form-field color="accent">
-          <mat-select formControlName="addressId" placeholder="Choisir une adresse" required>
+          <mat-select formControlName="productId" placeholder="Choisir une adresse" required>
             <mat-option *ngFor="let product of this.products;" [value]="product.uid">
-              {{ product.shortDescription }}
+              {{ product.description }}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="vm.addressIdError">{{ vm.addressLine1Error }}</mat-error>
+          <mat-error *ngIf="vm.productIdError">{{ vm.productIdError }}</mat-error>
         </mat-form-field>
       </div>
     </form>
