@@ -1,0 +1,19 @@
+.uploader-container {
+  width: 100%;
+  max-height: 400px;
+  overflow-x: scroll;
+}
+
+.uploader-label {
+  color: rgba(0, 0, 0, 0.87);
+  cursor: pointer;
+  display: block;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 24px;
+  line-height: 24px;
+  pointer-events: auto;
+  user-select: auto;
+  white-space: nowrap;
+  width: 140.859px;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}

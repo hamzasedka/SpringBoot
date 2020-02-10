@@ -40,7 +40,7 @@
       "@dom/ui/manage-orders": ["libs/ui/manage-orders/src/index.ts"],
       "@dom/ui/subscribe": ["libs/ui/subscribe/src/index.ts"],
       "@dom/ui/manage-companies": ["libs/ui/manage-companies/src/index.ts"],
-      "@dom/ui/manages-documents": ["libs/ui/manages-documents/src/index.ts"]
+      "@dom/ui/manage-documents": ["libs/ui/manage-documents/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

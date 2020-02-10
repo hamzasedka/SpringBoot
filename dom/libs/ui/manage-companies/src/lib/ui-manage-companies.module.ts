@@ -7,7 +7,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { AppLayoutModule } from '@dom/ui/layout';
 import { UiManageCompaniesRoutingModule } from './ui-manage-companies-routing.module';
-import { UiManagesDocumentsModule } from '@dom/ui/manages-documents';
+import { UiManagesDocumentsModule } from '@dom/ui/manage-documents';
 import { UiManageAddressesModule } from '@dom/ui/manage-addresses';
 @NgModule({
   imports: [
