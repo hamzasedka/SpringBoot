@@ -17,11 +17,22 @@
           <textarea matInput formControlName="description" placeholder="Description"></textarea>
           <mat-error *ngIf="vm.descriptionError">{{ vm.descriptionError }}</mat-error>
         </mat-form-field>
+
         <!-- isOption -->
         <div color="accent">
           <mat-checkbox formControlName="isOption" placeholder="Un produit option">Produit option</mat-checkbox>
           <mat-error *ngIf="vm.isOptionError">{{ vm.isOptionError }}</mat-error>
         </div>
+
+         <!-- isHosting -->
+         <div color="accent">
+          <mat-checkbox formControlName="isHosting" placeholder="Produit de domiciliation">Produit de domiciliation</mat-checkbox>
+          <mat-error *ngIf="vm.isHostingError">{{ vm.isHostingError }}</mat-error>
+        </div>
+
+        <!--  addressId -->
+        <dom-addresses-input formControlName="addressId"></dom-addresses-input>
+
         <!--  Price cards -->
         <div>
           <div fxLayout="row" fxLayoutAlign="end center">

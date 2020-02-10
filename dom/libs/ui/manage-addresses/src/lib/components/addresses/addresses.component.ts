@@ -33,6 +33,17 @@ export class AddressesComponent implements OnInit, OnDestroy {
     await this.editAddresssesService.editAddress(address).toPromise();
   }
 
+  async onAdd() {
+    const address: Models.Address = {
+      addressLine1: '',
+      addressLine2: '',
+      postalCode: '',
+      locality: '',
+      country: 'France'
+    };
+    await this.editAddresssesService.editAddress(address).toPromise();
+  }
+
   async onDeleteClick(address: Models.Address) {
     await this.entityServices.addressCollectionService.delete(address?.uid).toPromise();
   }

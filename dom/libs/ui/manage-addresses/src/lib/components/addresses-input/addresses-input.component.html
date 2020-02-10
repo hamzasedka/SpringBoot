@@ -3,8 +3,11 @@
     <mat-form-field color="accent" fxFlexFill>
       <input matInput type="text" formControlName="address" placeholder="Selectionner une Adresse :" />
       <mat-error *ngIf="vm.addressError">{{ vm.addressError }}</mat-error>
-      <button matSuffix mat-mini-fab (click)="this.onSearchAddress()">
+      <button matSuffix mat-mini-fab (click)="this.onSearchAddress($event)">
         <mat-icon>search</mat-icon>
+      </button>
+      <button matSuffix mat-mini-fab (click)="this.onDeleteAddress($event)">
+        <mat-icon>delete</mat-icon>
       </button>
     </mat-form-field>
   </form>

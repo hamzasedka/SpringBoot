@@ -44,7 +44,6 @@ export class UploadTaskComponent implements OnInit {
     this.percentage = this.task.percentageChanges();
 
     this.snapshot = this.task.snapshotChanges().pipe(
-      tap(console.log),
       finalize(async () => {
         this.downloadURL = await ref.getDownloadURL().toPromise();
         const metadata = await ref.getMetadata().toPromise();

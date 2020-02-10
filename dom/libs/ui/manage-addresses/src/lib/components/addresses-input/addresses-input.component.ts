@@ -55,14 +55,27 @@ export class AddressesInputComponent implements OnInit, OnDestroy, ControlValueA
     this.dialogRef?.close();
   }
 
-  async onSearchAddress() {
+  async onSearchAddress(event: MouseEvent) {
+    event.preventDefault();
     const selectedAddress: Address = await this.addresssesService.selectAddress().toPromise();
-    if (this.propagateChange) {
-      this.propagateChange(selectedAddress?.uid);
+    if(selectedAddress){
+      if (this.propagateChange) {
+        this.propagateChange(selectedAddress?.uid);
+      }
+      this.addresssform.setValue(
+        {
+          address: this.addressToString(selectedAddress)
+        }
+      );
     }
+  }
+
+  async onDeleteAddress(event: MouseEvent) {
+    event.preventDefault();
+    this.propagateChange('');
     this.addresssform.setValue(
       {
-        address: this.addressToString(selectedAddress)
+        address: ''
       }
     );
   }

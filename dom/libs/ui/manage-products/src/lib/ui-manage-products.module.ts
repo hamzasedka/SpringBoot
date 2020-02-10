@@ -7,6 +7,7 @@ import { UiManageProductsRoutingModule } from './ui-manage-products-routing.modu
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { AppLayoutModule } from '@dom/ui/layout';
+import { UiManageAddressesModule } from '@dom/ui/manage-addresses';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { AppLayoutModule } from '@dom/ui/layout';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    AppLayoutModule
+    AppLayoutModule,
+    UiManageAddressesModule
   ],
   declarations: [Components.EditProductsComponent, Components.ProductsComponent, Components.ProductsMenuComponent, Components.ProductsListComponent, Components.EditPriceCardsComponent],
   exports: [Components.ProductsComponent],

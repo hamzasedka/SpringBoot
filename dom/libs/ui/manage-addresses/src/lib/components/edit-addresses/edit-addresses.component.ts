@@ -79,7 +79,7 @@ export class EditAddressesComponent implements OnInit, OnDestroy {
         addressLine2: [''],
         postalCode: ['', Validators.compose([Validators.required])],
         locality: ['', Validators.compose([Validators.required])],
-        country: ['', Validators.compose([Validators.required])]
+        country: [{value:'France' ,disabled: true}, Validators.compose([Validators.required])]
       }
     );
   }

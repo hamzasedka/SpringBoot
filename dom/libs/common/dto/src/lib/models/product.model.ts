@@ -10,6 +10,7 @@ export interface Product  extends IdentityEntity, DeletedEntity{
   priceCards?: PriceCard[];
   relatedProducts?: string[];
   isOption?: boolean;
+  isHosting?: boolean;
   isDomiciliation?: boolean;
   addressId?: string;
   deleted?: boolean;

@@ -51,7 +51,6 @@ export class EditProductsComponent implements OnInit, OnDestroy {
         map(([product, changes]) => ({ product, changes }))
       ).pipe(takeUntilDestroyed(this)).subscribe(r => {
         this.vmBehavior.next(r);
-        console.log('r=> ', r)
       });
   }
 
@@ -94,7 +93,9 @@ export class EditProductsComponent implements OnInit, OnDestroy {
         name: ['', Validators.compose([Validators.required])],
         description: [''],
         isOption: [false],
-        priceCards: [[]]
+        priceCards: [[]],
+        isHosting: [false],
+        addressId: ['']
       }
     );
   }
