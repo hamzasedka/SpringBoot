@@ -2,7 +2,7 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as Models from '@dom/common/dto';
 import { combineLatest, BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, take } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@dom/common/core';
 
 @Component({
@@ -14,12 +14,14 @@ export class SelectProductComponent implements OnInit, OnDestroy, ControlValueAc
 
   @Input() products: Models.Product[];
 
-  selectedProductId: string;
-
   selectProductForm: FormGroup;
 
   private vmBehavior = new BehaviorSubject<any>({});
   readonly vm$: Observable<any> = this.vmBehavior.asObservable();
+
+  get productIdForm(){
+    return this.selectProductForm.get('productId');
+  }
 
   constructor(private readonly fb: FormBuilder) {
     this.buildFormRegister();
@@ -42,10 +44,14 @@ export class SelectProductComponent implements OnInit, OnDestroy, ControlValueAc
     // takeUntilDestroyed
   }
 
-  writeValue(obj: any): void {
+  writeValue(productId: string): void {
+    this.productIdForm.setValue(productId);
   }
+
   registerOnChange(fn: any): void {
+    this.productIdForm.valueChanges.pipe(takeUntilDestroyed(this)).subscribe(fn);
   }
+
   registerOnTouched(fn: any): void {
   }
   setDisabledState?(isDisabled: boolean): void {

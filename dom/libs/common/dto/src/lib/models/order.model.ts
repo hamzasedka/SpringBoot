@@ -1,12 +1,13 @@
 import { IdentityEntity, DeletedEntity } from '@dom/common/core';
+import { PriceCard } from './price-card.model';
+import { Contract } from './contract.model';
 
 export interface Order   extends IdentityEntity, DeletedEntity {
   // Order
-  uid: string;
+  uid?: string;
+  userId: string;
   orderItems: OrderItem[];
-  companyId: string;
-  startDate: Date;
-  endDate?: Date;
+  isPending: boolean;
   deleted?: boolean;
   created_time?: number;
 }
@@ -14,9 +15,12 @@ export interface Order   extends IdentityEntity, DeletedEntity {
 
 export interface OrderItem   extends IdentityEntity {
   // Order
-  uid: string;
+  uid?: string;
   productId: string;
-  priceCardId: string;
+  priceCard: PriceCard;
+  startDate: Date;
+  endDate?: Date;
   deleted?: boolean;
+  contract: Contract;
   created_time?: number;
 }

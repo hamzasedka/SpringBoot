@@ -3,5 +3,6 @@ export enum Entities {
   userAccount = 'userAccount',
   product = 'product',
   company = 'company',
-  storageDocument = 'storageDocument'
+  storageDocument = 'storageDocument',
+  order = 'order'
 }

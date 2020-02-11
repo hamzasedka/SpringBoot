@@ -8,6 +8,7 @@ import { AppLayoutModule } from '@dom/ui/layout';
 import { UiSubscribeRoutingModule } from './ui-subscribe-routing.module';
 import * as Models from './components';
 import { MatStepperModule } from '@angular/material/stepper';
+import { SubscribeStoreModule } from './store';
 
 @NgModule({
   imports: [
@@ -19,7 +20,8 @@ import { MatStepperModule } from '@angular/material/stepper';
     ReactiveFormsModule,
     MatInputModule,
     AppLayoutModule,
-    MatStepperModule
+    MatStepperModule,
+    SubscribeStoreModule
   ],
   declarations: [
     Models.SelectProductComponent,
