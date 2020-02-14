@@ -9,6 +9,7 @@ import { UiSubscribeRoutingModule } from './ui-subscribe-routing.module';
 import * as Models from './components';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SubscribeStoreModule } from './store';
+import { SelectPriceComponent } from './components/select-price/select-price.component';
 
 @NgModule({
   imports: [
@@ -29,7 +30,8 @@ import { SubscribeStoreModule } from './store';
     Models.PaymentMedhodComponent,
     Models.ContractComponent,
     Models.SubscribeComponent,
-    Models.SummaryComponent],
+    Models.SummaryComponent,
+    SelectPriceComponent],
   exports: [Components.SubscribeComponent],
   entryComponents: [Components.SubscribeComponent]
 })

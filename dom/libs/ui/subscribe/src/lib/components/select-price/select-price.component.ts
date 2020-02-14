@@ -2,30 +2,30 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import * as Models from '@dom/common/dto';
 import { combineLatest, BehaviorSubject, Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@dom/common/core';
 
 @Component({
-  selector: 'dom-select-product',
-  templateUrl: './select-product.component.html',
-  styleUrls: ['./select-product.component.scss']
+  selector: 'dom-select-price',
+  templateUrl: './select-price.component.html',
+  styleUrls: ['./select-price.component.scss']
 })
-export class SelectProductComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class SelectPriceComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
-  @Input() products: Models.Product[];
+  @Input() priceCards: Models.PriceCard[];
 
-  selectProductForm: FormGroup;
+  selectPriceCardForm: FormGroup;
 
   private vmBehavior = new BehaviorSubject<any>({});
   readonly vm$: Observable<any> = this.vmBehavior.asObservable();
 
-  get productIdForm(){
-    return this.selectProductForm.get('productId');
+  get priceCardForm(){
+    return this.selectPriceCardForm.get('priceCard');
   }
 
   constructor(private readonly fb: FormBuilder) {
-    this.buildFormRegister();
-    combineLatest([this.selectProductForm.valueChanges])
+    this.buildForm();
+    combineLatest([this.selectPriceCardForm.valueChanges])
       .pipe(
         map(([changes]) =>
           ({
@@ -44,12 +44,12 @@ export class SelectProductComponent implements OnInit, OnDestroy, ControlValueAc
     // takeUntilDestroyed
   }
 
-  writeValue(productId: string): void {
-    this.productIdForm.setValue(productId);
+  writeValue(priceCard: Models.PriceCard): void {
+    this.priceCardForm.setValue(priceCard);
   }
 
   registerOnChange(fn: any): void {
-    this.productIdForm.valueChanges.pipe(takeUntilDestroyed(this)).subscribe(fn);
+    this.priceCardForm.valueChanges.pipe(takeUntilDestroyed(this)).subscribe(fn);
   }
 
   registerOnTouched(fn: any): void {
@@ -57,16 +57,16 @@ export class SelectProductComponent implements OnInit, OnDestroy, ControlValueAc
 
   setDisabledState?(isDisabled: boolean): void {
     if(isDisabled){
-      this.selectProductForm.disable();
+      this.selectPriceCardForm.disable();
     } else{
-      this.selectProductForm.enable();
+      this.selectPriceCardForm.enable();
     }
   }
 
-  private buildFormRegister() {
-    this.selectProductForm = this.fb.group(
+  private buildForm() {
+    this.selectPriceCardForm = this.fb.group(
       {
-        productId: ['', Validators.compose([Validators.required])],
+        priceCard: [{}, Validators.compose([Validators.required])],
       }
     );
   }

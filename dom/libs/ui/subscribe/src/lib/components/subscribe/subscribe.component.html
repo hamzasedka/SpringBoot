@@ -3,6 +3,7 @@
     <form [formGroup]="productsFormGroup">
       <ng-template matStepLabel>ADRESSES</ng-template>
       <dom-select-product [products]="this.products$ | async" formControlName="products"></dom-select-product>
+      <dom-select-price [priceCards]="" formControlName="selectedPriceCard"></dom-select-price>
       <div>
         <button mat-button matStepperNext>Next</button>
       </div>

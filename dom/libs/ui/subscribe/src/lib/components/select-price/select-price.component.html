@@ -1,0 +1,14 @@
+<ng-container *ngIf="this.vm$ | async as vm">
+  <div>
+    <form [formGroup]="this.selectPriceCardForm">
+      <div fxLayout="column">
+        <label id="example-radio-group-label">Choisir un forfait</label>
+        <mat-radio-group formControlName="priceCard">
+          <mat-radio-button class="item-radio-button" *ngFor="let priceCard of priceCards" [value]="priceCard">
+            {{priceCard?.name}}
+          </mat-radio-button>
+        </mat-radio-group>
+      </div>
+    </form>
+  </div>
+</ng-container>

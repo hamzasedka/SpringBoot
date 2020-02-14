@@ -3,6 +3,7 @@ import { Reccurences } from '../enums';
 
 export interface PriceCard extends IdentityEntity, DeletedEntity {
   uid?: string;
+  name?: string;
   priceExcludeTaxe?: number;
   priceIncludeTaxe?: number;
   strikethroughPrice?: number;

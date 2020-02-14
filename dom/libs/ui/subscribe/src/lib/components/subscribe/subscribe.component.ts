@@ -25,11 +25,13 @@ export class SubscribeComponent implements OnInit {
         )
     );
 
+  pricecards$ = combineLast
   constructor(private _formBuilder: FormBuilder, private readonly services: AppEntityServices) { }
 
   ngOnInit() {
     this.productsFormGroup = this._formBuilder.group({
-      products: ['']
+      products: [''],
+      selectedPriceCard: [{}]
     });
     this.informationsFormGroup = this._formBuilder.group({
       informations: ['']
