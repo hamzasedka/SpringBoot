@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, Input, OnDestroy, ChangeDetectionStrategy, forwardRef } from '@angular/core';
+import { ControlValueAccessor, FormBuilder, FormGroup, Validators, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as Models from '@dom/common/dto';
 import { combineLatest, BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -8,7 +8,15 @@ import { takeUntilDestroyed } from '@dom/common/core';
 @Component({
   selector: 'dom-select-price',
   templateUrl: './select-price.component.html',
-  styleUrls: ['./select-price.component.scss']
+  styleUrls: ['./select-price.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  providers: [
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => SelectPriceComponent),
+      multi: true
+    }
+  ]
 })
 export class SelectPriceComponent implements OnInit, OnDestroy, ControlValueAccessor {
 

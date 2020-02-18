@@ -15,6 +15,7 @@ export const getOrderIdFromRoute = createSelector(
 );
 
 const oredersSelectors = new EntitySelectorsFactory().create<Models.Order>(Entities.order);
+const productSelectors = new EntitySelectorsFactory().create<Models.Product>(Entities.product);
 
 export const getEditOrderUid = createSelector(
   getManageOrderState, state => state.uid
@@ -30,4 +31,19 @@ export const getEditOrder = createSelector(
   oredersSelectors.selectEntityMap,
   getEditOrderUid,
   (dictionary, uid) => !!dictionary[uid] ? dictionary[uid] : undefined as Models.Order
+);
+
+
+export const getMainHostingProductOfCurrentOrder = createSelector(
+  getManageOrderState, productSelectors.selectEntityMap, (state, dictionary) => {
+    const id = state?.orderItems[0]?.productId;
+    return !!id ? dictionary[id] : null
+  }
+);
+
+
+export const getHostingPriceCards = createSelector(
+  getMainHostingProductOfCurrentOrder, state => {
+    return state?.priceCards
+  }
 );

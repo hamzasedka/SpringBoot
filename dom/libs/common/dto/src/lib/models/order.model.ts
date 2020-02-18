@@ -13,14 +13,13 @@ export interface Order   extends IdentityEntity, DeletedEntity {
 }
 
 
-export interface OrderItem   extends IdentityEntity {
+export interface OrderItem {
   // Order
-  uid?: string;
   productId: string;
-  priceCard: PriceCard;
-  startDate: Date;
+  priceCard?: PriceCard;
+  startDate?: Date;
   endDate?: Date;
   deleted?: boolean;
-  contract: Contract;
+  contract?: Contract;
   created_time?: number;
 }

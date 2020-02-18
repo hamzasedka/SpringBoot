@@ -1,52 +1,54 @@
-<mat-horizontal-stepper [linear]="false" #stepper>
-  <mat-step [stepControl]="productsFormGroup">
-    <form [formGroup]="productsFormGroup">
-      <ng-template matStepLabel>ADRESSES</ng-template>
-      <dom-select-product [products]="this.products$ | async" formControlName="products"></dom-select-product>
-      <dom-select-price [priceCards]="" formControlName="selectedPriceCard"></dom-select-price>
-      <div>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="informationsFormGroup">
-    <form [formGroup]="informationsFormGroup">
-      <ng-template matStepLabel>INFORMATIONS</ng-template>
-      <dom-company-infos formControlName="informations"></dom-company-infos>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="optionsFormGroup">
-    <form [formGroup]="optionsFormGroup">
-      <ng-template matStepLabel>OPTIONS</ng-template>
-      <dom-expedition-address formControlName="options"></dom-expedition-address>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="paymentFormGroup">
-    <form [formGroup]="paymentFormGroup">
-      <ng-template matStepLabel>PAIMENT</ng-template>
-      <dom-payment-medhod formControlName="payment"></dom-payment-medhod>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-  <mat-step [stepControl]="contractFormGroup">
-    <form [formGroup]="contractFormGroup">
-      <ng-template matStepLabel>CONTRAT</ng-template>
-      <dom-contract formControlName="contract"></dom-contract>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
-      </div>
-    </form>
-  </mat-step>
-</mat-horizontal-stepper>
+<ng-container *ngIf="this.vm$ | async as vm">
+  <mat-horizontal-stepper [linear]="false" #stepper>
+    <mat-step [stepControl]="productsFormGroup">
+      <form [formGroup]="productsFormGroup">
+        <ng-template matStepLabel>ADRESSES</ng-template>
+        <dom-select-product [products]="vm.products" formControlName="selectedProduct"></dom-select-product>
+        <dom-select-price [priceCards]="vm.pricecards" formControlName="selectedPriceCard"></dom-select-price>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <!-- <mat-step [stepControl]="informationsFormGroup">
+      <form [formGroup]="informationsFormGroup">
+        <ng-template matStepLabel>INFORMATIONS</ng-template>
+        <dom-company-infos formControlName="informations"></dom-company-infos>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="optionsFormGroup">
+      <form [formGroup]="optionsFormGroup">
+        <ng-template matStepLabel>OPTIONS</ng-template>
+        <dom-expedition-address formControlName="options"></dom-expedition-address>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="paymentFormGroup">
+      <form [formGroup]="paymentFormGroup">
+        <ng-template matStepLabel>PAIMENT</ng-template>
+        <dom-payment-medhod formControlName="payment"></dom-payment-medhod>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="contractFormGroup">
+      <form [formGroup]="contractFormGroup">
+        <ng-template matStepLabel>CONTRAT</ng-template>
+        <dom-contract formControlName="contract"></dom-contract>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step> -->
+  </mat-horizontal-stepper>
+</ng-container>

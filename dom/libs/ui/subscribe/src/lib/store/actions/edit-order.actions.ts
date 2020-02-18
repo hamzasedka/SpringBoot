@@ -11,8 +11,14 @@ export const setEditOrder = createAction(
   props<{ order: Models.Order }>()
 );
 
+export const upsertHostingOrderItem = createAction(
+  `[${Selectors.ORDER_FEATURE_NAME}]{${Selectors.EDIT_ORDER_TOOL_NAME}} Upsert hosting order Item`,
+  props<{ orderItem: Models.OrderItem }>()
+);
+
 const actions = union({
   setEditOrder: setEditOrder,
+  upsertHostingOrderItem: upsertHostingOrderItem
 });
 
 export type EditOrederActions = typeof actions;

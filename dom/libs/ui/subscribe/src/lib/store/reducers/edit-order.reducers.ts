@@ -9,6 +9,9 @@ const reducer = createReducer<State.EditOrderState, Actions.EditOrederActions>(
     on(Actions.setEditOrder, (state, { order }) => ({
         ...state, ...order
     })),
+    on(Actions.upsertHostingOrderItem, (state, { orderItem }) => ({
+      ...state, orderItems : [...state.orderItems.filter(x => x.productId)]
+  }))
 );
 
 export function EDIT_ORDER_REDUCER(state: State.EditOrderState, action: Actions.EditOrederActions): State.EditOrderState {
