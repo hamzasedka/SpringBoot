@@ -3,6 +3,7 @@ import { IdentityEntity, DeletedEntity } from '@dom/common/core';
 export interface Company   extends IdentityEntity, DeletedEntity{
   uid?: string;
   name: string;
+  juri_forme: string;
   siren: string;
   prefectoralId: string;
   creationInProgress?: boolean;

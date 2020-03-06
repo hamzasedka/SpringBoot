@@ -18,7 +18,7 @@ import * as Models from '@dom/common/dto';
 export class EditCompaniesComponent implements OnInit, OnDestroy {
 
   companyForm: FormGroup;
-
+  juri_formes = ['Entreprise individuelle','EIRL', 'SARL' , 'EURL', 'SAS' ,'SASU', 'SA', 'SNC'];
   private readonly editCompany$ = this.store.pipe(select(Store.getEditCompany)).pipe(
     tap(item => {
       if (!!item) {
@@ -81,6 +81,7 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
     this.companyForm = this.fb.group(
       {
         name: ['', Validators.compose([Validators.required])],
+        juri_forme: ['', Validators.compose([Validators.required])],
         creationInProgress: [false],
         siren: [''],
         isHosting: [false],

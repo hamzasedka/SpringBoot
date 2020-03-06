@@ -24,7 +24,7 @@ import { UiManageAddressesModule } from '@dom/ui/manage-addresses';
     UiManageAddressesModule
   ],
   declarations: [Components.EditCompaniesComponent, Components.CompaniesComponent, Components.CompaniesMenuComponent, Components.CompaniesListComponent],
-  exports: [Components.CompaniesComponent],
+  exports: [Components.CompaniesComponent, Components.EditCompaniesComponent],
   entryComponents: [Components.EditCompaniesComponent]
 })
 export class UiManageCompaniesModule { }

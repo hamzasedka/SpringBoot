@@ -10,6 +10,7 @@ import * as Models from './components';
 import { MatStepperModule } from '@angular/material/stepper';
 import { SubscribeStoreModule } from './store';
 import { SelectPriceComponent } from './components/select-price/select-price.component';
+import { UiManageCompaniesModule } from '@dom/ui/manage-companies';
 
 @NgModule({
   imports: [
@@ -22,11 +23,13 @@ import { SelectPriceComponent } from './components/select-price/select-price.com
     MatInputModule,
     AppLayoutModule,
     MatStepperModule,
-    SubscribeStoreModule
+    SubscribeStoreModule,
+    UiManageCompaniesModule
   ],
   declarations: [
     Models.SelectProductComponent,
-    Models.CompanyInfosComponent, Models.ExpeditionAddressComponent,
+    Models.CompanyInfosComponent,
+    Models.ExpeditionAddressComponent,
     Models.PaymentMedhodComponent,
     Models.ContractComponent,
     Models.SubscribeComponent,

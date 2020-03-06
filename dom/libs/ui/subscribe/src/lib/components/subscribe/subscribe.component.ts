@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import * as Models from '@dom/common/dto';
 import { Observable, combineLatest, of } from 'rxjs';
@@ -12,7 +12,8 @@ import { upsertHostingOrderItem } from '../../store/actions';
 @Component({
   selector: 'dom-subscribe',
   templateUrl: './subscribe.component.html',
-  styleUrls: ['./subscribe.component.scss']
+  styleUrls: ['./subscribe.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SubscribeComponent implements OnInit, OnDestroy {
 

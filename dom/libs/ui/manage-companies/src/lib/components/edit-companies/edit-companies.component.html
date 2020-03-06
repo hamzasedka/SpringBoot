@@ -9,18 +9,29 @@
         </div>
         <!-- name -->
         <mat-form-field color="accent">
-          <input matInput type="text" formControlName="name" placeholder="Name" />
+          <input matInput type="text" formControlName="name" placeholder="Name"  required/>
           <mat-error *ngIf="vm.nameError">{{ vm.nameError }}</mat-error>
         </mat-form-field>
+
+        <!-- juri_forme -->
+        <mat-form-field color="accent">
+          <mat-label>Forme Juridique</mat-label>
+          <mat-select formControlName="juri_forme" placeholder="Forme Juridique" required>
+            <mat-option *ngFor="let juri_forme of this.juri_formes;" [value]="juri_forme">
+              {{ juri_forme }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <!-- creationInProgress -->
         <div color="accent">
-          <mat-checkbox formControlName="creationInProgress" placeholder="Est en cours de creation">Est en cours de
+          <mat-checkbox required formControlName="creationInProgress" placeholder="Est en cours de creation">Est en cours de
             creation </mat-checkbox>
           <mat-error *ngIf="vm.creationInProgressError">{{ vm.creationInProgressError }}</mat-error>
         </div>
         <!-- siren -->
         <mat-form-field *ngIf="!vm.changes?.creationInProgress" color="accent">
-          <textarea matInput formControlName="siren" placeholder="Siren"></textarea>
+          <input matInput type="text" formControlName="siren" placeholder="Siren"/>
           <mat-error *ngIf="vm.sirenError">{{ vm.sirenError }}</mat-error>
         </mat-form-field>
         <!-- isHosting -->
