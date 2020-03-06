@@ -28,6 +28,7 @@ export class EditPriceCardsComponent implements OnInit, OnDestroy, ControlValueA
 
   readonly displayedColumns: string[] = [
     'delete',
+    'name',
     'priceExcludeTaxe',
     'priceIncludeTaxe',
     'strikethroughPrice',
@@ -61,6 +62,7 @@ export class EditPriceCardsComponent implements OnInit, OnDestroy, ControlValueA
 
   private createFormGroupFromPriceCard(priceCard: Models.PriceCard): FormGroup {
     return this.formBuilder.group({
+      name: [{ value: priceCard.name ?? null, disabled: false }, [Validators.required]],
       priceExcludeTaxe: [{ value: priceCard.priceExcludeTaxe ?? null, disabled: false }, [Validators.required, Validators.min(0)]],
       priceIncludeTaxe: [{ value: priceCard.priceIncludeTaxe ?? null, disabled: false }, [Validators.required, Validators.min(0)]],
       strikethroughPrice: [{ value: priceCard.strikethroughPrice ?? null, disabled: false }, [Validators.min(0)]],

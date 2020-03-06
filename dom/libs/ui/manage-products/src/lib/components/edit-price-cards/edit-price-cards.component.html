@@ -1,6 +1,18 @@
 <div class="container" [formGroup]="this.tableForm">
   <mat-table [formArrayName]="this.priceCardsArrayName" [dataSource]="this.formArray.value"
     [trackBy]="this.trackByPriceCard">
+
+    <!-- name -->
+    <ng-container matColumnDef="name">
+      <mat-header-cell fxFlex *matHeaderCellDef>Nom</mat-header-cell>
+      <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
+        <mat-form-field class="currency" fxFlex="calc(100% - 1em)" color="accent" appearance="outline">
+          <mat-label>Nom</mat-label>
+          <input type="text" matInput placeholder="Nom" required formControlName="name" />
+        </mat-form-field>
+      </mat-cell>
+    </ng-container>
+
     <!-- priceExcludeTaxe -->
     <ng-container matColumnDef="priceExcludeTaxe">
       <mat-header-cell fxFlex *matHeaderCellDef>Prix HT</mat-header-cell>
@@ -42,7 +54,8 @@
     <ng-container matColumnDef="canApplyPromotion">
       <mat-header-cell fxFlex *matHeaderCellDef>Peux appliquer un code promotion</mat-header-cell>
       <mat-cell fxFlex *matCellDef="let element; let rowIndex = index" [formGroupName]="rowIndex">
-        <mat-checkbox formControlName="canApplyPromotion" placeholder="Peux appliquer un code promotion">Peux appliquer un code promotion</mat-checkbox>
+        <mat-checkbox formControlName="canApplyPromotion" placeholder="Peux appliquer un code promotion">Peux appliquer
+          un code promotion</mat-checkbox>
       </mat-cell>
     </ng-container>
 
