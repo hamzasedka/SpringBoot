@@ -13,7 +13,7 @@ export const setEditOrder = createAction(
 
 export const upsertHostingOrderItem = createAction(
   `[${Selectors.ORDER_FEATURE_NAME}]{${Selectors.EDIT_ORDER_TOOL_NAME}} Upsert hosting order Item`,
-  props<{ orderItem: Models.OrderItem }>()
+  props<{ productId: string }>()
 );
 
 const actions = union({

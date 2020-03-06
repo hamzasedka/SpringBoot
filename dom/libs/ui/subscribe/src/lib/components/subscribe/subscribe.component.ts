@@ -74,7 +74,6 @@ export class SubscribeComponent implements OnInit, OnDestroy {
   }
 
   setHostingOrderItem(productId: string){
-    const orderItem : Models.OrderItem = {productId};
-    this.services.productsCollectionService.store.dispatch(upsertHostingOrderItem({orderItem}));
+    this.services.productsCollectionService.store.dispatch(upsertHostingOrderItem({productId}));
   }
 }
