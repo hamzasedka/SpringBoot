@@ -27,12 +27,12 @@ steps:
   displayName: 'test result'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: './dist'
+    PathtoPublish: './dom/dist/apps/domiciliation'
     ArtifactName: 'drop/dist'
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: './scripts'
+    PathtoPublish: './dom/scripts'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
