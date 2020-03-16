@@ -20,13 +20,11 @@ steps:
     dir
     npm install -g @angular/cli
     npm install
-    ng build --prod
-    dir ./dist
   displayName: 'npm install'
-  - script: |  
+- script: |  
     ng build --prod
     dir ./dist
-   displayName: 'npm build'
+  displayName: 'npm build'
 - script: |    
     dir ./dist/apps
     pwd
