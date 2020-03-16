@@ -22,10 +22,8 @@ steps:
   displayName: 'npm install'
 - script: |  
     ng build --prod
-    dir ./dist
   displayName: 'npm build'
-- script: |    
-    dir ./dist/apps
+- script: |
     pwd
   displayName: 'test result'
 - task: PublishBuildArtifacts@1
