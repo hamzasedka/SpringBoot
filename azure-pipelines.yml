@@ -20,21 +20,19 @@ steps:
     dir
     npm install -g @angular/cli
     npm install
-    ng build --prod
-    dir ./dist
-  displayName: 'npm install and build'
-- script: |    
-    dir ./dist/apps
+    npm run build:prod
+  displayName: 'npm install && build'
+- script: |
     pwd
   displayName: 'test result'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: './dist'
+    PathtoPublish: './dom/dist/apps/domiciliation'
     ArtifactName: 'drop/dist'
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: './scripts'
+    PathtoPublish: './dom/scripts'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 - task: PublishBuildArtifacts@1
