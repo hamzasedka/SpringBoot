@@ -22,7 +22,11 @@ steps:
     npm install
     ng build --prod
     dir ./dist
-  displayName: 'npm install and build'
+  displayName: 'npm install'
+  - script: |  
+    ng build --prod
+    dir ./dist
+   displayName: 'npm build'
 - script: |    
     dir ./dist/apps
     pwd
