@@ -5,6 +5,7 @@
   "scripts": {
     "ng": "ng",
     "nx": "nx",
+    "st": "npm run start",
     "start": "ng serve --project=domiciliation --ssl true --ssl-cert ./ssl/server.crt --ssl-key ./ssl/server.key",
     "start-local-pwa": "npm run build-pwa && http-server -p 4200 -c-1 dist/apps/domiciliation --ssl --cert ./ssl/server.crt --key ./ssl/server.key",
     "start:backend": "ng build --project=services-backend && ng serve --project=services-backend",

@@ -2,11 +2,13 @@
   <dom-dialog-layout (closeClick)="this.onCloseClick()" [canClose]="!!this.dialogRef">
     <form [formGroup]="companyForm" (ngSubmit)="this.onSave(vm.company, $event)">
       <div fxLayout="column" fxLayoutGap>
+
         <div fxLayoutAlign="center center">
           <button mat-mini-fab color="accent" type="submit" [disabled]="!companyForm.valid">
             <mat-icon>save</mat-icon>
           </button>
         </div>
+
         <!-- name -->
         <mat-form-field color="accent">
           <input matInput type="text" formControlName="name" placeholder="Name"  required/>
@@ -25,21 +27,24 @@
 
         <!-- creationInProgress -->
         <div color="accent">
-          <mat-checkbox required formControlName="creationInProgress" placeholder="Est en cours de creation">Est en cours de
+          <mat-checkbox formControlName="creationInProgress" placeholder="Est en cours de creation">Est en cours de
             creation </mat-checkbox>
           <mat-error *ngIf="vm.creationInProgressError">{{ vm.creationInProgressError }}</mat-error>
         </div>
+
         <!-- siren -->
         <mat-form-field *ngIf="!vm.changes?.creationInProgress" color="accent">
           <input matInput type="text" formControlName="siren" placeholder="Siren"/>
           <mat-error *ngIf="vm.sirenError">{{ vm.sirenError }}</mat-error>
         </mat-form-field>
+
         <!-- isHosting -->
         <div color="accent">
           <mat-checkbox formControlName="isHosting" placeholder="Peux appliquer un code promotion">Est un domiciliateur
           </mat-checkbox>
           <mat-error *ngIf="vm.isHostingError">{{ vm.isHosting }}</mat-error>
         </div>
+
         <!-- prefectoralId -->
         <mat-form-field *ngIf="vm.changes?.isHosting" color="accent">
           <textarea matInput formControlName="prefectoralId" placeholder="Agrément préfectoral"></textarea>

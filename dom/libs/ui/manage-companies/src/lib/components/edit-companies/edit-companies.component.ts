@@ -1,5 +1,5 @@
 import { Component, OnInit, Optional, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
 import { NotificationService } from '@dom/ui/common';
 import { MatDialogRef } from '@angular/material/dialog';
 import { select, Store as NgRxStore } from '@ngrx/store';
@@ -19,10 +19,14 @@ export class EditCompaniesComponent implements OnInit, OnDestroy {
 
   companyForm: FormGroup;
   juri_formes = ['Entreprise individuelle','EIRL', 'SARL' , 'EURL', 'SAS' ,'SASU', 'SA', 'SNC'];
+
   private readonly editCompany$ = this.store.pipe(select(Store.getEditCompany)).pipe(
     tap(item => {
       if (!!item) {
         const clone = { ...item };
+        if(clone.juri_forme === undefined){
+          clone.juri_forme = null;
+        }
         delete clone.uid; // never remove from original object reference
         delete clone.deleted;
         this.companyForm.setValue(clone);

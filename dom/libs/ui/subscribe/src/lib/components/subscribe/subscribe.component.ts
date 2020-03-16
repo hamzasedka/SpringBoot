@@ -8,6 +8,9 @@ import { getHostingPriceCards } from '../../store/selectors';
 import { map, tap } from 'rxjs/operators';
 import { takeUntilDestroyed } from '@dom/common/core';
 import { upsertHostingOrderItem } from '../../store/actions';
+import * as Store from '../../store';
+import { setEditCompany } from 'libs/ui/manage-companies/src/lib/store';
+import { Store as NgRxStore } from '@ngrx/store';
 
 @Component({
   selector: 'dom-subscribe',
@@ -39,9 +42,13 @@ export class SubscribeComponent implements OnInit, OnDestroy {
 
   vm$: Observable<any>;
 
-  constructor(private formBuilder: FormBuilder, private readonly services: AppEntityServices) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private readonly services: AppEntityServices,
+    private readonly store: NgRxStore<Store.OrderFeatureState>) { }
 
   ngOnInit() {
+    this.store.dispatch(setEditCompany({ companyId: null }));
     this.productsFormGroup = this.formBuilder.group({
       selectedProduct: [''],
       selectedPriceCard: [{}]
