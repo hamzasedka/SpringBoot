@@ -16,15 +16,12 @@ steps:
   displayName: 'Install Node.js'
 
 - script: |
+    cd ./dom
     dir
     npm install -g @angular/cli
     npm install
-  displayName: 'npm install'
-- script: |  
-    cd ./dom
-    dir
-    ng build --prod
-  displayName: 'npm build'
+    npm run build:prod
+  displayName: 'npm install && build'
 - script: |
     pwd
   displayName: 'test result'
