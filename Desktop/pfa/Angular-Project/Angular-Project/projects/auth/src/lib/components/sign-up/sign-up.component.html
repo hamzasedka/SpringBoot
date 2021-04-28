@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Signup</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="background">
+            <div class="text">
+                <h1>Signup</h1>
+                <p>Have Account? <a href="http://localhost:4200/sign-in">Login</a></p>
+            </div>
+            <div class="box">
+                <form class="form">
+                    <input type="text" class="fullname" placeholder="Full Name" required>
+                    <input type="email" class="email" placeholder="someone@abc.com" #userEmail required>
+                    <input type="text" class="username" placeholder="Username" required>
+                    <input type="password" class="password" placeholder="Password" #userPwd  required>
+                    <input type="submit" class="button" value="Login" (click)="authService.SignUp(userEmail.value, userPwd.value)">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

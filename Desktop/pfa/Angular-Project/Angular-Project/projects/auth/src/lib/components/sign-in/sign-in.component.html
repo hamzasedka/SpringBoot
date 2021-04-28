@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <div class="background">
+            <div class="text">
+                <h1>Login</h1>
+                <p>No Account? <a href="http://localhost:4200/register-user">Sign up</a></p>
+            </div>
+            <div class="box">
+                <form class="form">
+                    <input type="text" class="username" placeholder="Username" #userName required>
+                    <input type="password" class="password" placeholder="Password" #userPassword required>
+                    <input type="submit" class="button" value="Login" (click)="authService.SignIn(userName.value, userPassword.value)">
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
