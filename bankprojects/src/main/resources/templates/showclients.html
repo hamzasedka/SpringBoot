@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sf="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BankManagment</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Bank Managment</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="http://localhost:8080/addclient">AddClient <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/addbank">AddBank</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="http://localhost:8080/addbankAccount">AddbankAccount</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link " href="http://localhost:8080/banks">Banks</a>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <a href="http://localhost:8080/logout"><button class="btn btn-outline-danger my-2 my-sm-0"  type="submit">Logout</button></a>
+        </form>
+    </div>
+</nav>
+<br>
+
+<div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Name</th>
+                <th scope="col">lastname</th>
+                <th scope="col">CIN</th>
+                <th scope="col">birthDay</th>
+                <th scope="col">email</th>
+                <th scope="col">phoneNumber</th>
+                <th></th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="client: ${clients}">
+                <th id="id"  scope="row" th:text="${client.id}"></th>
+                <td th:text="${client.name}"></td>
+                <td th:text="${client.lastname}"></td>
+                <td th:text="${client.CIN}"></td>
+                <td th:text="${client.birthDay}" ></td>
+                <td th:text="${client.email}" ></td>
+                <td th:text="${client.phoneNumber}" ></td>
+
+
+                <td class="row">
+                    <form th:action="@{/deleteclient/{id}(id=${client.id})}" th:method="delete">
+                        <button id="delete" class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                    <form th:action="@{/bankaccounts/{id}(id=${client.id})}" th:method="get">
+                    <button  class="btn btn-primary showBankAccount" onclick="myFunction()">Show BankAccounts</button>
+                    </form>
+
+                    <form th:action="@{/updateclient/{id}(id=${client.id})}" th:method="get">
+                        <button class="btn btn-success">Update</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+    <div class="col-md-1"></div>
+</div>
+</body>
+<script>
+
+</script>
+</html>
