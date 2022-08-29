@@ -1,0 +1,3 @@
+@hostname= http://localhost:8000
+
+GET {{hostname}}/api/value HTTP/1.1
